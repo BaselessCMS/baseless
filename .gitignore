@@ -1,4 +1,5 @@
 .vscode
+.htaccess
 .DS_Store
 dbgenerator.php
 bl-content/*
