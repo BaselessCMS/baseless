@@ -27,6 +27,9 @@ define( 'ALERT_STATUS_OK', $config['alert']['ok'] );
 // Alert status fail.
 define( 'ALERT_STATUS_FAIL', $config['alert']['fail'] );
 
+// Alert notification disappear in X seconds.
+define( 'ALERT_DISAPPEAR_IN', $config['alert']['seconds'] );
+
 // Items per page for admin area.
 define( 'ITEMS_PER_PAGE_ADMIN', $config['admin']['per_page'] );
 
@@ -44,9 +47,13 @@ define( 'REMEMBER_COOKIE_EXPIRE_IN_DAYS', $config['login']['cookie_expire'] );
 // Token time to live for login via email. The offset is defined by http://php.net/manual/en/datetime.modify.php.
 define( 'TOKEN_EMAIL_TTL', $config['login']['email_token'] );
 
+// Session lifetime of the cookie in seconds which is sent to the browser
+// The value 0 means until the browser is closed.
+define( 'SESSION_COOKIE_LIFE_TIME', $config['login']['session_life'] );
+
 // Session timeout server side, gc_maxlifetime.
 // 3600 = 1hour
-define( 'SESSION_GC_MAXLIFETIME', $config['login']['session_life'] );
+define( 'SESSION_GC_MAXLIFETIME', $config['login']['session_max'] );
 
 // Database date format.
 define( 'DB_DATE_FORMAT', $config['dates']['db'] );
@@ -73,7 +80,7 @@ define( 'MANAGE_CONTENT_DATE_FORMAT', $config['dates']['manage'] );
 define( 'NOTIFICATIONS_AMOUNT', $config['dash_notify_qty'] );
 
 // Charset, default UTF-8.
-define( 'CHARSET', 'UTF-8' );
+define( 'CHARSET', $config['charset'] );
 
 // Permissions for new directories.
 define( 'DIR_PERMISSIONS', (int)$config['dir_permission'] );
@@ -82,14 +89,7 @@ define( 'DIR_PERMISSIONS', (int)$config['dir_permission'] );
 define( 'ADMIN_URI_FILTER', $config['admin']['uri'] );
 
 // Default language file, in this case is English.
-define( 'DEFAULT_LANGUAGE_FILE', 'en.json' );
-
-// Session lifetime of the cookie in seconds which is sent to the browser
-// The value 0 means until the browser is closed.
-define( 'SESSION_COOKIE_LIFE_TIME', 0 );
-
-// Alert notification disappear in X seconds.
-define( 'ALERT_DISAPPEAR_IN', 3 );
+define( 'DEFAULT_LANGUAGE_FILE', $config['default_lang'] );
 
 // Number of images to show in the media manager per page.
 define( 'MEDIA_MANAGER_NUMBER_OF_FILES', 5 );

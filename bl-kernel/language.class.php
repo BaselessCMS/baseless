@@ -75,14 +75,14 @@ class Language extends dbJSON {
 		$key = Text::replace(' ', '-', $key);
 		$key = Text::replace('.', '', $key);
 
-		//file_put_contents(DEBUG_FILE, $key.PHP_EOL, FILE_APPEND);
+		//file_put_contents(PATH_DEBUG, $key.PHP_EOL, FILE_APPEND);
 
 		if (isset($this->db[$key])) {
 			return $this->db[$key];
 		}
 
 		//$line = '"'.$key.'": "'.$string.'",';
-		//file_put_contents(DEBUG_FILE, $line.PHP_EOL, FILE_APPEND);
+		//file_put_contents(PATH_DEBUG, $line.PHP_EOL, FILE_APPEND);
 		return $string;
 	}
 

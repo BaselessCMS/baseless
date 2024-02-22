@@ -43,10 +43,15 @@ function config() {
 }
 $config = config();
 
+// Die if no config file.
+if ( ! $config ) {
+	die( 'This website needs a config.json file in the CMS root directory.' );
+}
+
 // System definitions.
-define( 'BLUDIT_VERSION', '3.15.0' );
-define( 'BLUDIT_RELEASE_DATE', '2023-07-15' );
-define( 'BLUDIT_BUILD', '20230715' );
+define( 'BLUDIT_VERSION', $config['system']['version'] );
+define( 'BLUDIT_RELEASE_DATE', $config['system']['date'] );
+define( 'BLUDIT_BUILD', $config['system']['build'] );
 
 // Change to true for debugging.
 define( 'DEBUG_MODE', $config['debug']['mode'] );
@@ -116,6 +121,7 @@ define( 'PATH_PLUGINS_DATABASES', PATH_CONTENT . 'databases' . DS . 'plugins' . 
 define( 'PATH_TMP', PATH_CONTENT . 'tmp' . DS );
 define( 'PATH_UPLOADS', PATH_CONTENT . 'uploads' . DS );
 define( 'PATH_WORKSPACES', PATH_CONTENT . 'workspaces' . DS );
+define( 'PATH_DEBUG', PATH_CONTENT . $config['debug']['file'] );
 
 define( 'PATH_UPLOADS_PAGES', PATH_UPLOADS . 'pages' . DS );
 define( 'PATH_UPLOADS_PROFILES', PATH_UPLOADS . 'profiles' . DS );
@@ -125,8 +131,6 @@ define( 'PATH_ADMIN', PATH_KERNEL . 'admin' . DS );
 define( 'PATH_ADMIN_THEMES', PATH_ADMIN . 'themes' . DS );
 define( 'PATH_ADMIN_CONTROLLERS', PATH_ADMIN . 'controllers' . DS );
 define( 'PATH_ADMIN_VIEWS', PATH_ADMIN . 'views' . DS );
-
-define( 'DEBUG_FILE', PATH_CONTENT . 'debug.txt' );
 
 // Databases.
 define( 'DB_PAGES', PATH_DATABASES . 'pages.php' );
