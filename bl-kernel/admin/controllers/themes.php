@@ -20,5 +20,9 @@ checkRole(array('admin'));
 
 $themes = buildThemes();
 
-// Title of the page
-$layout['title'] .= ' - '.$L->g('Themes');
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s | %s',
+	$L->g( 'Themes' ),
+	$site->title()
+);

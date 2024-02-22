@@ -48,5 +48,9 @@ if (IMAGE_RESTRICT) {
 	define('PAGE_THUMBNAILS_URL', DOMAIN_UPLOADS_THUMBNAILS);
 }
 
-// Title of the page
-$layout['title'] = $L->g('New content').' - '.$layout['title'];
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s | %s',
+	$L->g( 'New Content' ),
+	$site->title()
+);

@@ -47,5 +47,9 @@ try {
 	Redirect::page('users');
 }
 
-// Title of the page
-$layout['title'] = $L->g('Change password').' - '.$layout['title'];
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s | %s',
+	$L->g( 'Change Password' ),
+	$site->title()
+);

@@ -48,4 +48,9 @@ function printTable($title, $array) {
 // Main after POST
 // ============================================================================
 
-$layout['title'] .= ' - '.$L->g('Developers');
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s | %s',
+	$L->g( 'Developers' ),
+	$site->title()
+);

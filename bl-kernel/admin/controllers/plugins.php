@@ -22,5 +22,9 @@ checkRole(array('admin'));
 // Main after POST
 // ============================================================================
 
-// Title of the page
-$layout['title'] .= ' - '.$L->g('Plugins');
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s | %s',
+	$L->g( 'Plugins' ),
+	$site->title()
+);

@@ -27,5 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Main after POST
 // ============================================================================
 
-// Title of the page
-$layout['title'] .= ' - '.$L->g('Advanced Settings');
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s | %s',
+	$L->g( 'Settings' ),
+	$site->title()
+);

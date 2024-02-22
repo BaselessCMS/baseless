@@ -28,5 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Main after POST
 // ============================================================================
 
-// Title of the page
-$layout['title'] .= ' - '.$L->g('Add a new user');
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s | %s',
+	$L->g( 'New User' ),
+	$site->title()
+);

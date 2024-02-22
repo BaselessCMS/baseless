@@ -40,5 +40,9 @@ if (!$categories->exists($categoryKey)) {
 
 $categoryMap = $categories->getMap($categoryKey);
 
-// Title of the page
-$layout['title'] .= ' - '.$L->g('Edit Category').' [ '.$categoryMap['name'] . ' ] ';
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s | %s',
+	$L->g( 'Edit Category' ),
+	$site->title()
+);

@@ -56,5 +56,9 @@ try {
 	Redirect::page('users');
 }
 
-// Title of the page
-$layout['title'] = $L->g('Edit user').' - '.$layout['title'];
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s | %s',
+	$L->g( 'Edit User' ),
+	$site->title()
+);

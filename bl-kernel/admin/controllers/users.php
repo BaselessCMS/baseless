@@ -27,5 +27,9 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' )
 // Main after POST
 // ============================================================================
 
-// Title of the page
-$layout['title'] .= ' - '.$L->g('Users');
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s | %s',
+	$L->g( 'Manage Users' ),
+	$site->title()
+);

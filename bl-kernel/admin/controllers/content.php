@@ -56,5 +56,9 @@ if (empty($published) && $url->pageNumber()>1) {
 	Redirect::page('content');
 }
 
-// Title of the page
-$layout['title'] .= ' - '.$L->g('Manage content');
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s | %s',
+	$L->g( 'Manage Content' ),
+	$site->title()
+);

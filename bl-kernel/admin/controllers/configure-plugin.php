@@ -49,5 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Main after POST
 // ============================================================================
 
-// Title of the page
-$layout['title'] = $L->g('Plugin').' - '.$plugin->name().' - '.$layout['title'];
+// Title of the page.
+$layout['title'] .= sprintf(
+	'%s - %s | %s',
+	$L->g( 'Plugin' ),
+	$plugin->name(),
+	$site->title()
+);
