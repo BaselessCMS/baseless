@@ -6,5 +6,44 @@
 		"start"  : 0,
 		"html"   : 0,
 		"log"    : 1
+	},
+	"log" : {
+		"sep"   : " | ",
+		"info"  : "[INFO]",
+		"warn"  : "[WARN]",
+		"error" : "[ERROR]"
+	},
+	"symlink" : true,
+	"alert" : {
+		"ok"   : 0,
+		"fail" : 1
+	},
+	"charset" : "UTF-8",
+	"dir_permission" : "0755",
+	"login" : {
+		"pw_length"     : 6,
+		"salt_length"   : 8,
+		"cookie_user"   : "BLUDITREMEMBERUSERNAME",
+		"cookie_token"  : "BLUDITREMEMBERTOKEN",
+		"cookie_expire" : 30,
+		"email_token"   : "+15 minutes",
+		"session_life"  : 3600
+	},
+	"dash_notify_qty" : 10,
+	"dates" : {
+		"db"       : "Y-m-d H:i:s",
+		"backup"   : "Y-m-d-H-i-s",
+		"sitemap"  : "m-d-Y",
+		"admin"    : "M j Y, H:i",
+		"schedule" : "D, M j Y, H:i",
+		"notify"   : "M j Y, H:i",
+		"manage"   : "M j Y, H:i"
+	},
+	"content" : {
+		"db_file" : "index.txt"
+	},
+	"admin" : {
+		"uri" : "admin",
+		"per_page" : 20
 	}
 }

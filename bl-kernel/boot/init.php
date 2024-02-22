@@ -138,7 +138,7 @@ define( 'DB_USERS', PATH_DATABASES . 'users.php' );
 define( 'DB_SECURITY', PATH_DATABASES . 'security.php' );
 
 // User environment variables.
-include( PATH_KERNEL . 'boot' . DS . 'variables.php' );
+include( PATH_KERNEL . 'boot' . DS . 'config.php' );
 
 // Set internal character encoding.
 mb_internal_encoding( CHARSET );

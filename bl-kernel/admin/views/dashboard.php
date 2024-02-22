@@ -113,6 +113,7 @@
 		<div class="col-md-5">
 
 			<!-- Notifications -->
+			<?php if ( $config['dash_notify_qty'] > 0 ) : ?>
 			<ul class="list-group list-group-striped b-0">
 				<li class="list-group-item pt-0">
 					<h4 class="m-0"><?php $L->p('Notifications') ?></h4>
@@ -134,7 +135,7 @@
 				}
 				?>
 			</ul>
-
+			<?php endif; ?>
 		</div>
 	</div>
 </div>
