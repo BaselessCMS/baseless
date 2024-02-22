@@ -398,7 +398,7 @@ function install( $adminPassword, $timezone ) {
 		'locale'       => $L->locale(),
 		'timezone'     => $timezone,
 		'theme'        => 'alternative',
-		'adminTheme'   => 'booty',
+		'adminTheme'   => 'default',
 		'homepage'     => '',
 		'pageNotFound' => '',
 		'uriPage'      => '/',
