@@ -1,0 +1,10 @@
+{
+	"debug" : {
+		"mode"   : true,
+		"type"   : "INFO",
+		"errors" : 0,
+		"start"  : 0,
+		"html"   : 0,
+		"log"    : 1
+	}
+}
