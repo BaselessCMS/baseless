@@ -14,8 +14,8 @@
   <?php
   echo Theme::cssBootstrap();
   echo Theme::css(array(
-    'bludit.css',
-    'bludit.bootstrap.css'
+    'style.css',
+    'bootstrap-mods.css'
   ), DOMAIN_ADMIN_THEME_CSS);
   ?>
 
