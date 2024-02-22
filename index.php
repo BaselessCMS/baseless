@@ -34,7 +34,7 @@ define( 'DS', DIRECTORY_SEPARATOR );
 define( 'PATH_ROOT', __DIR__ . DS );
 define( 'PATH_BOOT', PATH_ROOT . 'bl-kernel' . DS . 'boot' . DS );
 
-// Init
+// Initialize the system.
 require( PATH_BOOT . 'init.php' );
 
 // Back end or front end.
