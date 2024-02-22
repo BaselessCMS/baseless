@@ -679,7 +679,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 		?>
 			<p><?php $L->p( 'choose-a-password-for-the-user-admin' ); ?></p>
 
-			<?php if ( $empty( $errorText ) ) : ?>
+			<?php if ( ! empty( $errorText ) ) : ?>
 				<div class="alert alert-danger"><?php echo $errorText; ?></div>
 			<?php endif ?>
 
