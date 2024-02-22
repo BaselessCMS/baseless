@@ -298,7 +298,7 @@ function install( $adminPassword, $timezone ) {
 		'visits-stats',
 		'robots',
 		'canonical',
-		'alternative'
+		// 'frontend'
 	];
 
 	foreach ( $pluginsToInstall as $plugin ) {
@@ -397,7 +397,7 @@ function install( $adminPassword, $timezone ) {
 		'language'     => $L->currentLanguage(),
 		'locale'       => $L->locale(),
 		'timezone'     => $timezone,
-		'theme'        => 'alternative',
+		'theme'        => 'frontend',
 		'adminTheme'   => 'default',
 		'homepage'     => '',
 		'pageNotFound' => '',
@@ -564,9 +564,9 @@ function install( $adminPassword, $timezone ) {
 		LOCK_EX
 	);
 
-	// File plugins/alternative/db.php
+	// File plugins/frontend/db.php
 	file_put_contents(
-		PATH_PLUGINS_DATABASES . 'alternative' . DS . 'db.php',
+		PATH_PLUGINS_DATABASES . 'frontend' . DS . 'db.php',
 		$dataHead . json_encode(
 			[
 				'googleFonts'         => false,
