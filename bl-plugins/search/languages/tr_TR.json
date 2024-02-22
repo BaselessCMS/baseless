@@ -1,9 +1,0 @@
-{
-	"plugin-data":
-	{
-		"name": "Ara",
-		"description": "Sitenizin içeriğinde arama yapmak için kullanıcılarınıza bir arama kutusu sağlayın."
-	},
-	"search": "Ara",
-	"show-button-search": "Arama düğmesini göster"
-}
