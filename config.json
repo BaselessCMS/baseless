@@ -48,8 +48,19 @@
 		"notify"   : "M j Y, H:i",
 		"manage"   : "M j Y, H:i"
 	},
+	"media" : {
+		"img_ext"   : ["gif","png","jpg","jpeg","svg","webp"],
+		"img_mime"  : ["image/gif","image/png","image/jpeg","image/svg+xml","image/webp"],
+		"per_page"  : 5,
+		"sort_date" : true,
+		"avatar_width"   : 640,
+		"avatar_height"  : 640,
+		"avatar_quality" : 100
+	},
 	"content" : {
-		"db_file" : "index.txt"
+		"db_file"    : "index.txt",
+		"tags_types" : ["published","static","sticky"],
+		"page_break" : "<!-- pagebreak -->"
 	},
 	"admin" : {
 		"uri" : "admin",

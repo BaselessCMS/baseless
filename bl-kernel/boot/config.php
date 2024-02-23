@@ -91,47 +91,30 @@ define( 'ADMIN_URI_FILTER', $config['admin']['uri'] );
 // Default language file, in this case is English.
 define( 'DEFAULT_LANGUAGE_FILE', $config['default_lang'] );
 
+// Allowed image extensions.
+$GLOBALS['ALLOWED_IMG_EXTENSION'] = $config['media']['img_ext'];
+
+// Allowed image mime types.
+$GLOBALS['ALLOWED_IMG_MIMETYPES'] = $config['media']['img_mime'];
+
 // Number of images to show in the media manager per page.
-define( 'MEDIA_MANAGER_NUMBER_OF_FILES', 5 );
+define( 'MEDIA_MANAGER_NUMBER_OF_FILES', $config['media']['per_page'] );
 
 // Sort the image by date.
-define( 'MEDIA_MANAGER_SORT_BY_DATE', true );
+define( 'MEDIA_MANAGER_SORT_BY_DATE', $config['media']['sort_date'] );
 
 // Profile image size.
-define( 'PROFILE_IMG_WIDTH', 400 );
-define( 'PROFILE_IMG_HEIGHT', 400 );
-define( 'PROFILE_IMG_QUALITY', 100 ); // 100%
+define( 'PROFILE_IMG_WIDTH', $config['media']['avatar_width'] );
+define( 'PROFILE_IMG_HEIGHT', $config['media']['avatar_height'] );
+define( 'PROFILE_IMG_QUALITY', $config['media']['avatar_quality'] ); // 100%
 
 // Content filename.
 define( 'FILENAME', $config['content']['db_file'] );
 
 // Page brake string.
-define( 'PAGE_BREAK', '<!-- pagebreak -->' );
+define( 'PAGE_BREAK', $config['content']['page_break'] );
 
 // Constant arrays using define are not allowed in PHP 5.6 or earlier.
 
 // Type of pages included in the tag database.
-$GLOBALS['DB_TAGS_TYPES'] = [
-	'published',
-	'static',
-	'sticky'
-];
-
-// Allowed image extensions.
-$GLOBALS['ALLOWED_IMG_EXTENSION'] = [
-	'gif',
-	'png',
-	'jpg',
-	'jpeg',
-	'svg',
-	'webp'
-];
-
-// Allowed image mime types.
-$GLOBALS['ALLOWED_IMG_MIMETYPES'] = [
-	'image/gif',
-	'image/png',
-	'image/jpeg',
-	'image/svg+xml',
-	'image/webp'
-];
+$GLOBALS['DB_TAGS_TYPES'] = $config['content']['tags_types'];
