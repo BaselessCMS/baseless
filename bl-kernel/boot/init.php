@@ -156,21 +156,21 @@ include( PATH_ABSTRACT . 'dblist.class.php' );
 include( PATH_ABSTRACT . 'plugin.class.php' );
 
 // Include classes.
-include( PATH_KERNEL . 'pages.class.php' );
-include( PATH_KERNEL . 'users.class.php' );
-include( PATH_KERNEL . 'tags.class.php' );
-include( PATH_KERNEL . 'language.class.php' );
-include( PATH_KERNEL . 'site.class.php' );
-include( PATH_KERNEL . 'categories.class.php' );
-include( PATH_KERNEL . 'syslog.class.php' );
-include( PATH_KERNEL . 'pagex.class.php' );
-include( PATH_KERNEL . 'category.class.php' );
-include( PATH_KERNEL . 'tag.class.php' );
-include( PATH_KERNEL . 'user.class.php' );
-include( PATH_KERNEL . 'url.class.php' );
-include( PATH_KERNEL . 'login.class.php' );
-include( PATH_KERNEL . 'parsedown.class.php' );
-include( PATH_KERNEL . 'security.class.php' );
+include( PATH_KERNEL . 'classes/class-pages.php' );
+include( PATH_KERNEL . 'classes/class-users.php' );
+include( PATH_KERNEL . 'classes/class-tags.php' );
+include( PATH_KERNEL . 'classes/class-language.php' );
+include( PATH_KERNEL . 'classes/class-site.php' );
+include( PATH_KERNEL . 'classes/class-categories.php' );
+include( PATH_KERNEL . 'classes/class-syslog.php' );
+include( PATH_KERNEL . 'classes/class-pagex.php' );
+include( PATH_KERNEL . 'classes/class-category.php' );
+include( PATH_KERNEL . 'classes/class-tag.php' );
+include( PATH_KERNEL . 'classes/class-user.php' );
+include( PATH_KERNEL . 'classes/class-url.php' );
+include( PATH_KERNEL . 'classes/class-login.php' );
+include( PATH_KERNEL . 'classes/class-parsedown.php' );
+include( PATH_KERNEL . 'classes/class-security.php' );
 
 // Include functions.
 include( PATH_KERNEL . 'functions.php' );
