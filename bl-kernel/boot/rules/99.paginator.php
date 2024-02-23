@@ -1,54 +1,69 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Paginator
+ *
+ * @package  JSON CMS
+ * @category Boot Rules
+ * @since    1.0.0
+ */
+
+// Stop if accessed directly.
+if ( ! defined( 'BLUDIT' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
 // Current page number
-$currentPage = $url->pageNumber();
-Paginator::set('currentPage', $currentPage);
+$current = $url->pageNumber();
+Paginator :: set( 'currentPage', $current );
 
-if ($url->whereAmI()=='admin') {
-	$itemsPerPage = ITEMS_PER_PAGE_ADMIN;
-	$numberOfItems = $pages->count(true);
-} elseif ($url->whereAmI()=='tag') {
-	$itemsPerPage = $site->itemsPerPage();
-	$tagKey = $url->slug();
-	$numberOfItems = $tags->numberOfPages($tagKey);
-} elseif ($url->whereAmI()=='category') {
-	$itemsPerPage = $site->itemsPerPage();
-	$categoryKey = $url->slug();
-	$numberOfItems = $categories->numberOfPages($categoryKey);
+if ( $url->whereAmI() == 'admin' ) {
+	$items = ITEMS_PER_PAGE_ADMIN;
+	$count = $pages->count( true );
+
+} elseif ( $url->whereAmI() == 'tag' ) {
+	$items   = $site->itemsPerPage();
+	$tag_key = $url->slug();
+	$count   = $tags->numberOfPages( $tag_key );
+
+} elseif ( $url->whereAmI() == 'category' ) {
+	$items   = $site->itemsPerPage();
+	$cat_key = $url->slug();
+	$count   = $categories->numberOfPages( $cat_key );
+
 } else {
-	$itemsPerPage = $site->itemsPerPage();
-	$numberOfItems = $pages->count(true);
+	$items = $site->itemsPerPage();
+	$count = $pages->count( true );
 }
 
 // Execute hook from plugins
-Theme::plugins('paginator');
+Theme :: plugins( 'paginator' );
 
 // Items per page
-Paginator::set('itemsPerPage', $itemsPerPage);
+Paginator :: set( 'itemsPerPage', $items );
 
 // Amount of items
-Paginator::set('numberOfItems', $numberOfItems);
+Paginator :: set( 'numberOfItems', $count );
 
 // Amount of pages
-$numberOfPages = (int) max(ceil($numberOfItems / $itemsPerPage), 1);
-Paginator::set('numberOfPages', $numberOfPages);
+$num_pages = (int) max( ceil( $count / $items ), 1 );
+Paginator :: set( 'numberOfPages', $num_pages );
 
 // TRUE if exists a next page to show
-$showNext = $numberOfPages > $currentPage;
-Paginator::set('showNext', $showNext);
+$show_next = $num_pages > $current;
+Paginator :: set( 'showNext', $show_next );
 
 // TRUE if exists a previous page to show
-$showPrev = $currentPage > Paginator::firstPage();
-Paginator::set('showPrev', $showPrev);
+$show_prev = $current > Paginator :: firstPage();
+Paginator :: set( 'showPrev', $show_prev );
 
 // TRUE if exists a next and previous page to show
-$showNextPrev = $showNext && $showPrev;
-Paginator::set('showNextPrev', $showNextPrev);
+$show_next_prev = $show_next && $show_prev;
+Paginator :: set( 'showNextPrev', $show_next_prev );
 
 // Integer with the next page
-$nextPage = max(0, $currentPage+1);
-Paginator::set('nextPage', $nextPage);
+$next_page = max( 0, $current + 1 );
+Paginator :: set( 'nextPage', $next_page );
 
 // Integer with the previous page
-$prevPage = min($numberOfPages, $currentPage-1);
-Paginator::set('prevPage', $prevPage);
+$prev_page = min( $num_pages, $current - 1 );
+Paginator :: set( 'prevPage', $prev_page );

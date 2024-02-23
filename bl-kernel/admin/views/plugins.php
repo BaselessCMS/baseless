@@ -41,7 +41,7 @@ echo '
 ';
 
 // Show installed plugins
-foreach ($pluginsInstalled as $plugin) {
+foreach ($plugins_installed as $plugin) {
 
 	if ($plugin->type() == 'theme') {
 		// Do not display theme's plugins
@@ -88,7 +88,7 @@ echo '
 ';
 
 // Plugins not installed
-$pluginsNotInstalled = array_diff_key($plugins['all'], $pluginsInstalled);
+$pluginsNotInstalled = array_diff_key($plugins['all'], $plugins_installed);
 foreach ($pluginsNotInstalled as $plugin) {
 
 	if ($plugin->type() == 'theme') {

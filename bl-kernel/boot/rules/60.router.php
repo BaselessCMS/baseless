@@ -1,23 +1,40 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * URL router
+ *
+ * @package  JSON CMS
+ * @category Boot Rules
+ * @since    1.0.0
+ */
 
-// Redirect admin, from /admin to /admin/
-if ($url->uri()==HTML_PATH_ROOT.ADMIN_URI_FILTER) {
-	Redirect::url(DOMAIN_ADMIN);
+// Stop if accessed directly.
+if ( ! defined( 'BLUDIT' ) ) {
+	die( 'You are not allowed to access this file directly.' );
 }
 
-// Redirect blog, from /blog to /blog/
-// This rule only works when the user set a page as homepage
-if ($url->uri()==HTML_PATH_ROOT.'blog' && $site->homepage()) {
-	$filter = $url->filters('blog');
-	$finalURL = Text::addSlashes(DOMAIN_BASE.$filter, false, true);
-	Redirect::url($finalURL);
+// Redirect admin, from /admin to /admin/.
+if ( $url->uri() == HTML_PATH_ROOT . ADMIN_URI_FILTER ) {
+	Redirect :: url( DOMAIN_ADMIN );
+}
+
+/**
+ * Redirect blog, from /blog to /blog/.
+ *
+ * This rule only works when the user set a page as homepage.
+ */
+if ( $url->uri() == HTML_PATH_ROOT . 'blog' && $site->homepage() ) {
+
+	$filter   = $url->filters( 'blog' );
+	$finalURL = Text :: addSlashes( DOMAIN_BASE . $filter, false, true );
+	Redirect :: url( $finalURL );
 }
 
 // Redirect pages, from /my-page/ to /my-page
-if ($url->whereAmI()=='page' && !$url->notFound()) {
-	$pageKey = $url->slug();
-	if (Text::endsWith($pageKey, '/')) {
-		$pageKey = rtrim($pageKey, '/');
-		Redirect::url(DOMAIN_PAGES.$pageKey);
+if ( $url->whereAmI() == 'page' && ! $url->notFound() ) {
+
+	$key = $url->slug();
+	if ( Text :: endsWith( $key, '/' ) ) {
+		$key = rtrim( $key, '/' );
+		Redirect :: url( DOMAIN_PAGES . $key );
 	}
 }

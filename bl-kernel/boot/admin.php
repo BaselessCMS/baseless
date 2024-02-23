@@ -46,7 +46,7 @@ include( PATH_RULES . '60.plugins.php' );
 if ( $layout['controller'] === 'plugin' && ! empty( $explodeSlug ) ) {
 
 	// Lowercase plugins class name to search by case-insensitive.
-	$pluginsLowerCases = array_change_key_case( $pluginsInstalled );
+	$pluginsLowerCases = array_change_key_case( $plugins_installed );
 	$pluginName = Text :: lowercase( array_shift( $explodeSlug ) );
 
 	if ( isset( $pluginsLowerCases[$pluginName] ) ) {

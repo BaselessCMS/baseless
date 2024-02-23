@@ -1,4 +1,16 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Header
+ *
+ * @package  JSON CMS
+ * @category Boot Rules
+ * @since    1.0.0
+ */
 
-header('HTTP/1.0 '.$url->httpCode().' '.$url->httpMessage());
-header('X-Powered-By: Bludit');
+// Stop if accessed directly.
+if ( ! defined( 'BLUDIT' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
+
+header( 'HTTP/1.0 ' . $url->httpCode() . ' ' . $url->httpMessage() );
+header( 'X-Powered-By: JSON CMS' );

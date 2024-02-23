@@ -1,34 +1,33 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Security
+ *
+ * @package  JSON CMS
+ * @category Boot Rules
+ * @since    1.0.0
+ */
 
-// ============================================================================
-// Variables
-// ============================================================================
+// Stop if accessed directly.
+if ( ! defined( 'BLUDIT' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
-// ============================================================================
-// Functions
-// ============================================================================
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
-// ============================================================================
-// Main before POST
-// ============================================================================
+	if ( isset( $_POST['tokenCSRF'] ) ) {
+		$token = Sanitize :: html( $_POST['tokenCSRF'] );
+	} else {
+		$token = false;
+	}
 
-// ============================================================================
-// POST Method
-// ============================================================================
+	if ( ! $security->validateTokenCSRF( $token ) ) {
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$token = isset($_POST['tokenCSRF']) ? Sanitize::html($_POST['tokenCSRF']) : false;
-	if (!$security->validateTokenCSRF($token)) {
-		Log::set(__FILE__.LOG_SEP.'Error occurred when trying to validate the tokenCSRF.', ALERT_STATUS_FAIL);
-		Log::set(__FILE__.LOG_SEP.'Token via POST ['.$token.']', ALERT_STATUS_FAIL);
+		Log :: set( __FILE__ . LOG_SEP . 'Error occurred when trying to validate the tokenCSRF.', ALERT_STATUS_FAIL );
+		Log :: set( __FILE__ . LOG_SEP . 'Token via POST [' . $token . ']', ALERT_STATUS_FAIL );
 
-		Session::destroy();
-		Redirect::page('login');
+		Session :: destroy();
+		Redirect :: page( 'login' );
 	} else {
 		unset( $_POST['tokenCSRF'] );
 	}
 }
-
-// ============================================================================
-// Main after POST
-// ============================================================================

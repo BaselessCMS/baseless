@@ -1,134 +1,157 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Build plugins
+ *
+ * @package  JSON CMS
+ * @category Boot Rules
+ * @since    1.0.0
+ */
 
-// ============================================================================
-// Variables
-// ============================================================================
+// Stop if accessed directly.
+if ( ! defined( 'BLUDIT' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
-$plugins = array(
-	'siteHead'=>array(),
-	'siteBodyBegin'=>array(),
-	'siteBodyEnd'=>array(),
-	'siteSidebar'=>array(),
-	'beforeSiteLoad'=>array(),
-	'afterSiteLoad'=>array(),
+/**
+ * Plugin hooks
+ *
+ * Hooks provided for plugins to extend
+ * functionality or print markup.
+ */
+$plugins = [
+	'beforeSiteLoad' => [],
+	'afterSiteLoad'  => [],
+	'siteHead'       => [],
+	'siteBodyBegin'  => [],
+	'siteBodyEnd'    => [],
 
-	'pageBegin'=>array(),
-	'pageEnd'=>array(),
+	'pageBegin'    => [],
+	'contentBegin' => [],
+	'siteContent'  => [],
+	'contentEnd'   => [],
+	'sidebarBegin' => [],
+	'siteSidebar'  => [],
+	'sidebarEnd'   => [],
+	'pageEnd'      => [],
 
-	'beforeAdminLoad'=>array(),
-	'afterAdminLoad'=>array(),
-	'adminHead'=>array(),
-	'adminBodyBegin'=>array(),
-	'adminBodyEnd'=>array(),
-	'adminSidebar'=>array(),
-	'adminContentSidebar'=>array(),
-	'dashboard'=>array(),
+	'beforeAdminLoad'     => [],
+	'afterAdminLoad'      => [],
+	'adminHead'           => [],
+	'adminBodyBegin'      => [],
+	'adminBodyEnd'        => [],
+	'adminSidebar'        => [],
+	'adminContentSidebar' => [],
+	'dashboard'           => [],
 
-	'beforeAll'=>array(),
-	'afterAll'=>array(),
+	'beforeAll' => [],
+	'afterAll'  => [],
+	'paginator' => [],
 
-	'paginator'=>array(),
+	'afterPageCreate' => [],
+	'afterPageModify' => [],
+	'afterPageDelete' => [],
 
-	'afterPageCreate'=>array(),
-	'afterPageModify'=>array(),
-	'afterPageDelete'=>array(),
+	'loginHead'      => [],
+	'loginBodyBegin' => [],
+	'loginBodyEnd'   => [],
 
-	'loginHead'=>array(),
-	'loginBodyBegin'=>array(),
-	'loginBodyEnd'=>array(),
+	'all' => []
+];
 
-	'all'=>array()
-);
+$plugins_installed = [];
+$plugins_events    = $plugins;
+unset( $plugins_events['all'] );
 
-$pluginsEvents = $plugins;
-unset($pluginsEvents['all']);
+/**
+ * Build plugins
+ *
+ * @since  1.0.0
+ * @global object $L The Language class.
+ * @global array  $plugins
+ * @global array  $plugins_events
+ * @global array  $plugins_installed The Language class.
+ * @global object $site The Site class.
+ * @return void
+ */
+function buildPlugins() {
 
-$pluginsInstalled = array();
+	global $L, $plugins, $plugins_events, $plugins_installed, $site;
 
-// ============================================================================
-// Functions
-// ============================================================================
+	// Get declared classes BEFORE load plugins classes.
+	$current_declared = get_declared_classes();
 
-function buildPlugins()
-{
-	global $plugins;
-	global $pluginsEvents;
-	global $pluginsInstalled;
-	global $L;
-	global $site;
+	// List plugins directories.
+	$list = Filesystem :: listDirectories( PATH_PLUGINS );
 
-	// Get declared clasess BEFORE load plugins clasess
-	$currentDeclaredClasess = get_declared_classes();
+	// Load each plugin classes.
+	foreach ( $list as $path ) {
 
-	// List plugins directories
-	$list = Filesystem::listDirectories(PATH_PLUGINS);
-	// Load each plugin clasess
-	foreach ($list as $pluginPath) {
-		// Check if the directory has the plugin.php
-		if (file_exists($pluginPath.DS.'plugin.php')) {
-			include_once($pluginPath.DS.'plugin.php');
+		// Check if the directory has the plugin.php.
+		if ( file_exists( $path . DS . 'plugin.php' ) ) {
+			include_once( $path . DS . 'plugin.php' );
 		}
 	}
 
-	// Get plugins clasess loaded
-	$pluginsDeclaredClasess = array_diff(get_declared_classes(), $currentDeclaredClasess);
+	// Get plugins classes loaded.
+	$plugins_declared = array_diff( get_declared_classes(), $current_declared );
 
-	foreach ($pluginsDeclaredClasess as $pluginClass) {
-		$Plugin = new $pluginClass;
+	foreach ( $plugins_declared as $plugin_class ) {
 
-		// Check if the plugin is translated
-		$languageFilename = PATH_PLUGINS.$Plugin->directoryName().DS.'languages'.DS.$site->language().'.json';
-		if (!Sanitize::pathFile($languageFilename)) {
-			$languageFilename = PATH_PLUGINS.$Plugin->directoryName().DS.'languages'.DS.DEFAULT_LANGUAGE_FILE;
+		$plugin = new $plugin_class;
+
+		// Check if the plugin is translated.
+		$lang_file = PATH_PLUGINS . $plugin->directoryName() . DS . 'languages' . DS . $site->language() . '.json';
+		if ( ! Sanitize :: pathFile( $lang_file ) ) {
+			$lang_file = PATH_PLUGINS . $plugin->directoryName() . DS . 'languages' . DS . DEFAULT_LANGUAGE_FILE;
 		}
 
-		$database = file_get_contents($languageFilename);
-		$database = json_decode($database, true);
+		$database = file_get_contents( $lang_file );
+		$database = json_decode( $database, true );
 
-		// Set name and description from the language file
-		$Plugin->setMetadata('name',$database['plugin-data']['name']);
-		$Plugin->setMetadata('description',$database['plugin-data']['description']);
+		// Set name and description from the language file.
+		$plugin->setMetadata( 'name', $database['plugin-data']['name'] );
+		$plugin->setMetadata( 'description', $database['plugin-data']['description'] );
 
-		// Remove name and description from the language file loaded and add new words if there are
-		// This function overwrite the key=>value
-		unset($database['plugin-data']);
-		if (!empty($database)) {
-			$L->add($database);
+		/**
+		 * Remove name and description from the language file
+		 * loaded and add new words if there are.
+		 *
+		 * This function overwrite the key=>value.
+		 */
+		unset( $database['plugin-data'] );
+		if ( ! empty( $database ) ) {
+			$L->add( $database );
 		}
 
-		// $plugins['all'] Array with all plugins, installed and not installed
-		$plugins['all'][$pluginClass] = $Plugin;
+		// $plugins['all'] Array with all plugins, installed and not installed.
+		$plugins['all'][$plugin_class] = $plugin;
 
-		// If the plugin is installed insert on the hooks
-		if ($Plugin->installed()) {
-			// Include custom hooks
-			if (!empty($Plugin->customHooks)) {
-				foreach ($Plugin->customHooks as $customHook) {
-					if (!isset($plugins[$customHook])) {
-						$plugins[$customHook] = array();
-						$pluginsEvents[$customHook] = array();
+		// If the plugin is installed insert on the hooks.
+		if ( $plugin->installed() ) {
+
+			// Include custom hooks.
+			if ( ! empty( $plugin->customHooks ) ) {
+				foreach ( $plugin->customHooks as $customHook ) {
+					if ( ! isset( $plugins[$customHook] ) ) {
+						$plugins[$customHook]       = [];
+						$plugins_events[$customHook] = [];
 					}
 				}
 			}
 
-			$pluginsInstalled[$pluginClass] = $Plugin;
-			foreach ($pluginsEvents as $event=>$value) {
-				if (method_exists($Plugin, $event)) {
-					array_push($plugins[$event], $Plugin);
+			$plugins_installed[$plugin_class] = $plugin;
+			foreach ( $plugins_events as $event=>$value ) {
+				if ( method_exists( $plugin, $event ) ) {
+					array_push( $plugins[$event], $plugin );
 				}
 			}
 		}
 
-		// Sort the plugins by the position for the site sidebar
-		uasort($plugins['siteSidebar'], function ($a, $b) {
-				return $a->position()>$b->position();
+		// Sort the plugins by the position for the site sidebar.
+		uasort( $plugins['siteSidebar'], function ( $a, $b ) {
+				return $a->position() > $b->position();
 			}
 		);
 	}
 }
-
-// ============================================================================
-// Main
-// ============================================================================
-
 buildPlugins();

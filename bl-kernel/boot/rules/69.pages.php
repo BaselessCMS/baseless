@@ -1,86 +1,98 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Pages
+ *
+ * @package  JSON CMS
+ * @category Boot Rules
+ * @since    1.0.0
+ */
 
-// ============================================================================
-// Variables
-// ============================================================================
+// Stop if accessed directly.
+if ( ! defined( 'BLUDIT' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
-// Array with pages, each page is a Page Object
-// Filtered by pagenumber, number of items per page and sorted by date/position
-/*
-	array(
-		0 => Page Object,
-		1 => Page Object,
-		...
-		N => Page Object
-	)
+/**
+ * Array with pages, each page is a page object.
+ *
+ * Filtered by page number, number of items per page
+ * and sorted by date/position.
+ *
+ * ```
+ * [
+ *		0 => page object,
+ *		1 => page object,
+ *		...
+ *		N => page object
+ * ]```
 */
-$content = array();
+$content = [];
 
-// Page filtered by the user, is a Page Object
+// Page filtered by the user is a page object.
 $page = false;
 
-// Array with static content, each item is a Page Object
-// Order by position
-/*
-	array(
-		0 => Page Object,
-		1 => Page Object,
-		...
-		N => Page Object
-	)
+/**
+ * Array with static content, each item is a
+ * page object, ordered by position.
+ *
+ * ```
+ * [
+ *		0 => page object,
+ *		1 => page object,
+ *		...
+ *		N => page object
+ * ]```
 */
 $staticContent = $staticPages = buildStaticPages();
 
-// ============================================================================
-// Main
-// ============================================================================
+// Execute the scheduler.
+if ( $pages->scheduler() ) {
 
-// Execute the scheduler
-if ($pages->scheduler()) {
-	// Execute plugins with the hook afterPageCreate
-	Theme::plugins('afterPageCreate');
+	// Execute plugins with the hook afterPageCreate.
+	Theme :: plugins( 'afterPageCreate' );
 
 	reindexTags();
-        reindexCategories();
+    reindexCategories();
 
-	// Add to syslog
-	$syslog->add(array(
-		'dictionaryKey'=>'content-published-from-scheduler',
-		'notes'=>''
-	));
+	// Add to syslog.
+	$syslog->add( [
+		'dictionaryKey' => 'content-published-from-scheduler',
+		'notes'         => ''
+	] );
 }
 
-// Set home page if the user defined one
-if ($site->homepage() && $url->whereAmI()==='home') {
-	$pageKey = $site->homepage();
-	if ($pages->exists($pageKey)) {
-		$url->setSlug($pageKey);
-		$url->setWhereAmI('page');
+// Set home page if the user defined one.
+if ( $site->homepage() && $url->whereAmI() === 'home' ) {
+
+	$key = $site->homepage();
+	if ( $pages->exists( $key ) ) {
+		$url->setSlug( $key );
+		$url->setWhereAmI( 'page' );
 	}
 }
 
-// Build specific page
-if ($url->whereAmI()==='page') {
+// Build specific page.
+if ( $url->whereAmI() === 'page' ) {
 	$content[0] = $page = buildThePage();
-}
-// Build content by tag
-elseif ($url->whereAmI()==='tag') {
+
+// Build content by tag.
+} elseif ( $url->whereAmI() === 'tag' ) {
 	$content = buildPagesByTag();
-}
-// Build content by category
-elseif ($url->whereAmI()==='category') {
+
+// Build content by category.
+} elseif ( $url->whereAmI() === 'category' ) {
 	$content = buildPagesByCategory();
-}
-// Build content for the homepage
-elseif ( ($url->whereAmI()==='home') || ($url->whereAmI()==='blog') ) {
+
+// Build content for the homepage.
+} elseif ( ( $url->whereAmI() === 'home' ) || ( $url->whereAmI() === 'blog' ) ) {
         $content = buildPagesForHome();
 }
 
-if (isset($content[0])) {
+if ( isset( $content[0] ) ) {
 	$page = $content[0];
 }
 
-// If set notFound, create the page 404
-if ($url->notFound()) {
+// If set notFound, create the page 404.
+if ( $url->notFound() ) {
 	$content[0] = $page = buildErrorPage();
 }
