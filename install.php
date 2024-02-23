@@ -293,12 +293,11 @@ function install( $adminPassword, $timezone ) {
 
 	// Directories for initial plugins.
 	$pluginsToInstall = [
+		'searchforms',
+		'categories',
 		'tinymce',
-		'about',
-		'visits-stats',
 		'robots',
-		'canonical',
-		// 'frontend'
+		'canonical'
 	];
 
 	foreach ( $pluginsToInstall as $plugin ) {
@@ -506,20 +505,6 @@ function install( $adminPassword, $timezone ) {
 	// File tags.php
 	$data = [];
 	file_put_contents( PATH_DATABASES . 'tags.php', $dataHead . json_encode( $data, JSON_PRETTY_PRINT ), LOCK_EX );
-
-	// File plugins/about/db.php
-	file_put_contents(
-		PATH_PLUGINS_DATABASES . 'about' . DS . 'db.php',
-		$dataHead . json_encode(
-			[
-				'position' => 1,
-				'label'    => $L->get( 'About' ),
-				'text'     => $L->get( 'this-is-a-brief-description-of-yourself-our-your-site' )
-			],
-			JSON_PRETTY_PRINT
-		),
-		LOCK_EX
-	);
 
 	// File plugins/visits-stats/db.php
 	file_put_contents(
