@@ -7,9 +7,9 @@
 	"debug" : {
 		"mode"   : true,
 		"type"   : "INFO",
-		"errors" : 0,
+		"errors" : 1,
 		"start"  : 0,
-		"html"   : 0,
+		"html"   : 1,
 		"log"    : 1,
 		"file"   : "debug.txt"
 	},
@@ -31,8 +31,8 @@
 	"login" : {
 		"pw_length"     : 6,
 		"salt_length"   : 8,
-		"cookie_user"   : "BLUDITREMEMBERUSERNAME",
-		"cookie_token"  : "BLUDITREMEMBERTOKEN",
+		"cookie_user"   : "CMSREMEMBERUSERNAME",
+		"cookie_token"  : "CMSREMEMBERTOKEN",
 		"cookie_expire" : 30,
 		"email_token"   : "+15 minutes",
 		"session_life"  : 0,

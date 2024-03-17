@@ -25,7 +25,6 @@ $loadTime = microtime( true );
 
 // Security constant.
 define( 'BLUDIT', true );
-define( 'BLUDIT_PRO', true );
 
 // Directory separator.
 define( 'DS', DIRECTORY_SEPARATOR );
