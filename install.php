@@ -132,7 +132,7 @@ mb_http_output( CHARSET );
 define( 'DIR_PERMISSIONS', 0755 );
 
 // PHP classes.
-include( PATH_KERNEL . 'classes/dbjson.class.php' );
+include( PATH_KERNEL . 'classes/class-dbjson.php' );
 include( PATH_HELPERS . 'sanitize.class.php' );
 include( PATH_HELPERS . 'valid.class.php' );
 include( PATH_HELPERS . 'text.class.php' );

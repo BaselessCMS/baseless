@@ -149,12 +149,10 @@ mb_internal_encoding( CHARSET );
 // Set HTTP output character encoding.
 mb_http_output( CHARSET );
 
-// Include abstract classes.
-include( PATH_KERNEL . 'classes/dbjson.class.php' );
-include( PATH_KERNEL . 'classes/dblist.class.php' );
-include( PATH_KERNEL . 'classes/plugin.class.php' );
-
 // Include classes.
+include( PATH_KERNEL . 'classes/class-dbjson.php' );
+include( PATH_KERNEL . 'classes/class-dblist.php' );
+include( PATH_KERNEL . 'classes/class-plugin.php' );
 include( PATH_KERNEL . 'classes/class-pages.php' );
 include( PATH_KERNEL . 'classes/class-users.php' );
 include( PATH_KERNEL . 'classes/class-tags.php' );

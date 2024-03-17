@@ -1,4 +1,4 @@
-<?php //simplified version of Bludit dbjson.class.php with moded json encoding
+<?php //simplified version of Bludit class-dbjson.php with moded json encoding
 class jsonDB {
 
 	public $db;
