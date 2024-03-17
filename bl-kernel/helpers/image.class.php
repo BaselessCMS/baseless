@@ -19,7 +19,7 @@ class Image {
 		$this->resizeImage($newWidth, $newHeight, $option);
 	}
 
-	public function saveImage($savePath, $imageQuality="100", $forceJPG=false, $forcePNG=false)
+	public function saveImage($savePath, $imageQuality="100", $forceJPG=false, $forceWEBP=false, $forcePNG=false)
 	{
 		$extension = strtolower(pathinfo($savePath, PATHINFO_EXTENSION));
 
@@ -32,6 +32,8 @@ class Image {
 			$extension = 'png';
 		} elseif ($forceJPG) {
 			$extension = 'jpg';
+		} elseif ($forceWEBP) {
+			$extension = 'webp';
 		}
 
 		switch ($extension) {
@@ -40,6 +42,13 @@ class Image {
 				// Checking for JPG support
 				if (imagetypes() & IMG_JPG) {
 					imagejpeg($this->imageResized, $path_complete, $imageQuality);
+				}
+				break;
+
+			case 'webp':
+				// Checking for WEBP support
+				if (imagetypes() & IMG_WEBP) {
+					imagewebp($this->imageResized, $path_complete, $imageQuality);
 				}
 				break;
 
@@ -81,6 +90,9 @@ class Image {
 			case '.jpg':
 			case '.jpeg':
 				$img = imagecreatefromjpeg($file);
+				break;
+			case '.webp':
+				$img = imagecreatefromwebp($file);
 				break;
 			case '.gif':
 				$img = imagecreatefromgif($file);
