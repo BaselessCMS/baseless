@@ -109,7 +109,6 @@ define( 'PATH_PLUGINS', PATH_ROOT . 'bl-plugins' . DS );
 define( 'PATH_KERNEL', PATH_ROOT . 'bl-kernel' . DS );
 define( 'PATH_CONTENT', PATH_ROOT . 'bl-content' . DS );
 
-define( 'PATH_ABSTRACT', PATH_KERNEL . 'abstract' . DS );
 define( 'PATH_RULES', PATH_KERNEL . 'boot' . DS . 'rules' . DS );
 define( 'PATH_HELPERS', PATH_KERNEL . 'helpers' . DS );
 define( 'PATH_AJAX', PATH_KERNEL . 'ajax' . DS );
@@ -151,9 +150,9 @@ mb_internal_encoding( CHARSET );
 mb_http_output( CHARSET );
 
 // Include abstract classes.
-include( PATH_ABSTRACT . 'dbjson.class.php' );
-include( PATH_ABSTRACT . 'dblist.class.php' );
-include( PATH_ABSTRACT . 'plugin.class.php' );
+include( PATH_KERNEL . 'classes/dbjson.class.php' );
+include( PATH_KERNEL . 'classes/dblist.class.php' );
+include( PATH_KERNEL . 'classes/plugin.class.php' );
 
 // Include classes.
 include( PATH_KERNEL . 'classes/class-pages.php' );

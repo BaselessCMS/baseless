@@ -60,7 +60,6 @@ define( 'PATH_UPLOADS_PROFILES', PATH_UPLOADS . 'profiles' . DS );
 define( 'PATH_UPLOADS_THUMBNAILS', PATH_UPLOADS . 'thumbnails' . DS );
 define( 'PATH_UPLOADS_PAGES', PATH_UPLOADS . 'pages' . DS );
 define( 'PATH_HELPERS', PATH_KERNEL . 'helpers' . DS );
-define( 'PATH_ABSTRACT', PATH_KERNEL . 'abstract' . DS );
 
 // Protecting against Symlink attacks.
 define( 'CHECK_SYMBOLIC_LINKS', true );
@@ -133,7 +132,7 @@ mb_http_output( CHARSET );
 define( 'DIR_PERMISSIONS', 0755 );
 
 // PHP classes.
-include( PATH_ABSTRACT . 'dbjson.class.php' );
+include( PATH_KERNEL . 'classes/dbjson.class.php' );
 include( PATH_HELPERS . 'sanitize.class.php' );
 include( PATH_HELPERS . 'valid.class.php' );
 include( PATH_HELPERS . 'text.class.php' );
