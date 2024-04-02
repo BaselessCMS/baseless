@@ -1,12 +1,3 @@
-html {
-	height: 100%;
-	font-size: 0.9rem;
-	background: #fcfcfc;
-}
-
-body {
-	background: #fcfcfc;
-}
 
 /* Prevent events in iframes */
 /* iframe{
@@ -26,22 +17,8 @@ body {
 */
 
 div.sidebar .nav-item a {
-	padding-left: 0;
-	padding-right: 0;
-	color: #555;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-
-div.sidebar .nav-item a:hover {
-	color: #0078D4;
-}
-
-div.sidebar .nav-item h4 {
-	font-size: 1.2em;
-	text-transform: uppercase;
-	font-weight: 400;
-	margin-top: 10px;
+	padding: 0.325em 0;
+	color: inherit;
 }
 
 /*

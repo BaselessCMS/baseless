@@ -1,0 +1,634 @@
+///
+/// General styles
+///
+
+html {
+	scroll-behavior: smooth;
+	overflow-x: hidden;
+}
+
+body {
+	display: var( --cfe-body--display, block );
+	overflow-x: var( --cfe-body--overflow-x );
+	overflow-y: var( --cfe-body--overflow-y );
+	position: var( --cfe-body--position, relative );
+	width: var( --cfe-body--width, 100% );
+	height: var( --cfe-body--height, 100% );
+	max-width: var( --cfe-body--max-width, 2048px );
+	max-height: var( --cfe-body--max-height );
+	margin: var( --cfe-body--margin, 0 auto );
+	padding: var( --cfe-body--padding, 0 );
+	font-family: var( --cfe-body--font-family, var( --cfe-fonts--sans-stack, sans-serif ) );
+	font-size: var( --cfe-body--font-size, 1rem );
+	font-weight: var( --cfe-body--font-weight, normal );
+	font-style: var( --cfe-body--font-style, normal );
+	font-variant: var( --cfe-body--font-variant, normal );
+	text-decoration: var( --cfe-body--text-decoration );
+	text-transform: var( --cfe-body--text-transform );
+	letter-spacing: var( --cfe-body--letter-spacing, normal );
+	word-spacing: var( --cfe-body--word-spacing, normal );
+	line-height: var( --cfe-body--line-height, 1.5 );
+	background-color: var( --cfe-body--bg-color );
+	background-image: var( --cfe-body--bg-image );
+	background-repeat: var( --cfe-body--bg-repeat );
+	background-position: var( --cfe-body--bg-position );
+	background-size: var( --cfe-body--bg-size );
+	background-attachment: var( --cfe-body--bg-attachment );
+	color: var( --cfe-body--text-color );
+
+	@media ( prefers-color-scheme: dark ) {
+		background-color: var( --cfe-body--bg-color--dark );
+		color: var( --cfe-body--text-color--dark );
+	}
+
+	&.serif:not( .monospace ) {
+		font-family: var( --cfe-fonts--serif-stack, serif );
+	}
+
+	&.monospace:not( .serif ) {
+		font-family: var( --cfe-fonts--monospace-stack, monospace );
+	}
+
+	&.toolbar-active {
+		padding-top: var( --cfe-toolbar--height );
+	}
+}
+
+///
+/// Screen reader text
+///
+/// Use when text needs to be hidden for
+/// display purposes but needs to be in
+/// the DOM for visually impaired/blind
+/// people and for search engines.
+///
+/// No variables because this class does
+/// not need to/ought not change.
+.screen-reader-text {
+	border: 0;
+	clip: rect( 1px, 1px, 1px, 1px );
+	-webkit-clip-path: inset(50%);
+	        clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+// JavaScript helper classes.
+.no-js {
+	.hide-if-no-js {
+		display: none !important;
+	}
+}
+
+.js {
+	.hide-if-js {
+		display: none !important;
+	}
+}
+
+.hidden {
+	display: none !important;
+}
+
+// General layout styles
+.wrapper-general {
+	display: var( --cfe-wrapper--general--display, block );
+	position: var( --cfe-wrapper--general--position );
+	overflow-x: var( --cfe-wrapper--general--overflow-x );
+	overflow-y: var( --cfe-wrapper--general--overflow-y );
+	width: var( --cfe-wrapper--general--width, 100% );
+	max-width: var( --cfe-wrapper--general--max-width, 100% );
+	min-width: var( --cfe-wrapper--general--min-width );
+	height: var( --cfe-wrapper--general--height );
+	max-height: var( --cfe-wrapper--general--max-height );
+	min-height: var( --cfe-wrapper--general--min-height );
+	margin: var( --cfe-wrapper--general--margin, 0 );
+	padding: var( --cfe-wrapper--general--padding, 0 );
+}
+
+.page-wrap {
+	display: var( --cfe-wrapper--page--display, block );
+	position: var( --cfe-wrapper--page--position );
+	overflow-x: var( --cfe-wrapper--page--overflow-x );
+	overflow-y: var( --cfe-wrapper--page--overflow-y );
+	width: var( --cfe-wrapper--page--width, 100% );
+	max-width: var( --cfe-wrapper--page--max-width, 100% );
+	min-width: var( --cfe-wrapper--page--min-width );
+	height: var( --cfe-wrapper--page--height );
+	max-height: var( --cfe-wrapper--page--max-height );
+	min-height: var( --cfe-wrapper--page--min-height );
+	margin: var( --cfe-wrapper--page--margin );
+	padding: var( --cfe-wrapper--page--padding );
+}
+
+// General block text elements.
+h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote, fieldset, table, pre {
+	margin: var( --cfe-element--margin, calc( var( --cfe-spacing--vert ) / 2 ) 0 0 0 );
+	padding: var( --cfe-element--padding );
+}
+
+a {
+	display: var( --cfe-link--display );
+	position: var( --cfe-link--position );
+	font-size: var( --cfe-link--font-size, inherit );
+	font-weight: var( --cfe-link--font-weight, inherit );
+	font-style: var( --cfe-link--font-style, inherit );
+	font-variant: var( --cfe-link--font-variant, inherit );
+	text-decoration: var( --cfe-link--text-decoration );
+	text-underline-offset: var( --cfe-link--text-underline-offset );
+	text-transform: var( --cfe-link--text-transform, inherit );
+	letter-spacing: var( --cfe-link--letter-spacing, inherit );
+	word-spacing: var( --cfe-link--word-spacing, inherit );
+	color: var( --cfe-link--text-color );
+	transition: var( --cfe-link--transition, all 0.15s );
+
+	@media ( prefers-color-scheme: dark ) {
+		color: var( --cfe-link--text-color--dark );
+	}
+
+	&:hover,
+	&:focus {
+		color: var( --cfe-link--action--text-color );
+
+		@media ( prefers-color-scheme: dark ) {
+			color: var( --cfe-link--action--text-color--dark );
+		}
+	}
+
+	// Pseudo elements for custom hover effects.
+	&:before {
+		content: var( --cfe-link--before--content );
+		display: var( --cfe-link--before--display );
+		position: var( --cfe-link--before--position );
+		width: var( --cfe-link--before--width );
+		height: var( --cfe-link--before--height );
+		background-color: var( --cfe-link--before--bg-color );
+
+		@media ( prefers-color-scheme: dark ) {
+			background-color: var( --cfe-link--before--bg-color--dark );
+		}
+	}
+
+	&:after {
+		content: var( --cfe-link--after--content );
+		display: var( --cfe-link--after--display );
+		position: var( --cfe-link--after--position );
+		width: var( --cfe-link--after--width );
+		height: var( --cfe-link--after--height );
+		background-color: var( --cfe-link--after--bg-color );
+
+		@media ( prefers-color-scheme: dark ) {
+			background-color: var( --cfe-link--after--bg-color--dark );
+		}
+	}
+}
+
+h1,
+h2 {
+	font-family: var( --cfe-heading-primary--font-family, inherit );
+	font-size: var( --cfe-heading-primary--font-size, 2rem );
+	font-weight: var( --cfe-heading-primary--font-weight, 700 );
+	font-style: var( --cfe-heading-primary--font-style, inherit );
+	font-variant: var( --cfe-heading-primary--font-variant, inherit );
+	line-height: var( --cfe-heading-primary--line-height, inherit );
+	letter-spacing: var( --cfe-heading-primary--letter-spacing, -0.015em );
+	word-spacing: var( --cfe-heading-primary--word-spacing, -0.0325em );
+	text-decoration: var( --cfe-heading-primary--text-decoration );
+	text-transform: var( --cfe-heading-primary--text-transform );
+	color: var( --cfe-heading-primary--text-color, var( --cfe-body--text-color ) );
+
+	@media ( prefers-color-scheme: dark ) {
+		color: var( --cfe-heading-primary--text-color--dark, var( --cfe-body--text-color--dark ) );
+	}
+
+	a {
+		font-family: var( --cfe-heading-primary--link--font-family, inherit );
+		font-size: var( --cfe-heading-primary--link--font-size, inherit );
+		font-weight: var( --cfe-heading-primary--link--font-weight, inherit );
+		font-style: var( --cfe-heading-primary--link--font-style, inherit );
+		font-variant: var( --cfe-heading-primary--link--font-variant, inherit );
+		text-decoration: var( --cfe-heading-primary--link--text-decoration, none );
+		text-transform: var( --cfe-heading-primary--link--text-transform );
+		color: var( --cfe-heading-primary--link--text-color, var( --cfe-link--text-color ) );
+
+		@media ( prefers-color-scheme: dark ) {
+			color: var( --cfe-heading-primary--link--text-color--dark, var( --cfe-link--text-color--dark ) );
+		}
+
+		&:hover,
+		&:focus {
+			color: var( --cfe-heading-primary--link--action--text-color, var( --cfe-link--action--text-color ) );
+
+			@media ( prefers-color-scheme: dark ) {
+				color: var( --cfe-heading-primary--link--action--text-color--dark, var( --cfe-link--action--text-color--dark ) );
+			}
+		}
+	}
+}
+
+h3,
+h4 {
+	font-family: var( --cfe-heading-secondary--font-family, inherit );
+	font-size: var( --cfe-heading-secondary--font-size, 1.375rem );
+	font-weight: var( --cfe-heading-secondary--font-weight, 700 );
+	font-style: var( --cfe-heading-secondary--font-style, inherit );
+	font-variant: var( --cfe-heading-secondary--font-variant, inherit );
+	line-height: var( --cfe-heading-secondary--line-height, inherit );
+	letter-spacing: var( --cfe-heading-secondary--letter-spacing, normal );
+	word-spacing: var( --cfe-heading-secondary--word-spacing, -0.0325em );
+	text-decoration: var( --cfe-heading-secondary--text-decoration );
+	text-transform: var( --cfe-heading-secondary--text-transform );
+	color: var( --cfe-heading-secondary--text-color, var( --cfe-body--text-color ) );
+
+	@media ( prefers-color-scheme: dark ) {
+		color: var( --cfe-heading-secondary--text-color--dark, var( --cfe-body--text-color--dark ) );
+	}
+
+	a {
+		font-family: var( --cfe-heading-secondary--link--font-family, inherit );
+		font-size: var( --cfe-heading-secondary--link--font-size, inherit );
+		font-weight: var( --cfe-heading-secondary--link--font-weight, inherit );
+		font-style: var( --cfe-heading-secondary--link--font-style, inherit );
+		font-variant: var( --cfe-heading-secondary--link--font-variant, inherit );
+		text-decoration: var( --cfe-heading-secondary--link--text-decoration, none );
+		text-transform: var( --cfe-heading-secondary--link--text-transform );
+		color: var( --cfe-heading-secondary--link--text-color, var( --cfe-link--text-color ) );
+
+		@media ( prefers-color-scheme: dark ) {
+			color: var( --cfe-heading-secondary--link--text-color--dark, var( --cfe-link--text-color--dark ) );
+		}
+
+		&:hover,
+		&:focus {
+			color: var( --cfe-heading-secondary--link--action--text-color, var( --cfe-link--action--text-color ) );
+
+			@media ( prefers-color-scheme: dark ) {
+				color: var( --cfe-heading-secondary--link--action--text-color--dark, var( --cfe-link--action--text-color--dark ) );
+			}
+		}
+	}
+}
+
+h5,
+h6 {
+	font-family: var( --cfe-heading-tertiary--font-family, inherit );
+	font-size: var( --cfe-heading-tertiary--font-size, 1.375rem );
+	font-weight: var( --cfe-heading-tertiary--font-weight, 700 );
+	font-style: var( --cfe-heading-tertiary--font-style, inherit );
+	font-variant: var( --cfe-heading-tertiary--font-variant, inherit );
+	line-height: var( --cfe-heading-tertiary--line-height, inherit );
+	letter-spacing: var( --cfe-heading-tertiary--letter-spacing, normal );
+	word-spacing: var( --cfe-heading-tertiary--word-spacing, -0.0325em );
+	text-decoration: var( --cfe-heading-tertiary--text-decoration );
+	text-transform: var( --cfe-heading-tertiary--text-transform );
+	color: var( --cfe-heading-tertiary--text-color, var( --cfe-body--text-color ) );
+
+	@media ( prefers-color-scheme: dark ) {
+		color: var( --cfe-heading-tertiary--text-color--dark, var( --cfe-body--text-color--dark ) );
+	}
+}
+
+// Used for `ul` and `ol` elements.
+.inline-list {
+	display: var( --cfe-inline-list--display, inline-flex );
+	flex-direction: var( --cfe-inline-list--flex-direction, row );
+	flex-wrap: var( --cfe-inline-list--flex-wrap, wrap );
+	gap: var( --cfe-inline-list--gap, 0 0.5em );
+	margin: var( --cfe-inline-list--margin, 0 );
+	padding: var( --cfe-inline-list--padding, 0 );
+}
+
+// Theme icons.
+.theme-icon {
+	position: var( --cfe-icon--position );
+	display: var( --cfe-icon--display, inline-block );
+	width: var( --cfe-icon--width, var( --cfe-icon--size, 1em ) );
+	height: var( --cfe-icon--height, var( --cfe-icon--size, 1em ) );
+	vertical-align: var( --cfe-icon--vertical-align, baseline );
+	line-height: var( --cfe-icon--line-height, 1 );
+	background-color: var( --cfe-icon--bg-color );
+	color: var( --cfe-icon--text-color, inherit );
+
+	@media ( prefers-color-scheme: dark ) {
+		background-color: var( --cfe-icon--bg-color--dark );
+		color: var( --cfe-icon--text-color--dark, inherit );
+	}
+
+	svg {
+		position: var( --cfe-icon--svg--position );
+		display: var( --cfe-icon--svg--display, inline-block );
+		fill: var( --cfe-icon--svg--fill, currentColor );
+		width: var( --cfe-icon--svg--width, var( --cfe-icon--size, 1em ) );
+		height: var( --cfe-icon--svg--height, var( --cfe-icon--size, 1em ) );
+		vertical-align: var( --cfe-icon--svg--vertical-align, middle );
+	}
+}
+
+*.text-uppercase {
+	text-transform: capitalize !important;
+}
+
+*.semi-bold {
+	font-weight: 600;
+}
+
+.cite {
+	margin: 0.5em 0 0 0;
+	text-align: right;
+	font-style: italic;
+
+	&:before {
+		content: '—';
+	}
+}
+
+.rtl .cite {
+	text-align: left;
+}
+
+code {
+	background-color: rgba( $color: black, $alpha: 0.1 );
+
+	@media ( prefers-color-scheme: dark ) {
+		background-color: rgba( $color: white, $alpha: 0.1 );
+	}
+}
+
+code.select {
+	user-select: all;
+}
+
+.text-muted {
+	color: var( --cfe-text-muted--text-color ) !important;
+
+	@media ( prefers-color-scheme: dark ) {
+		color: var( --cfe-text-muted--text-color--dark ) !important;
+	}
+}
+
+.avatar {
+	border-radius: 50%;
+}
+
+// Icons.
+.fa {
+	display: inline-block;
+	margin-right: 0.5rem;
+	line-height: 1;
+}
+
+.svg-icon {
+	display: inline-block;
+	line-height: 1;
+
+	svg {
+		height: 1em;
+		vertical-align: middle;
+		fill: currentColor;
+	}
+}
+
+.text-muted {
+	color: var( --cfe-text-muted--text-color, #555555 );
+}
+
+// User avatar.
+.avatar {
+	vertical-align: var( --cfe-avatar--vertical-align, middle );
+	border-radius: var( --cfe-avatar--border-radius, 50% );
+}
+
+.fade {
+	transition: opacity 0.15s linear;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+.fade:not(.show) {
+	opacity: 0;
+}
+
+.collapse:not(.show) {
+	display: none;
+}
+
+.collapsing {
+	position: relative;
+	height: 0;
+	overflow: hidden;
+	transition: height 0.35s ease;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+.collapsing.width {
+	width: 0;
+	height: auto;
+	transition: width 0.35s ease;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+// General badges.
+.badge {
+	display: inline-block;
+	margin: 0 0.5em;
+	padding: 0.25em 0.5em;
+	font-size: 0.75em;
+	font-weight: 600;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: var( --cfe-button--bg-color, var( --cfe-body--bg-color, inherit ) );
+	border: solid 1px var( --cfe-button--border-color, #555555 );
+	border-radius: var( --cfe-button--border-radius, 0px );
+	color: var( --cfe-button--text-color, var( --cfe-text-color, #333333 ) );
+	transition: all .15s ease-in-out;
+
+	&.badge-primary {
+		background-color: var( --cfe-button--primary--bg-color, var( --cfe-link--text-color ) );
+		border-color: var( --cfe-button--primary--border-color, var( --cfe-link--text-color ) );
+		color: var( --cfe-button--primary--text-color, #ffffff );
+	}
+}
+
+// User alerts
+#alert {
+	display: none;
+	z-index: 1000;
+	position: fixed;
+	top: auto;
+	left: auto;
+	bottom: 2rem;
+	right: 1rem;
+	margin: 0;
+	padding: 0.5rem;
+	background-color: #333333;
+	color: #ffffff;
+	border: 0;
+	text-align: center;
+}
+
+.alert {
+	position: relative;
+	margin: 1rem 0;
+	padding: 0;
+	border: none !important;
+	color: inherit;
+
+	.alert-heading {
+		color: inherit;
+	}
+
+	.alert-link {
+		font-weight: 700;
+	}
+
+	&.alert-dismissible {
+		padding-right: 4rem;
+
+		.close {
+			position: absolute;
+			top: 0;
+			right: 0;
+			z-index: 2;
+			padding: 0.75rem 1.25rem;
+			color: inherit;
+		}
+	}
+
+	&.alert-primary {
+		color: unset;
+		background-color: unset;
+		border-color: unset;
+
+		hr {
+			border-top-color: unset;
+		}
+
+		.alert-link {
+			color: unset;
+		}
+	}
+
+	&.alert-secondary {
+		color: unset;
+		background-color: unset;
+		border-color: unset;
+
+		hr {
+			border-top-color: unset;
+		}
+
+		.alert-link {
+			color: unset;
+		}
+	}
+
+	&.alert-success {
+		background-color: unset;
+		border-color: unset;
+		border-left: unset;
+		color: unset;
+
+		hr {
+			border-top-color: unset;
+		}
+
+		.alert-link {
+			color: unset;
+		}
+	}
+
+	&.alert-info {
+		color: unset;
+		background-color: unset;
+		border-color: unset;
+
+		hr {
+			border-top-color: unset;
+		}
+
+		.alert-link {
+			color: unset;
+		}
+	}
+
+	&.alert-warning {
+		color: unset;
+		background-color: unset;
+		border-color: unset;
+
+		hr {
+			border-top-color: unset;
+		}
+
+		.alert-link {
+			color: unset;
+		}
+	}
+
+	&.alert-danger {
+		background-color: unset;
+		border-color: unset;
+		border-left: unset;
+		color: unset;
+
+		hr {
+			border-top-color: unset;
+		}
+
+		.alert-link {
+			color: unset;
+		}
+	}
+}
+
+// Text selection.
+::-o-selection {
+	color: var( --cfe-selection--text-color, $near_black );
+	background: var( --cfe-selection--bg-color, $yellow );
+	text-shadow: none;
+
+	@media ( prefers-color-scheme: dark ) {}
+}
+::-ms-selection {
+	color: var( --cfe-selection--text-color, $near_black );
+	background: var( --cfe-selection--bg-color, $yellow );
+	text-shadow: none;
+
+	@media ( prefers-color-scheme: dark ) {}
+}
+::-webkit-selection {
+	color: var( --cfe-selection--text-color, $near_black );
+	background: var( --cfe-selection--bg-color, $yellow );
+	text-shadow: none;
+
+	@media ( prefers-color-scheme: dark ) {}
+}
+::-moz-selection {
+	color: var( --cfe-selection--text-color, $near_black );
+	background: var( --cfe-selection--bg-color, $yellow );
+	text-shadow: none;
+
+	@media ( prefers-color-scheme: dark ) {}
+}
+::selection {
+	color: var( --cfe-selection--text-color, $near_black );
+	background: var( --cfe-selection--bg-color, $yellow );
+	text-shadow: none;
+
+	@media ( prefers-color-scheme: dark ) {}
+}

@@ -1,0 +1,35 @@
+///
+/// Admin theme stylesheet
+///
+
+// Import stylesheet partials.
+@import 'modules/_reset';
+@import 'modules/_utility';
+@import 'modules/_root';
+@import 'partials/_setup';
+
+#admin-page {
+	width: var( --cms-admin--page--width );
+	display: var( --cms-admin--page--display );
+	flex-direction: var( --cms-admin--page--flex-direction );
+	align-items: var( --cms-admin--page--align-items );
+	justify-content: var( --cms-admin--page--justify-content );
+	gap: var( --cms-admin--page--gap );
+}
+
+#admin-sidebar {
+	width: 100%;
+	max-width: max-content;
+	background-color: var( --cms-admin--sidebar--bg-color );
+	color: var( --cms-admin--sidebar--text-color );
+
+	a {
+		color: var( --cms-admin--sidebar--link--text-color );
+	}
+}
+
+#admin-content {
+	width: 100%;
+	max-width: 1280px;
+	padding: 2rem;
+}

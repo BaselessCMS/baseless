@@ -1,0 +1,15 @@
+///
+/// Define CSS variables
+///
+
+:root {
+
+	// Admin: general
+	--cms-admin--page--width: 100%;
+	--cms-admin--page--display: flex;
+
+	// Admin: sidebar
+	--cms-admin--sidebar--bg-color: #222222;
+	--cms-admin--sidebar--text-color: #ffffff;
+	--cms-admin--sidebar--link--text-color: #ffffff;
+}
