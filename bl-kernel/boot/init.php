@@ -168,6 +168,7 @@ include( PATH_KERNEL . 'classes/class-url.php' );
 include( PATH_KERNEL . 'classes/class-login.php' );
 include( PATH_KERNEL . 'classes/class-parsedown.php' );
 include( PATH_KERNEL . 'classes/class-security.php' );
+include( PATH_KERNEL . 'classes/class-admin-bootstrap.php' );
 
 // Include functions.
 include( PATH_KERNEL . 'functions.php' );
