@@ -1,17 +1,17 @@
-<?php defined('BLUDIT') or die('Bludit CMS.'); ?>
+<?php defined( 'JSON_CMS' ) or die( 'Bludit CMS.' ); ?>
 
-<?php echo Bootstrap::formOpen(array('id' => 'jsform', 'class' => 'tab-content')); ?>
+<?php echo Bootstrap :: formOpen( array( 'id' => 'jsform', 'class' => 'tab-content' ) ); ?>
 
-<div class="align-middle">
-	<div class="float-right mt-1">
-		<button type="submit" class="btn btn-primary btn-sm" name="save"><?php $L->p('Save') ?></button>
-		<a class="btn btn-secondary btn-sm" href="<?php echo HTML_PATH_ADMIN_ROOT . 'dashboard' ?>" role="button"><?php $L->p('Cancel') ?></a>
+<header class="admin-page-header has-actions">
+	<h1><?php $L->p( 'Settings' ); ?></h1>
+	<div class="form-actions admin-form-actions">
+		<button type="submit" class="btn btn-primary btn-sm" name="save"><?php $L->p( 'Save' ); ?></button>
+		<a class="btn btn-secondary btn-sm" href="<?php echo HTML_PATH_ADMIN_ROOT . 'dashboard' ?>" role="button"><?php $L->p( 'Cancel' ); ?></a>
 	</div>
-	<?php echo Bootstrap::pageTitle(array('title' => $L->g('Settings'), 'icon' => 'cog')); ?>
-</div>
+</header>
 
 <!-- TABS -->
-<nav class="mb-3">
+<nav class="tabbed-tabs admin-tabbed-tabs">
 	<div class="nav nav-tabs" id="nav-tab" role="tablist">
 		<a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="nav-general" aria-selected="false"><?php $L->p('General') ?></a>
 		<a class="nav-item nav-link" id="nav-advanced-tab" data-toggle="tab" href="#advanced" role="tab" aria-controls="nav-advanced" aria-selected="false"><?php $L->p('Advanced') ?></a>

@@ -23,8 +23,9 @@ if ( ! file_exists( 'bl-content/databases/site.php' ) ) {
 // Load time.
 $loadTime = microtime( true );
 
-// Security constant.
+// Security constants.
 define( 'BLUDIT', true );
+define( 'JSON_CMS', true );
 
 // Directory separator.
 define( 'DS', DIRECTORY_SEPARATOR );

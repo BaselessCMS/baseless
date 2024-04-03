@@ -11,5 +11,8 @@
 	// Admin: sidebar
 	--cms-admin--sidebar--bg-color: #222222;
 	--cms-admin--sidebar--text-color: #ffffff;
+	--cms-admin--sidebar--link--bg-color: inherit;
 	--cms-admin--sidebar--link--text-color: #ffffff;
+	--cms-admin--sidebar--link--action--bg-color: #ffcc00;
+	--cms-admin--sidebar--link--action--text-color: #{$text_color};
 }

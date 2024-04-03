@@ -59,14 +59,14 @@
 <!-- Overlay background -->
 <div id="jsshadow"></div>
 
-<?php include( 'html/alert.php' ); ?>
+<?php include( 'views/alert.php' ); ?>
 
-<?php // include( 'html/navbar.php' ); ?>
+<?php // include( 'views/navbar.php' ); ?>
 
 <div id="admin-page">
 
-	<div id="admin-sidebar" class="sidebar col-lg-2 d-none d-lg-block">
-		<?php include( 'html/sidebar.php' ); ?>
+	<div id="admin-sidebar">
+		<?php include( 'views/sidebar.php' ); ?>
 	</div>
 
 	<div id="admin-content">

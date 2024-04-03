@@ -263,10 +263,14 @@ b, strong, optgroup {
   --cms-admin--page--display: flex;
   --cms-admin--sidebar--bg-color: #222222;
   --cms-admin--sidebar--text-color: #ffffff;
+  --cms-admin--sidebar--link--bg-color: inherit;
   --cms-admin--sidebar--link--text-color: #ffffff;
+  --cms-admin--sidebar--link--action--bg-color: #ffcc00;
+  --cms-admin--sidebar--link--action--text-color: #333333;
 }
 
 html {
+  height: 100%;
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
@@ -866,6 +870,7 @@ code.select {
 }
 #admin-page {
   width: var(--cms-admin--page--width);
+  height: 100%;
   display: var(--cms-admin--page--display);
   flex-direction: var(--cms-admin--page--flex-direction);
   align-items: var(--cms-admin--page--align-items);
@@ -875,17 +880,134 @@ code.select {
 
 #admin-sidebar {
   width: 100%;
+  height: 100%;
+  padding: 2rem 0;
   max-width: -moz-max-content;
   max-width: max-content;
   background-color: var(--cms-admin--sidebar--bg-color);
   color: var(--cms-admin--sidebar--text-color);
 }
 #admin-sidebar a {
+  text-decoration: none;
+  background-color: var(--cms-admin--sidebar--link--bg-color);
   color: var(--cms-admin--sidebar--link--text-color);
 }
-
+#admin-sidebar a:hover, #admin-sidebar a:focus {
+  background-color: var(--cms-admin--sidebar--link--action--bg-color);
+  color: var(--cms-admin--sidebar--link--action--text-color);
+}
+#admin-sidebar a.top-level-link {
+  display: block;
+  padding: var(--cms-admin--menu--item--link--top, 0.5em 1rem);
+  font-weight: 600;
+}
 #admin-content {
+  position: relative;
   width: 100%;
   max-width: 1280px;
   padding: 2rem;
+}
+#admin-content .admin-page-header.has-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabbed-tabs {
+  clear: both;
+  margin: 2rem 0;
+}
+
+/*
+	Manage > New Content
+*/
+#jseditor {
+  background: #fff;
+  padding: 10px 5% !important;
+  font-size: 16px;
+  line-height: 1.5em;
+  border: 1px solid #ced4da;
+}
+
+#jseditorSidebar {
+  display: none;
+  height: calc(100% - 45px);
+  width: 50%;
+  max-width: 350px;
+  position: absolute;
+  z-index: 50;
+  top: 45px;
+  right: 15px;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+@media (max-width: 575.98px) {
+  #jseditorSidebar {
+    width: 100%;
+    max-width: 100%;
+    right: 0;
+  }
+  #jseditorToolbarRight button {
+    font-size: 0px !important;
+  }
+  #jseditorToolbarRight button span {
+    font-size: 16px !important;
+  }
+  .contentTools .btn {
+    font-size: 0px !important;
+    margin-right: 5px;
+  }
+  .contentTools .btn span {
+    font-size: 16px !important;
+  }
+}
+#jseditorSidebar nav {
+  background: #f3f3f3;
+}
+
+#jseditorSidebar nav a {
+  color: #000;
+}
+
+#jseditorSidebar .nav-tabs .nav-link {
+  border: none;
+}
+
+#jseditorSidebar .nav-link.active {
+  background: none;
+  border: none;
+  border-bottom: 3px solid #ccc;
+}
+
+#jsshadow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(72, 72, 72, 0.7);
+  z-index: 10;
+  display: none;
+}
+
+img.profilePicture {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+}
+
+/* Switch button */
+.switch-button {
+  font-size: 0.9em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.switch-icon-publish {
+  color: #1cb11c;
 }

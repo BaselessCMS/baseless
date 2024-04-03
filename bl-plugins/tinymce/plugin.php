@@ -76,6 +76,7 @@ class pluginTinymce extends Plugin {
 		$content_css = $this->htmlPath().'css/tinymce_content.css';
 		$plugins = $this->getValue('plugins');
 		$version = $this->version();
+		$codesampleConfig = '';
 
 		if (strpos($this->getValue('plugins'), 'codesample') !== false) {
 			$codesampleLanguages = explode("|", $this->getValue('codesampleLanguages'));

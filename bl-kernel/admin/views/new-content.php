@@ -417,7 +417,7 @@ echo Bootstrap::formOpen(array(
 </form>
 
 <!-- Modal for Media Manager -->
-<?php include(PATH_ADMIN_THEMES.'default/html/media.php'); ?>
+<?php include( PATH_ADMIN . 'views/media.php' ); ?>
 
 <script>
 $(document).ready(function() {
