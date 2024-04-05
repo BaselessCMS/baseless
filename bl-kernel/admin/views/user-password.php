@@ -1,60 +1,74 @@
-<?php defined('BLUDIT') or die('Bludit CMS.'); ?>
-
-<?php echo Bootstrap::formOpen(array('id'=>'jsform', 'class'=>'tab-content')); ?>
-
-<div class="align-middle">
-	<div class="float-right mt-1">
-		<button type="submit" class="btn btn-primary btn-sm" name="save"><?php $L->p('Save') ?></button>
-		<a class="btn btn-secondary btn-sm" href="<?php echo HTML_PATH_ADMIN_ROOT.'edit-user/'.$user->username() ?>" role="button"><?php $L->p('Cancel') ?></a>
-	</div>
-	<?php echo Bootstrap::pageTitle(array('title'=>$L->g('Change password'), 'icon'=>'user')); ?>
-</div>
-
 <?php
-	// Token CSRF
-	echo Bootstrap::formInputHidden(array(
-		'name'=>'tokenCSRF',
-		'value'=>$security->getTokenCSRF()
-	));
+/**
+ * User password page
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Views
+ * @since      1.0.0
+ */
 
-	// Username
-	echo Bootstrap::formInputHidden(array(
-		'name'=>'username',
-		'value'=>$user->username()
-	));
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
-	// Username disabled
-	echo Bootstrap::formInputText(array(
-		'name'=>'usernameDisabled',
-		'label'=>$L->g('Username'),
-		'value'=>$user->username(),
-		'class'=>'',
-		'placeholder'=>'',
-		'disabled'=>true,
-		'tip'=>''
-	));
+$nickname = ucwords( str_replace( [ '-', '_' ], ' ', $user->username() ) );
+if ( $user->nickname() ) {
+	$nickname = $user->nickname();
+}
 
-	// New password
-	echo Bootstrap::formInputText(array(
-		'name'=>'newPassword',
-		'label'=>$L->g('New password'),
-		'type'=>'password',
-		'value'=>'',
-		'class'=>'',
-		'placeholder'=>'',
-		'tip'=>''
-	));
-
-	// Confirm password
-	echo Bootstrap::formInputText(array(
-		'name'=>'confirmPassword',
-		'label'=>$L->g('Confirm new password'),
-		'type'=>'password',
-		'value'=>'',
-		'class'=>'',
-		'placeholder'=>'',
-		'tip'=>''
-	));
 ?>
+<form class="tab-content"  id="jsform" method="post" action=""  autocomplete="off">
 
-<?php echo Bootstrap::formClose(); ?>
+	<header class="admin-page-header has-actions">
+
+		<h1><?php lang()->p( 'Change Password:' ); ?> <?php echo $nickname; ?></h1>
+
+		<div class="form-actions admin-form-actions">
+
+			<button type="submit" class="btn btn-primary" name="save"><?php lang()->p( 'Save' ); ?></button>
+
+			<a class="btn btn-secondary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-user/' . $user->username() ?>" role="button"><?php lang()->p( 'Cancel' ); ?></a>
+		</div>
+	</header>
+
+	<fieldset class="admin-fieldset">
+		<legend class="screen-reader-text"><?php lang()->p( 'Password Settings' ); ?></legend>
+
+		<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />
+		<input type="hidden" id="jsusername" name="username" value="<?php echo $user->username(); ?>" />
+
+		<?php
+		echo Bootstrap :: formInputText( [
+			'name'        => 'usernameDisabled',
+			'label'       => lang()->g( 'Username' ),
+			'value'       => $user->username(),
+			'class'       => '',
+			'placeholder' => '',
+			'disabled'    => true,
+			'tip'         => ''
+		] );
+
+		echo Bootstrap :: formInputText( [
+			'name'        => 'newPassword',
+			'label'       => lang()->g( 'New Password' ),
+			'type'        => 'password',
+			'value'       => '',
+			'class'       => '',
+			'placeholder' => '',
+			'tip'         => ''
+		] );
+
+		echo Bootstrap :: formInputText( [
+			'name'        => 'confirmPassword',
+			'label'       => lang()->g( 'Confirm Password' ),
+			'type'        => 'password',
+			'value'       => '',
+			'class'       => '',
+			'placeholder' => '',
+			'tip'         => ''
+		] );
+		?>
+	</fieldset>
+</form>

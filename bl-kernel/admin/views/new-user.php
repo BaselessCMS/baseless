@@ -1,67 +1,89 @@
-<?php defined('BLUDIT') or die('Bludit CMS.'); ?>
-
-<?php echo Bootstrap::formOpen(array('id'=>'jsform', 'class'=>'tab-content')); ?>
-
-<div class="align-middle">
-	<div class="float-right mt-1">
-		<button type="submit" class="btn btn-primary btn-sm" name="save"><?php $L->p('Save') ?></button>
-		<a class="btn btn-secondary btn-sm" href="<?php echo HTML_PATH_ADMIN_ROOT.'users' ?>" role="button"><?php $L->p('Cancel') ?></a>
-	</div>
-	<?php echo Bootstrap::pageTitle(array('title'=>$L->g('Add a new user'), 'icon'=>'user')); ?>
-</div>
-
 <?php
-	echo Bootstrap::formInputHidden(array(
-		'name'=>'tokenCSRF',
-		'value'=>$security->getTokenCSRF()
-	));
+/**
+ * New user page
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Views
+ * @since      1.0.0
+ */
 
-	echo Bootstrap::formInputText(array(
-		'name'=>'new_username',
-		'label'=>$L->g('Username'),
-		'value'=>(isset($_POST['new_username'])?$_POST['new_username']:''),
-		'class'=>'',
-		'placeholder'=>'',
-		'tip'=>''
-	));
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
-	echo Bootstrap::formInputText(array(
-		'name'=>'new_password',
-		'type'=>'password',
-		'label'=>$L->g('Password'),
-		'value'=>'',
-		'class'=>'',
-		'placeholder'=>'',
-		'tip'=>''
-	));
-
-	echo Bootstrap::formInputText(array(
-		'name'=>'confirm_password',
-		'type'=>'password',
-		'label'=>$L->g('Confirm Password'),
-		'value'=>'',
-		'class'=>'',
-		'placeholder'=>'',
-		'tip'=>''
-	));
-
-	echo Bootstrap::formSelect(array(
-		'name'=>'role',
-		'label'=>$L->g('Role'),
-		'options'=>array('author'=>$L->g('Author'), 'editor'=>$L->g('Editor'), 'admin'=>$L->g('Administrator')),
-		'selected'=>'Author',
-		'class'=>'',
-		'tip'=>$L->g('author-can-write-and-edit-their-own-content')
-	));
-
-	echo Bootstrap::formInputText(array(
-		'name'=>'email',
-		'label'=>$L->g('Email'),
-		'value'=>(isset($_POST['email'])?$_POST['email']:''),
-		'class'=>'',
-		'placeholder'=>'',
-		'tip'=>''
-	));
 ?>
+<form class="tab-content"  id="jsform" method="post" action=""  autocomplete="off">
 
-<?php echo Bootstrap::formClose(); ?>
+	<header class="admin-page-header has-actions">
+
+		<h1><?php lang()->p( 'New User' ); ?></h1>
+
+		<div class="form-actions admin-form-actions">
+
+			<button type="submit" class="btn btn-primary" name="save"><?php lang()->p( 'Save' ); ?></button>
+
+			<a class="btn btn-secondary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'users'; ?>" role="button"><?php lang()->p( 'Cancel' ); ?></a>
+		</div>
+	</header>
+
+	<fieldset class="admin-fieldset">
+		<legend class="screen-reader-text"><?php lang()->p( 'User Fields' ); ?></legend>
+
+		<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />
+
+		<?php
+		echo Bootstrap :: formInputText( [
+			'name'        => 'new_username',
+			'label'       => lang()->g( 'Username' ),
+			'value'       => ( isset( $_POST['new_username'] ) ? $_POST['new_username'] : '' ),
+			'class'       => '',
+			'placeholder' => '',
+			'tip'         => ''
+		] );
+
+		echo Bootstrap :: formInputText( [
+			'name'        => 'new_password',
+			'type'        => 'password',
+			'label'       => lang()->g( 'Password' ),
+			'value'       => '',
+			'class'       => '',
+			'placeholder' => '',
+			'tip'         => ''
+		] );
+
+		echo Bootstrap :: formInputText( [
+			'name'        => 'confirm_password',
+			'type'        => 'password',
+			'label'       => lang()->g( 'Confirm Password' ),
+			'value'       => '',
+			'class'       => '',
+			'placeholder' => '',
+			'tip'         => ''
+		] );
+
+		echo Bootstrap :: formSelect( [
+			'name'     => 'role',
+			'label'    => lang()->g( 'Role' ),
+			'options'  => [
+				'author' => lang()->g( 'Author' ),
+				'editor' => lang()->g( 'Editor' ),
+				'admin'  => lang()->g( 'Administrator' )
+			],
+			'selected' => 'Author',
+			'class'    => '',
+			'tip'      => lang()->g( 'author-can-write-and-edit-their-own-content' )
+		] );
+
+		echo Bootstrap :: formInputText( [
+			'name'        => 'email',
+			'label'       => lang()->g( 'Email' ),
+			'value'       => ( isset( $_POST['email'] ) ? $_POST['email'] : '' ),
+			'class'       => '',
+			'placeholder' => '',
+			'tip'         => ''
+		] );
+	?>
+	</fieldset>
+</form>

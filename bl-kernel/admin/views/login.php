@@ -1,35 +1,40 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * User login screen
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Views
+ * @since      1.0.0
+ */
 
-echo '<h1 class="text-center mb-3 mt-3 font-weight-normal" style="color: #555;">'.$site->title().'</h1>';
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
-echo Bootstrap::formOpen(array());
+?>
+<div id="user-login">
 
-	echo Bootstrap::formInputHidden(array(
-		'name'=>'tokenCSRF',
-		'value'=>$security->getTokenCSRF()
-	));
+	<h1 class="login-heading"><a href="<?php echo site()->url(); ?>"><?php echo site()->title(); ?></a></h1>
 
-	echo '
-	<div class="form-group">
-		<input type="text" value="'.(isset($_POST['username'])?Sanitize::html($_POST['username']):'').'" class="form-control form-control-lg" id="jsusername" name="username" placeholder="'.$L->g('Username').'" autofocus>
-	</div>
-	';
+	<form method="post" action="" autocomplete="off">
+		<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />
 
-	echo '
-	<div class="form-group">
-		<input type="password" class="form-control form-control-lg" id="jspassword" name="password" placeholder="'.$L->g('Password').'">
-	</div>
-	';
+		<div id="login-username" class="form-group">
+			<input type="text" value="<?php echo ( isset( $_POST['username'] ) ? \Sanitize :: html( $_POST['username'] ) : '' ); ?>" class="form-control form-control-lg" id="jsusername" name="username" placeholder="<?php lang()->p( 'Username' ); ?>" autofocus>
+		</div>
 
-	echo '
-	<div class="form-check">
-		<input class="form-check-input" type="checkbox" value="true" id="jsremember" name="remember">
-		<label class="form-check-label" for="jsremember">'.$L->g('Remember me').'</label>
-	</div>
+		<div id="login-password" class="form-group">
+			<input type="password" class="form-control form-control-lg" id="jspassword" name="password" placeholder="<?php lang()->p( 'Password' ); ?>">
+		</div>
 
-	<div class="form-group mt-3">
-		<button type="submit" class="btn btn-primary btn-lg mr-2 w-100" name="save">'.$L->g('Login').'</button>
-	</div>
-	';
+		<div id="login-remember" class="form-check">
+			<label class="form-check-label" for="jsremember"><input class="form-check-input" type="checkbox" value="true" id="jsremember" name="remember" /> <?php lang()->p( 'Remember Me' ); ?></label>
+		</div>
 
-echo '</form>';
+		<div id="login-submit" class="form-group login-submit">
+			<button type="submit" class="btn btn-primary btn-lg" name="save"><?php lang()->p( 'Login' ); ?></button>
+		</div>
+	</form>
+</div>

@@ -8,7 +8,7 @@
  */
 
 // Stop if accessed directly.
-if ( ! defined( 'BLUDIT' ) ) {
+if ( ! defined( 'JSON_CMS' ) ) {
 	die( 'You are not allowed to access this file directly.' );
 }
 
@@ -97,6 +97,8 @@ if ( $layout['slug']==='ajax' ) {
 	// Define variables.
 	$ADMIN_CONTROLLER = $layout['controller'];
 	$ADMIN_VIEW = $layout['view'];
+
+	include( PATH_ADMIN . 'includes/template-tags.php' );
 
 	// Load plugins before the admin area will be load.
 	Theme :: plugins( 'beforeAdminLoad' );

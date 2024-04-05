@@ -1,11 +1,35 @@
+<?php
+/**
+ * Theme index file
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Themes
+ * @since      1.0.0
+ */
+
+// Alias namespaces.
+use CMS\Tags as Tags;
+
+// Maybe get minified assets.
+$suffix = '.min';
+if ( defined( 'DEBUG_MODE' ) && DEBUG_MODE ) {
+	$suffix = '';
+}
+
+?>
 <!DOCTYPE html>
-<html>
+<html dir="auto" class="no-js" lang="<?php echo $L->currentLanguageShortVersion(); ?>" xmlns:og="http://opengraphprotocol.org/schema/">
 <head>
 	<title><?php echo $layout['title']; ?></title>
 	<meta charset="<?php echo CHARSET; ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="robots" content="noindex,nofollow">
-	<meta name="generator" content="Bludit">
+
+	<?php
+
+	// Change `<html>` 'no-js' class to 'js' if JavaScript is enabled.
+	echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n"; ?>
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="<?php echo HTML_PATH_CORE_IMG . 'favicon.png?version=' . BLUDIT_VERSION; ?>">
@@ -70,16 +94,7 @@
 	</div>
 
 	<div id="admin-content">
-	<?php
-		if ( Sanitize :: pathFile( PATH_ADMIN_VIEWS, $layout['view'] . '.php' ) ) {
-			include( PATH_ADMIN_VIEWS.$layout['view'] . '.php' );
-		} elseif ( $layout['plugin'] && method_exists( $layout['plugin'], 'adminView' ) ) {
-			echo $layout['plugin']->adminView();
-		} else {
-			echo '<h1 class="text-center">' . $L->g( 'Page not found' ) . '</h1>';
-			echo '<h2 class="text-center">' . $L->g( 'Choose a page from the sidebar.' ) . '</h2>';
-		}
-	?>
+	<?php Tags\admin_content(); ?>
 	</div>
 </div>
 

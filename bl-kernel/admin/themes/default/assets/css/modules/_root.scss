@@ -7,12 +7,18 @@
 	// Admin: general
 	--cms-admin--page--width: 100%;
 	--cms-admin--page--display: flex;
+	--cms-spacing--vert: 2rem;
+	--cms-spacing--horz: 2rem;
+	--cms-element--margin: 1em 0;
 
 	// Admin: sidebar
 	--cms-admin--sidebar--bg-color: #222222;
 	--cms-admin--sidebar--text-color: #ffffff;
 	--cms-admin--sidebar--link--bg-color: inherit;
 	--cms-admin--sidebar--link--text-color: #ffffff;
-	--cms-admin--sidebar--link--action--bg-color: #ffcc00;
-	--cms-admin--sidebar--link--action--text-color: #{$text_color};
+	--cms-admin--sidebar--link--action--bg-color: #ffdd00;
+	--cms-admin--sidebar--link--action--text-color: #222222;
+
+	// Typography
+	--cms-body--font-family: #{$fonts_sans};
 }

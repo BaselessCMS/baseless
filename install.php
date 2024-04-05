@@ -41,6 +41,7 @@ if ( $modulesRequiredExit ) {
 
 // Security constant.
 define( 'BLUDIT', true );
+define( 'JSON_CMS', true );
 
 // Directory separator.
 define( 'DS', DIRECTORY_SEPARATOR );
@@ -486,14 +487,14 @@ function install( $adminPassword, $timezone ) {
 			'template'    => '',
 			'list'        => $slugs
 		],
-		'music' => [
-			'name'        => 'Music',
+		'truth' => [
+			'name'        => 'Truth',
 			'description' => '',
 			'template'    => '',
 			'list'        => []
 		],
-		'videos' => [
-			'name'        => 'Videos',
+		'liberty' => [
+			'name'        => 'Liberty',
 			'description' => '',
 			'template'    => '',
 			'list'        => []
@@ -553,10 +554,7 @@ function install( $adminPassword, $timezone ) {
 		PATH_PLUGINS_DATABASES . 'frontend' . DS . 'db.php',
 		$dataHead . json_encode(
 			[
-				'googleFonts'         => false,
-				'showPostInformation' => false,
-				'dateFormat'          => 'relative',
-				'position'            => 1
+				'position' => 1
 			],
 			JSON_PRETTY_PRINT
 		),

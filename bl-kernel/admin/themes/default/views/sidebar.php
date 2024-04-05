@@ -4,6 +4,7 @@
 	<li>
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'dashboard' ?>"><span class="fa fa-dashboard"></span><?php $L->p( 'Dashboard' ) ?></a>
 	</li>
+
 	<li>
 		<a class="top-level-link" href="<?php echo HTML_PATH_ROOT ?>"><span class="fa fa-home"></span><?php $L->p( 'Website' ) ?></a>
 	</li>
@@ -35,18 +36,25 @@
 	<li>
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'categories' ?>"><span class="fa fa-bookmark"></span><?php $L->p( 'Categories' ) ?></a>
 	</li>
+
 	<li>
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'users' ?>"><span class="fa fa-users"></span><?php $L->p( 'Users' ) ?></a>
+	</li>
+
+	<li>
+		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins' ?>"><span class="fa fa-plug"></span><?php $L->p( 'Plugins' ) ?></a>
+	</li>
+
+	<li>
+		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'themes' ?>"><span class="fa fa-desktop"></span><?php $L->p( 'Themes' ) ?></a>
 	</li>
 
 	<li class="nav-item">
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'settings' ?>"><span class="fa fa-gear"></span><?php $L->p( 'Settings' ) ?></a>
 	</li>
-	<li>
-		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins' ?>"><span class="fa fa-puzzle-piece"></span><?php $L->p( 'Plugins' ) ?></a>
-	</li>
-	<li>
-		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'themes' ?>"><span class="fa fa-desktop"></span><?php $L->p( 'Themes' ) ?></a>
+
+	<li class="nav-item">
+		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'system' ?>"><span class="fa fa-code"></span><?php $L->p( 'System' ) ?></a>
 	</li>
 	<?php endif; ?>
 

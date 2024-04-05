@@ -1,53 +1,21 @@
-
-<h1><?php $L->p( 'System' ); ?></h1>
-
 <?php
+/**
+ * About page
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Views
+ * @since      1.0.0
+ */
 
-echo '<table class="table table-striped mt-3"><tbody>';
-
-echo '<tr>';
-echo "<td>{$L->g( 'CMS Version' )}</td>";
-echo '<td>' . BLUDIT_VERSION . '</td>';
-echo '</tr>';
-
-echo '<tr>';
-echo "<td>{$L->g( 'Build Number' )}</td>";
-echo '<td>' . BLUDIT_BUILD . '</td>';
-echo '</tr>';
-
-echo '<tr>';
-echo "<td>{$L->g( 'Disk Usage' )}</td>";
-echo '<td>' . Filesystem :: bytesToHumanFileSize( Filesystem :: getSize( PATH_ROOT ) ) . '</td>';
-echo '</tr>';
-
-echo '<tr>';
-echo '<td><a href="' . HTML_PATH_ADMIN_ROOT . 'developers' . '">' . $L->g( 'Developers' ) . '</a></td>';
-echo '<td></td>';
-echo '</tr>';
-
-echo '</tbody></table>';
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
 ?>
-<?php if ( $config['dash_notify_qty'] > 0 ) : ?>
+<header class="admin-page-header">
+	<h1><?php lang()->p( 'About This CMS' ); ?></h1>
+</header>
 
-<h2 class="m-0"><?php $L->p('Notifications') ?></h2>
-
-<ul class="list-group list-group-striped b-0">
-	<?php
-	$logs = array_slice($syslog->db, 0, NOTIFICATIONS_AMOUNT);
-	foreach ($logs as $log) {
-		$phrase = $L->g($log['dictionaryKey']);
-		echo '<li class="list-group-item">';
-		echo $phrase;
-		if (!empty($log['notes'])) {
-			echo ' « <b>' . $log['notes'] . '</b> »';
-		}
-		echo '<br><span class="notification-date"><small>';
-		echo Date::format($log['date'], DB_DATE_FORMAT, NOTIFICATIONS_DATE_FORMAT);
-		echo ' [ ' . $log['username'] . ' ]';
-		echo '</small></span>';
-		echo '</li>';
-	}
-	?>
-</ul>
-<?php endif; ?>
+<p><?php lang()->p( 'Nothing to see here. Use or delete. Maybe beginner instructions or FAQs?' ); ?></p>

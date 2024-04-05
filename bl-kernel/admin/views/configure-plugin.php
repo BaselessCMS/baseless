@@ -1,26 +1,43 @@
-<?php defined('BLUDIT') or die('Bludit CMS.'); ?>
-
-<?php echo Bootstrap::formOpen(array('id'=>'jsform', 'class'=>'plugin-form')); ?>
-
-<div class="align-middle">
-	<?php if ($plugin->formButtons()): ?>
-	<div class="float-right mt-1">
-		<button type="submit" class="btn btn-primary btn-sm" name="save"><?php $L->p('Save') ?></button>
-		<a class="btn btn-secondary btn-sm" href="<?php echo HTML_PATH_ADMIN_ROOT.'plugins' ?>" role="button"><?php $L->p('Cancel') ?></a>
-	</div>
-	<?php endif; ?>
-	<?php echo Bootstrap::pageTitle(array('title'=>$plugin->name(), 'icon'=>'cog')); ?>
-</div>
-
 <?php
-	// Token CSRF
-	echo Bootstrap::formInputHidden(array(
-		'name'=>'tokenCSRF',
-		'value'=>$security->getTokenCSRF()
-	));
+/**
+ * Configure plugin page
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Views
+ * @since      1.0.0
+ */
 
-	// Print the plugin form
-	echo $plugin->form();
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
+
 ?>
+<form id="jsform" class="configure-plugin" method="post" action="" autocomplete="off">
+	<header class="admin-page-header has-actions">
+		<h1><?php echo $plugin->name(); ?></h1>
 
-<?php echo Bootstrap::formClose(); ?>
+		<?php if ( $plugin->formButtons() ) : ?>
+		<div class="form-actions admin-form-actions">
+			<button type="submit" class="btn btn-primary" name="save"><?php lang()->p( 'Save' ); ?></button>
+			<a class="btn btn-secondary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins' ?>" role="button"><?php lang()->p( 'Cancel' ); ?></a>
+		</div>
+		<?php endif; ?>
+	</header>
+
+	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>">
+	<?php echo $plugin->form(); ?>
+</form>
+
+<script>
+$(document).ready( function() {
+
+	// Prevent the form submit when press enter key.
+	$( 'form' ).keypress( function(e) {
+		if ( ( e.which == 13 ) && ( e.target.type !== 'textarea' ) ) {
+			return false;
+		}
+	});
+});
+</script>

@@ -1,28 +1,36 @@
 <?php
+/**
+ * Plugins page
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Views
+ * @since      1.0.0
+ */
 
-echo Bootstrap::pageTitle(array('title' => $L->g('Plugins'), 'icon' => 'puzzle-piece'));
-
-echo Bootstrap::link(array(
-	'title' => $L->g('Change the position of the plugins'),
-	'href' => HTML_PATH_ADMIN_ROOT . 'plugins-position',
-	'icon' => 'arrows'
-));
-
-echo Bootstrap::formTitle(array('title' => $L->g('Search plugins')));
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
 ?>
+<header class="admin-page-header">
+	<h1><?php lang()->p( 'Plugins' ); ?></h1>
+	<p><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins-position'; ?>"><span class="fa fa-arrows"></span><?php lang()->p( 'Change the position of the plugins' ); ?></a></p>
+</header>
 
-<input type="text" class="form-control" id="search" placeholder="<?php $L->p('Search') ?>">
+<label for="search"><?php lang()->p( 'Search Plugins' ); ?></label>
+<input type="text" class="form-control" id="search" placeholder="<?php lang()->p( 'Search plugins by name or keywords in plugin description&hellip;' ); ?>" />
 <script>
-	$(document).ready(function() {
-		$("#search").on("keyup", function() {
+	$(document).ready( function() {
+		$( '#search' ).on( 'keyup', function() {
 			var textToSearch = $(this).val().toLowerCase();
-			$(".searchItem").each(function() {
+			$( '.searchItem' ).each( function() {
 				var item = $(this);
 				item.hide();
-				item.find(".searchText").each(function() {
+				item.find( '.searchText' ).each( function() {
 					var element = $(this).text().toLowerCase();
-					if (element.indexOf(textToSearch) != -1) {
+					if ( element.indexOf( textToSearch) != -1 ) {
 						item.show();
 					}
 				});
@@ -31,95 +39,76 @@ echo Bootstrap::formTitle(array('title' => $L->g('Search plugins')));
 	});
 </script>
 
-<?php
+<h2><?php lang()->p( 'Enabled Plugins' ); ?></h2>
 
-echo Bootstrap::formTitle(array('title' => $L->g('Enabled plugins')));
-
-echo '
 <table class="table">
-	<tbody>
-';
+	<tbody
+	<?php
+	foreach ( $plugins_installed as $plugin ) :
 
-// Show installed plugins
-foreach ($plugins_installed as $plugin) {
+		// Do not display theme's plugins.
+		if ( 'theme' == $plugin->type() ) {
+			continue;
+		}
 
-	if ($plugin->type() == 'theme') {
-		// Do not display theme's plugins
-		continue;
-	}
+		?>
+		<tr id="<?php echo $plugin->className(); ?>" class="bg-light searchItem">
+			<td class="align-middle pt-3 pb-3 w-25">
+				<div class="searchText"><?php echo $plugin->name(); ?></div>
+				<div class="mt-1">
 
-	echo '<tr id="' . $plugin->className() . '" class="bg-light searchItem">';
+					<?php if ( method_exists( $plugin, 'form' ) ) : ?>
+					<a class="mr-3" href="<?php echo HTML_PATH_ADMIN_ROOT . 'configure-plugin/' . $plugin->className(); ?>"><?php lang()->p( 'Settings' ); ?></a>
+					<?php endif; ?>
 
-	echo '<td class="align-middle pt-3 pb-3 w-25">
-		<div class="searchText">' . $plugin->name() . '</div>
-		<div class="mt-1">';
-	if (method_exists($plugin, 'form')) {
-		echo '<a class="mr-3" href="' . HTML_PATH_ADMIN_ROOT . 'configure-plugin/' . $plugin->className() . '">' . $L->g('Settings') . '</a>';
-	}
-	echo '<a href="' . HTML_PATH_ADMIN_ROOT . 'uninstall-plugin/' . $plugin->className() . '">' . $L->g('Deactivate') . '</a>';
-	echo '</div>';
-	echo '</td>';
-
-	echo '<td class="searchText align-middle d-none d-sm-table-cell">';
-	echo $plugin->description();
-	echo '</td>';
-
-	echo '<td class="text-center align-middle d-none d-lg-table-cell">';
-	echo '<span>' . $plugin->version() . '</span>';
-	echo '</td>';
-
-	echo '<td class="text-center align-middle d-none d-lg-table-cell">
-		<a target="_blank" href="' . $plugin->website() . '">' . $plugin->author() . '</a>
-	</td>';
-
-	echo '</tr>';
-}
-
-echo '
+					<a href="<?php echo HTML_PATH_ADMIN_ROOT . 'uninstall-plugin/' . $plugin->className(); ?>"><span class="text-danger"><?php lang()->p( 'Deactivate' ); ?></span></a>
+				</div>
+			</td>
+			<td class="searchText align-middle d-none d-sm-table-cell">
+				<?php echo $plugin->description(); ?>
+			</td>
+			<td class="text-center align-middle d-none d-lg-table-cell">
+				<span><?php echo $plugin->version(); ?></span>
+			</td>
+			<td class="text-center align-middle d-none d-lg-table-cell">
+				<a target="_blank" rel="noopener noreferrer" href="<?php echo $plugin->website(); ?>"><?php echo $plugin->author(); ?></a>
+			</td>
+		</tr>
+	<?php endforeach; ?>
 	</tbody>
 </table>
-';
 
-echo Bootstrap::formTitle(array('title' => $L->g('Disabled plugins')));
+<h2><?php lang()->p( 'Disabled Plugins' ); ?></h2>
 
-echo '
 <table class="table">
 	<tbody>
-';
+	<?php
+	$pluginsNotInstalled = array_diff_key( $plugins['all'], $plugins_installed );
+	foreach ( $pluginsNotInstalled as $plugin ) :
 
-// Plugins not installed
-$pluginsNotInstalled = array_diff_key($plugins['all'], $plugins_installed);
-foreach ($pluginsNotInstalled as $plugin) {
+		// Do not display theme's plugins.
+		if ( 'theme' == $plugin->type() ) {
+			continue;
+		}
 
-	if ($plugin->type() == 'theme') {
-		// Do not display theme's plugins
-		continue;
-	}
-	echo '<tr id="' . $plugin->className() . '" class="searchItem">';
-
-	echo '<td class="align-middle pt-3 pb-3 w-25">
-		<div class="searchText">' . $plugin->name() . '</div>
-		<div class="mt-1">
-			<a href="' . HTML_PATH_ADMIN_ROOT . 'install-plugin/' . $plugin->className() . '">' . $L->g('Activate') . '</a>
-		</div>
-	</td>';
-
-	echo '<td class="searchText align-middle d-none d-sm-table-cell">';
-	echo $plugin->description();
-	echo '</td>';
-
-	echo '<td class="text-center align-middle d-none d-lg-table-cell">';
-	echo '<span>' . $plugin->version() . '</span>';
-	echo '</td>';
-
-	echo '<td class="text-center align-middle d-none d-lg-table-cell">
-		<a target="_blank" href="' . $plugin->website() . '">' . $plugin->author() . '</a>
-	</td>';
-
-	echo '</tr>';
-}
-
-echo '
+		?>
+		<tr id="<?php echo $plugin->className(); ?>" class="searchItem">
+			<td class="align-middle pt-3 pb-3 w-25">
+				<div class="searchText"><?php echo $plugin->name(); ?></div>
+				<div class="mt-1">
+					<a href="<?php echo HTML_PATH_ADMIN_ROOT . 'install-plugin/' . $plugin->className(); ?>"><span class="text-success"><?php lang()->p( 'Activate' ); ?></span></a>
+				</div>
+			</td>
+			<td class="searchText align-middle d-none d-sm-table-cell">
+				<?php echo $plugin->description(); ?>
+			</td>
+			<td class="text-center align-middle d-none d-lg-table-cell">
+				<span><?php echo $plugin->version(); ?></span>
+			</td>
+			<td class="text-center align-middle d-none d-lg-table-cell">
+				<a target="_blank" rel="noopener noreferrer" href="<?php echo $plugin->website(); ?>"><?php echo $plugin->author(); ?></a>
+			</td>
+		</tr>
+	<?php endforeach; ?>
 	</tbody>
 </table>
-';

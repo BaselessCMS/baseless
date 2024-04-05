@@ -51,6 +51,6 @@ function printTable($title, $array) {
 // Title of the page.
 $layout['title'] .= sprintf(
 	'%s | %s',
-	$L->g( 'Developers' ),
+	$L->g( 'System' ),
 	$site->title()
 );

@@ -96,7 +96,7 @@ EOF;
 	{
 		$title = $args['title'];
 return <<<EOF
-<h6 class="mt-4 mb-2 pb-2 border-bottom text-uppercase">$title</h6>
+<h3 class="form-section-heading admin-form-section-heading">$title</h3>
 EOF;
 	}
 

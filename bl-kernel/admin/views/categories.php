@@ -1,33 +1,41 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Categories page
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Views
+ * @since      1.0.0
+ */
 
-echo Bootstrap::pageTitle(array('title'=>$L->g('Categories'), 'icon'=>'tags'));
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
-echo Bootstrap::link(array(
-	'title'=>$L->g('Add a new category'),
-	'href'=>HTML_PATH_ADMIN_ROOT.'new-category',
-	'icon'=>'plus'
-));
+?>
+<header class="admin-page-header">
+	<h1><?php lang()->p( 'Categories' ); ?></h1>
+	<p><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'new-category' ?>"><?php lang()->p( 'Add a new category' ); ?></a></p>
+</header>
 
-echo '
-<table class="table table-striped mt-3">
+<table class="table table-striped">
 	<thead>
 		<tr>
-			<th class="border-bottom-0" scope="col">'.$L->g('Name').'</th>
-			<th class="border-bottom-0" scope="col">'.$L->g('URL').'</th>
+			<th scope="col"><?php lang()->p( 'Name' ); ?></th>
+			<th scope="col"><?php lang()->p( 'URL' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>
-';
+	<?php
+	foreach ( cats()->keys() as $key ) :
 
-foreach ($categories->keys() as $key) {
-	$category = new Category($key);
-	echo '<tr>';
-	echo '<td><a href="'.HTML_PATH_ADMIN_ROOT.'edit-category/'.$key.'">'.$category->name().'</a></td>';
-	echo '<td><a href="'.$category->permalink().'">'.$url->filters('category', false).$key.'</a></td>';
-	echo '</tr>';
-}
-
-echo '
+		$cat = new \Category( $key );
+		?>
+		<tr>
+			<td><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-category/' . $key; ?>"><?php echo $cat->name(); ?></a></td>
+			<td><a href="<?php echo $cat->permalink(); ?>"><?php echo url()->filters( 'category', false ) . $key; ?></a></td>
+		</tr>
+	<?php endforeach; ?>
 	</tbody>
 </table>
-';

@@ -1,56 +1,69 @@
-<?php defined('BLUDIT') or die('Bludit CMS.'); ?>
-
 <?php
+/**
+ * Users page
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Views
+ * @since      1.0.0
+ */
 
-echo Bootstrap::pageTitle(array('title'=>$L->g('Users'), 'icon'=>'users'));
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
-echo Bootstrap::link(array(
-	'title'=>$L->g('add-a-new-user'),
-	'href'=>HTML_PATH_ADMIN_ROOT.'new-user',
-	'icon'=>'plus'
-));
+?>
+<header class="admin-page-header">
+	<h1><?php lang()->p( 'Registered Users' ); ?></h1>
+	<p><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'new-user'; ?>"><span class="fa fa-plus"></span><?php lang()->p( 'Change the position of the plugins' ); ?></a></p>
+</header>
 
-echo '
 <table class="table table-striped mt-3">
 	<thead>
 		<tr>
-			<th class="border-bottom-0" scope="col">'.$L->g('Username').'</th>
-			<th class="border-bottom-0 d-none d-lg-table-cell" scope="col">'.$L->g('Nickname').'</th>
-			<th class="border-bottom-0" scope="col">'.$L->g('Email').'</th>
-			<th class="border-bottom-0" scope="col">'.$L->g('Status').'</th>
-			<th class="border-bottom-0" scope="col">'.$L->g('Role').'</th>
-			<th class="border-bottom-0 d-none d-lg-table-cell" scope="col">'.$L->g('Registered').'</th>
+			<th class="border-bottom-0" scope="col"><?php lang()->p( 'Username' ); ?></th>
+			<th class="border-bottom-0 d-none d-lg-table-cell" scope="col"><?php lang()->p( 'Nickname' ); ?></th>
+			<th class="border-bottom-0" scope="col"><?php lang()->p( 'Email' ); ?></th>
+			<th class="border-bottom-0" scope="col"><?php lang()->p( 'Status' ); ?></th>
+			<th class="border-bottom-0" scope="col"><?php lang()->p( 'Role' ); ?></th>
+			<th class="border-bottom-0 d-none d-lg-table-cell" scope="col"><?php lang()->p( 'Registered' ); ?></th>
 		</tr>
 	</thead>
+
 	<tbody>
-';
-
-$list = $users->keys();
-foreach ($list as $username) {
+	<?php
+	$list = $users->keys();
+	foreach ( $list as $username ) :
 	try {
-		$user = new User($username);
-		echo '<tr>';
-		echo '<td><img class="profilePicture mr-1" alt="" src="'.(Sanitize::pathFile(PATH_UPLOADS_PROFILES.$user->username().'.png')?DOMAIN_UPLOADS_PROFILES.$user->username().'.png':HTML_PATH_CORE_IMG.'default.svg').'" /><a href="'.HTML_PATH_ADMIN_ROOT.'edit-user/'.$username.'">'.$username.'</a></td>';
-		echo '<td class="d-none d-lg-table-cell">'.$user->nickname().'</td>';
-		echo '<td>'.$user->email().'</td>';
-		echo '<td>'.($user->enabled()?'<b>'.$L->g('Enabled').'</b>':$L->g('Disabled')).'</td>';
-		if ($user->role()=='admin') {
-			echo '<td>'.$L->g('Administrator').'</td>';
-		} elseif ($user->role()=='editor') {
-			echo '<td>'.$L->g('Editor').'</td>';
-		} elseif ($user->role()=='author') {
-			echo '<td>'.$L->g('Author').'</td>';
-		} else {
-			echo '<td>'.$L->g('Reader').'</td>';
-		}
-		echo '<td class="d-none d-lg-table-cell">'.Date::format($user->registered(), DB_DATE_FORMAT, ADMIN_PANEL_DATE_FORMAT).'</td>';
-		echo '</tr>';
-	} catch (Exception $e) {
-		// Continue
-	}
-}
+		$user = new \User( $username );
 
-echo '
+		if ( 'admin' == $user->role() ) {
+			$role = lang()->g( 'Administrator' );
+		} elseif ( 'editor' == $user->role() ) {
+			$role = lang()->g( 'Editor' );
+		} elseif ( 'author' == $user->role() ) {
+			$role = lang()->g( 'Author' );
+		} else {
+			$role = lang()->g( 'Reader' );
+		} ?>
+		<tr>
+			<td><img class="profilePicture mr-1" alt="" src="<?php echo ( \Sanitize :: pathFile( PATH_UPLOADS_PROFILES . $user->username() . '.png' ) ? DOMAIN_UPLOADS_PROFILES . $user->username() . '.png' : HTML_PATH_CORE_IMG . 'default.svg' ); ?>" /><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-user/' . $username; ?>"><?php echo $username; ?></a></td>
+
+			<td class="d-none d-lg-table-cell"><?php echo $user->nickname(); ?></td>
+
+			<td><?php echo $user->email(); ?></td>
+
+			<td><?php echo ( $user->enabled() ? lang()->g( 'Enabled' ) : lang()->g( 'Disabled' ) ); ?></td>
+
+			<td><?php echo $role; ?></td>
+
+			<td class="d-none d-lg-table-cell"><?php echo \Date :: format( $user->registered(), DB_DATE_FORMAT, 'M j, Y' ); ?></td>
+		</tr>
+	<?php
+	} catch ( Exception $e ) {
+		// Continue.
+	}
+	endforeach; ?>
 	</tbody>
 </table>
-';

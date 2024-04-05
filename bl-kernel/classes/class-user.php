@@ -105,6 +105,11 @@ class User {
 		return $this->getValue('registered');
 	}
 
+	public function website()
+	{
+		return $this->getValue('website');
+	}
+
 	public function twitter()
 	{
 		return $this->getValue('twitter');
@@ -115,14 +120,24 @@ class User {
 		return $this->getValue('facebook');
 	}
 
-	public function codepen()
-	{
-		return $this->getValue('codepen');
-	}
-
 	public function instagram()
 	{
 		return $this->getValue('instagram');
+	}
+
+	public function youtube()
+	{
+		return $this->getValue('youtube');
+	}
+
+	public function vimeo()
+	{
+		return $this->getValue('vimeo');
+	}
+
+	public function codepen()
+	{
+		return $this->getValue('codepen');
 	}
 
 	public function github()
@@ -170,11 +185,14 @@ class User {
 		$tmp['firstName'] 	= $this->firstName();
 		$tmp['lastName'] 	= $this->lastName();
 		$tmp['nickname'] 	= $this->nickname();
-		$tmp['description'] 	= $this->description();
+		$tmp['description'] = $this->description();
+		$tmp['website'] 	= $this->website();
 		$tmp['twitter'] 	= $this->twitter();
 		$tmp['facebook'] 	= $this->facebook();
-		$tmp['codepen'] 	= $this->codepen();
 		$tmp['instagram'] 	= $this->instagram();
+		$tmp['youtube'] 	= $this->youtube();
+		$tmp['vimeo'] 	    = $this->vimeo();
+		$tmp['codepen'] 	= $this->codepen();
 		$tmp['github'] 		= $this->github();
 		$tmp['gitlab'] 		= $this->gitlab();
 		$tmp['linkedin'] 	= $this->linkedin();
