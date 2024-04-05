@@ -330,7 +330,6 @@
     "done": "完了",
     "delete-category": "カテゴリーを削除します",
     "are-you-sure-you-want-to-delete-this-category?": "このカテゴリーを削除してもよろしいですか？",
-    "confirm-new-password": "新しいパスワードの確認",
     "the-nickname-is-almost-used-in-the-themes-to-display-the-author-of-the-content": "ニックネームは、コンテンツの投稿者を表示するテーマで使用されます。",
     "allow-unicode": "Unicodeを許可",
     "allow-unicode-characters-in-the-url-and-some-part-of-the-system": "URLまたはシステムの一部にUnicode文字の使用を許可します。",
