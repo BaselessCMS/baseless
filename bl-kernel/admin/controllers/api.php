@@ -1,40 +1,32 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Plugin API
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Controllers
+ * @since      1.0.0
+ */
 
-// ============================================================================
-// Check role
-// ============================================================================
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
-checkRole(array('admin'));
+checkRole( [ 'admin' ] );
 
-// ============================================================================
-// Functions
-// ============================================================================
+activatePlugin( 'pluginAPI' );
 
-// ============================================================================
-// Main before POST
-// ============================================================================
-
-// ============================================================================
-// POST Method
-// ============================================================================
-
-// ============================================================================
-// Main after POST
-// ============================================================================
-
-activatePlugin('pluginAPI');
-$apiURL = DOMAIN_BASE.'api/';
-$pluginAPI = getPlugin('pluginAPI');
-$apiToken = $pluginAPI->getToken();
-$username = $login->username();
-$admin = new User($username);
+$apiURL    = DOMAIN_BASE . 'api/';
+$pluginAPI = getPlugin ( 'pluginAPI' );
+$apiToken  = $pluginAPI->getToken();
+$username  = $login->username();
+$admin     = new \User( $username );
 $authToken = $admin->tokenAuth();
-$output = array(
-	'apiURL'=>$apiURL,
-	'username'=>$username,
-	'apiToken'=>$apiToken,
-	'authToken'=>$authToken
-);
-exit(json_encode($output));
-
-?>
+$output    = [
+	'apiURL'    => $apiURL,
+	'username'  => $username,
+	'apiToken'  => $apiToken,
+	'authToken' => $authToken
+];
+exit( json_encode( $output ) );

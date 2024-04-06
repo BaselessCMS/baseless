@@ -14,9 +14,13 @@ if ( ! defined( 'JSON_CMS' ) ) {
 }
 
 ?>
-<header class="admin-page-header">
+<header class="admin-page-header has-actions">
+
 	<h1><?php lang()->p( 'Categories' ); ?></h1>
-	<p><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'new-category' ?>"><?php lang()->p( 'Add a new category' ); ?></a></p>
+
+	<div class="form-actions admin-form-actions">
+		<a class="btn btn-primary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'new-category' ?>" role="button"><?php lang()->p( 'Add Category' ); ?></a>
+	</div>
 </header>
 
 <table class="table table-striped">

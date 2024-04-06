@@ -22,9 +22,10 @@ if ( defined( 'DEBUG_MODE' ) && DEBUG_MODE ) {
 <html dir="auto" class="no-js" lang="<?php echo $L->currentLanguageShortVersion(); ?>" xmlns:og="http://opengraphprotocol.org/schema/">
 <head>
 	<title><?php echo $layout['title']; ?></title>
-	<meta charset="<?php echo CHARSET; ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="robots" content="noindex,nofollow">
+
+	<meta charset="<?php echo CHARSET; ?>" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+	<meta name="robots" content="noindex,nofollow" />
 
 	<?php
 

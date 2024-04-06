@@ -115,6 +115,15 @@ if ( $user->nickname() ) {
 				'placeholder' => '',
 				'tip'         => ''
 			] );
+
+			echo Bootstrap :: formInputText( [
+				'name'        => 'website',
+				'label'       => lang()->g( 'Website' ),
+				'value'       => $user->website(),
+				'class'       => '',
+				'placeholder' => 'https://',
+				'tip'         => ''
+			] );
 			?>
 		</div>
 
@@ -211,15 +220,6 @@ if ( $user->nickname() ) {
 
 		<div class="tab-pane fade" id="links" role="tabpanel" aria-labelledby="nav-links-tab">
 			<?php
-			echo Bootstrap :: formInputText( [
-				'name'        => 'website',
-				'label'       => 'Website',
-				'value'       => $user->website(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
 			echo Bootstrap :: formInputText( [
 				'name'        => 'twitter',
 				'label'       => 'Twitter',

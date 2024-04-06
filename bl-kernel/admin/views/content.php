@@ -205,9 +205,13 @@ function table( $type = 'published' ) {
 }
 
 ?>
-<header class="admin-page-header">
+<header class="admin-page-header has-actions">
+
 	<h1><?php lang()->p( 'Content' ); ?></h1>
-	<p><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'new-content' ?>"><?php lang()->p( 'Add new content' ); ?></a></p>
+
+	<div class="form-actions admin-form-actions">
+		<a class="btn btn-primary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'new-content' ?>" role="button"><?php lang()->p( 'Add Content' ); ?></a>
+	</div>
 </header>
 
 <ul class="nav nav-tabs" role="tablist">

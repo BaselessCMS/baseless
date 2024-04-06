@@ -21,7 +21,7 @@ if ( ! defined( 'JSON_CMS' ) ) {
 		<?php if ( $plugin->formButtons() ) : ?>
 		<div class="form-actions admin-form-actions">
 			<button type="submit" class="btn btn-primary" name="save"><?php lang()->p( 'Save' ); ?></button>
-			<a class="btn btn-secondary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins' ?>" role="button"><?php lang()->p( 'Cancel' ); ?></a>
+			<a class="btn btn-secondary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins' ?>" role="button"><?php lang()->p( 'Plugins' ); ?></a>
 		</div>
 		<?php endif; ?>
 	</header>

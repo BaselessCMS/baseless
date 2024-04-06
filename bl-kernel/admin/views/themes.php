@@ -13,9 +13,28 @@ if ( ! defined( 'JSON_CMS' ) ) {
 	die( 'You are not allowed to access this file directly.' );
 }
 
+$settings_url = '';
+foreach ( buildThemes() as $theme ) {
+	if (
+		$theme['dirname'] == $site->theme() &&
+		isset( $theme['plugin'] ) &&
+		getPlugin( $theme['plugin'] )
+	) {
+		$settings_url = HTML_PATH_ADMIN_ROOT . 'configure-plugin/' . $theme['plugin'];
+		break;
+	}
+}
+
 ?>
-<header class="admin-page-header">
+<header class="admin-page-header has-actions">
+
 	<h1><?php lang()->p( 'Themes' ); ?></h1>
+
+	<?php if ( ! empty( $settings_url ) ) : ?>
+	<div class="form-actions admin-form-actions">
+		<a class="btn btn-primary" href="<?php echo $settings_url; ?>" role="button"><?php lang()->p( 'Theme Options' ); ?></a>
+	</div>
+	<?php endif; ?>
 </header>
 
 <table class="table mt-3">

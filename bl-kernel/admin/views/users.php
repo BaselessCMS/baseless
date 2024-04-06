@@ -14,9 +14,13 @@ if ( ! defined( 'JSON_CMS' ) ) {
 }
 
 ?>
-<header class="admin-page-header">
+<header class="admin-page-header has-actions">
+
 	<h1><?php lang()->p( 'Registered Users' ); ?></h1>
-	<p><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'new-user'; ?>"><span class="fa fa-plus"></span><?php lang()->p( 'Change the position of the plugins' ); ?></a></p>
+
+	<div class="form-actions admin-form-actions">
+		<a class="btn btn-primary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'new-user' ?>" role="button"><?php lang()->p( 'Add User' ); ?></a>
+	</div>
 </header>
 
 <table class="table table-striped mt-3">

@@ -14,30 +14,37 @@ if ( ! defined( 'JSON_CMS' ) ) {
 }
 
 ?>
-<header class="admin-page-header">
+<header class="admin-page-header has-actions">
+
 	<h1><?php lang()->p( 'Plugins' ); ?></h1>
-	<p><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins-position'; ?>"><span class="fa fa-arrows"></span><?php lang()->p( 'Change the position of the plugins' ); ?></a></p>
+
+	<div class="form-actions admin-form-actions">
+		<a class="btn btn-primary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins-position' ?>" role="button"><?php lang()->p( 'Sort Sidebar' ); ?></a>
+	</div>
 </header>
 
-<label for="search"><?php lang()->p( 'Search Plugins' ); ?></label>
-<input type="text" class="form-control" id="search" placeholder="<?php lang()->p( 'Search plugins by name or keywords in plugin description&hellip;' ); ?>" />
-<script>
-	$(document).ready( function() {
-		$( '#search' ).on( 'keyup', function() {
-			var textToSearch = $(this).val().toLowerCase();
-			$( '.searchItem' ).each( function() {
-				var item = $(this);
-				item.hide();
-				item.find( '.searchText' ).each( function() {
-					var element = $(this).text().toLowerCase();
-					if ( element.indexOf( textToSearch) != -1 ) {
-						item.show();
-					}
+<fieldset>
+	<label for="search" class="form-label"><?php lang()->p( 'Search Plugins' ); ?></label>
+	<input type="text" class="form-control" id="search" placeholder="<?php lang()->p( 'Search plugins by name or keywords in plugin description&hellip;' ); ?>" />
+
+	<script>
+		$(document).ready( function() {
+			$( '#search' ).on( 'keyup', function() {
+				var textToSearch = $(this).val().toLowerCase();
+				$( '.searchItem' ).each( function() {
+					var item = $(this);
+					item.hide();
+					item.find( '.searchText' ).each( function() {
+						var element = $(this).text().toLowerCase();
+						if ( element.indexOf( textToSearch) != -1 ) {
+							item.show();
+						}
+					});
 				});
 			});
 		});
-	});
-</script>
+	</script>
+</fieldset>
 
 <h2><?php lang()->p( 'Enabled Plugins' ); ?></h2>
 

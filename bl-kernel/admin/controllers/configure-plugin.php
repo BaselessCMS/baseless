@@ -1,58 +1,53 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Plugin form page controller
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Controllers
+ * @since      1.0.0
+ */
 
-// ============================================================================
-// Check role
-// ============================================================================
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
-checkRole(array('admin'));
+checkRole( [ 'admin' ] );
 
-// ============================================================================
-// Functions
-// ============================================================================
-
-// ============================================================================
-// Main before POST
-// ============================================================================
 $plugin = false;
 $pluginClassName = $layout['parameters'];
 
-// Check if the plugin exists
-if (isset($plugins['all'][$pluginClassName])) {
+// Check if the plugin exists.
+if ( isset( $plugins['all'][$pluginClassName] ) ) {
 	$plugin = $plugins['all'][$pluginClassName];
 } else {
-	Redirect::page('plugins');
+	\Redirect :: page( 'plugins' );
 }
 
-// Check if the plugin has the method form()
-if (!method_exists($plugin, 'form')) {
-	Redirect::page('plugins');
+// Check if the plugin has the method form().
+if ( ! method_exists( $plugin, 'form' ) ) {
+	\Redirect :: page( 'plugins' );
 }
 
-// ============================================================================
-// POST Method
-// ============================================================================
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	// Add to syslog
-	$syslog->add(array(
-		'dictionaryKey'=>'plugin-configured',
-		'notes'=>$plugin->name()
-	));
+	// Add to syslog.
+	$syslog->add( [
+		'dictionaryKey' => 'plugin-configured',
+		'notes' => $plugin->name()
+	] );
 
-	// Call the method post of the plugin
+	// Call the method post of the plugin.
 	$plugin->post();
-	Alert::set( $L->g('The changes have been saved') );
-	Redirect::page('configure-plugin/'.$plugin->className());
+	\Alert :: set( $L->g( 'The changes have been saved' ) );
+	\Redirect :: page( 'configure-plugin/' . $plugin->className() );
 }
-
-// ============================================================================
-// Main after POST
-// ============================================================================
 
 // Title of the page.
 $layout['title'] .= sprintf(
 	'%s - %s | %s',
-	$L->g( 'Plugin' ),
+	lang()->g( 'Plugin' ),
 	$plugin->name(),
-	$site->title()
+	site()->title()
 );

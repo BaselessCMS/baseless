@@ -19,17 +19,17 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 	<header class="admin-page-header has-actions">
 
-		<h1><?php lang()->p( 'Plugins Positions' ); ?></h1>
+		<h1><?php lang()->p( 'Sort Site Sidebar' ); ?></h1>
 
 		<div class="form-actions admin-form-actions">
 
 			<button type="button" class="btn btn-primary jsbuttonSave" name="save"><?php lang()->p( 'Save' ); ?></button>
 
-			<a class="btn btn-secondary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins'; ?>" role="button"><?php lang()->p( 'Cancel' ); ?></a>
+			<a class="btn btn-secondary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins'; ?>" role="button"><?php lang()->p( 'Plugins' ); ?></a>
 		</div>
 	</header>
 
-	<div class="alert alert-primary"><?php lang()->p( 'Drag and drop to sort the plugins' ); ?></div>
+	<div class="alert alert-primary"><?php lang()->p( 'Drag and drop to sort the order of plugins in the site sidebar (may not apply to the active theme).' ); ?></div>
 
 	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />
 	<input type="hidden" id="jsplugin-list" name="plugin-list" value="" />
