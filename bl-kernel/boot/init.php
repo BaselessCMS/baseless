@@ -52,6 +52,9 @@ if ( ! $config ) {
 define( 'BLUDIT_VERSION', $config['system']['version'] );
 define( 'BLUDIT_RELEASE_DATE', $config['system']['date'] );
 define( 'BLUDIT_BUILD', $config['system']['build'] );
+define( 'CMS_VERSION', $config['system']['version'] );
+define( 'CMS_RELEASE_DATE', $config['system']['date'] );
+define( 'CMS_BUILD', $config['system']['build'] );
 
 // Change to true for debugging.
 define( 'DEBUG_MODE', $config['debug']['mode'] );
