@@ -115,7 +115,8 @@ define( 'PATH_CONTENT', PATH_ROOT . 'bl-content' . DS );
 define( 'PATH_RULES', PATH_KERNEL . 'boot' . DS . 'rules' . DS );
 define( 'PATH_HELPERS', PATH_KERNEL . 'helpers' . DS );
 define( 'PATH_AJAX', PATH_KERNEL . 'ajax' . DS );
-define( 'PATH_CORE_JS', PATH_KERNEL . 'js' . DS );
+define( 'PATH_ASSETS', PATH_KERNEL . 'assets' . DS );
+define( 'PATH_CORE_JS', PATH_ASSETS . 'js' . DS );
 
 define( 'PATH_PAGES', PATH_CONTENT . 'pages' . DS );
 define( 'PATH_DATABASES', PATH_CONTENT . 'databases' . DS );
@@ -241,7 +242,7 @@ define( 'HTML_PATH_ADMIN_ROOT', HTML_PATH_ROOT . ADMIN_URI_FILTER . '/' );
 define( 'HTML_PATH_ADMIN_THEME', HTML_PATH_ROOT . 'bl-kernel/admin/themes/' . $site->adminTheme() . '/' );
 define( 'HTML_PATH_ADMIN_THEME_JS',	HTML_PATH_ADMIN_THEME . 'js/' );
 define( 'HTML_PATH_ADMIN_THEME_CSS', HTML_PATH_ADMIN_THEME . 'css/' );
-define( 'HTML_PATH_CORE_JS', HTML_PATH_ROOT . 'bl-kernel/js/' );
+define( 'HTML_PATH_CORE_JS', HTML_PATH_ROOT . 'bl-kernel/assets/js/' );
 define( 'HTML_PATH_CORE_CSS', HTML_PATH_ROOT . 'bl-kernel/css/' );
 define( 'HTML_PATH_CORE_IMG', HTML_PATH_ROOT . 'bl-kernel/img/' );
 define( 'HTML_PATH_CONTENT', HTML_PATH_ROOT . 'bl-content/' );

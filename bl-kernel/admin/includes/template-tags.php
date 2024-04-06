@@ -41,3 +41,15 @@ function admin_content() {
 		);
 	}
 }
+
+function jquery_tag() {
+	return sprintf(
+		'<script src="%sjquery.min.js?version=%s"></script>',
+		DOMAIN_CORE_JS,
+		CMS_VERSION
+	);
+}
+
+function jquery() {
+	echo jquery_tag() . PHP_EOL;
+}
