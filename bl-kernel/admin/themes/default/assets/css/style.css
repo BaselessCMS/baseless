@@ -277,12 +277,13 @@ html {
   height: 100%;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  overflow-y: initial;
 }
 
 body {
   display: var(--cms-body--display, block);
-  overflow-x: var(--cms-body--overflow-x);
-  overflow-y: var(--cms-body--overflow-y);
+  overflow-x: var(--cms-body--overflow-x, hidden);
+  overflow-y: var(--cms-body--overflow-y, auto);
   position: var(--cms-body--position, relative);
   width: var(--cms-body--width, 100%);
   height: var(--cms-body--height, 100%);
@@ -898,7 +899,7 @@ code.select {
 
 #admin-page {
   width: var(--cms-admin--page--width);
-  height: 100%;
+  min-height: var(--cms-admin--page--min-height, 100vh);
   display: var(--cms-admin--page--display);
   flex-direction: var(--cms-admin--page--flex-direction);
   align-items: var(--cms-admin--page--align-items);
@@ -909,7 +910,6 @@ code.select {
 #admin-sidebar {
   width: -moz-max-content;
   width: max-content;
-  height: 100%;
   padding: 2rem 0;
   max-width: -moz-max-content;
   max-width: max-content;
@@ -1068,4 +1068,8 @@ img.profilePicture {
 
 .list-group-sortable li {
   cursor: move;
+}
+
+.form-label {
+  font-weight: 600;
 }

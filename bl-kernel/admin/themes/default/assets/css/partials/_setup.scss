@@ -6,12 +6,13 @@ html {
 	height: 100%;
 	scroll-behavior: smooth;
 	overflow-x: hidden;
+	overflow-y: initial;
 }
 
 body {
 	display: var( --cms-body--display, block );
-	overflow-x: var( --cms-body--overflow-x );
-	overflow-y: var( --cms-body--overflow-y );
+	overflow-x: var( --cms-body--overflow-x, hidden );
+	overflow-y: var( --cms-body--overflow-y, auto );
 	position: var( --cms-body--position, relative );
 	width: var( --cms-body--width, 100% );
 	height: var( --cms-body--height, 100% );

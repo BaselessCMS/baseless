@@ -44,7 +44,7 @@
 
 #admin-page {
 	width: var( --cms-admin--page--width );
-	height: 100%;
+	min-height: var( --cms-admin--page--min-height, 100vh );
 	display: var( --cms-admin--page--display );
 	flex-direction: var( --cms-admin--page--flex-direction );
 	align-items: var( --cms-admin--page--align-items );
@@ -54,7 +54,6 @@
 
 #admin-sidebar {
 	width: max-content;
-	height: 100%;
 	padding: 2rem 0;
 	max-width: max-content;
 	min-width: max-content;
@@ -233,4 +232,8 @@ img.profilePicture {
 	li {
 		cursor: move;
 	}
+}
+
+.form-label {
+	font-weight: 600;
 }

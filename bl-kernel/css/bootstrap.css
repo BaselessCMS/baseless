@@ -9808,6 +9808,10 @@ button.bg-dark:hover {
   font-weight: 400 !important;
 }
 
+.font-weight-semi-bold {
+  font-weight: 600 !important;
+}
+
 .font-weight-bold {
   font-weight: 700 !important;
 }
