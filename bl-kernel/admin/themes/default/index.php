@@ -10,6 +10,7 @@
 
 // Alias namespaces.
 use CMS\Tags as Tags;
+use CMS\Admin_Tags as Admin;
 
 // Maybe get minified assets.
 $suffix = '.min';
@@ -95,7 +96,7 @@ if ( defined( 'DEBUG_MODE' ) && DEBUG_MODE ) {
 	</div>
 
 	<div id="admin-content">
-	<?php Tags\admin_content(); ?>
+	<?php Admin\admin_content(); ?>
 	</div>
 </div>
 

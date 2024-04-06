@@ -1,0 +1,11 @@
+<?php
+/**
+ * Helper functions
+ *
+ * @package    JSON CMS
+ * @subpackage Core
+ * @category   Functions
+ * @since      1.0.0
+ */
+
+namespace CMS\Help;

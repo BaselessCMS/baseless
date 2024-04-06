@@ -113,6 +113,8 @@ define( 'PATH_KERNEL', PATH_ROOT . 'bl-kernel' . DS );
 define( 'PATH_CONTENT', PATH_ROOT . 'bl-content' . DS );
 
 define( 'PATH_RULES', PATH_KERNEL . 'boot' . DS . 'rules' . DS );
+define( 'PATH_INCLUDES', PATH_KERNEL . 'includes' . DS );
+define( 'PATH_CLASSES', PATH_KERNEL . 'classes' . DS );
 define( 'PATH_HELPERS', PATH_KERNEL . 'helpers' . DS );
 define( 'PATH_AJAX', PATH_KERNEL . 'ajax' . DS );
 define( 'PATH_ASSETS', PATH_KERNEL . 'assets' . DS );
@@ -154,28 +156,30 @@ mb_internal_encoding( CHARSET );
 mb_http_output( CHARSET );
 
 // Include classes.
-include( PATH_KERNEL . 'classes/class-dbjson.php' );
-include( PATH_KERNEL . 'classes/class-dblist.php' );
-include( PATH_KERNEL . 'classes/class-plugin.php' );
-include( PATH_KERNEL . 'classes/class-pages.php' );
-include( PATH_KERNEL . 'classes/class-users.php' );
-include( PATH_KERNEL . 'classes/class-tags.php' );
-include( PATH_KERNEL . 'classes/class-language.php' );
-include( PATH_KERNEL . 'classes/class-site.php' );
-include( PATH_KERNEL . 'classes/class-categories.php' );
-include( PATH_KERNEL . 'classes/class-syslog.php' );
-include( PATH_KERNEL . 'classes/class-pagex.php' );
-include( PATH_KERNEL . 'classes/class-category.php' );
-include( PATH_KERNEL . 'classes/class-tag.php' );
-include( PATH_KERNEL . 'classes/class-user.php' );
-include( PATH_KERNEL . 'classes/class-url.php' );
-include( PATH_KERNEL . 'classes/class-login.php' );
-include( PATH_KERNEL . 'classes/class-parsedown.php' );
-include( PATH_KERNEL . 'classes/class-security.php' );
-include( PATH_KERNEL . 'classes/class-admin-bootstrap.php' );
+include( PATH_CLASSES . 'class-dbjson.php' );
+include( PATH_CLASSES . 'class-dblist.php' );
+include( PATH_CLASSES . 'class-plugin.php' );
+include( PATH_CLASSES . 'class-pages.php' );
+include( PATH_CLASSES . 'class-users.php' );
+include( PATH_CLASSES . 'class-tags.php' );
+include( PATH_CLASSES . 'class-language.php' );
+include( PATH_CLASSES . 'class-site.php' );
+include( PATH_CLASSES . 'class-categories.php' );
+include( PATH_CLASSES . 'class-syslog.php' );
+include( PATH_CLASSES . 'class-pagex.php' );
+include( PATH_CLASSES . 'class-category.php' );
+include( PATH_CLASSES . 'class-tag.php' );
+include( PATH_CLASSES . 'class-user.php' );
+include( PATH_CLASSES . 'class-url.php' );
+include( PATH_CLASSES . 'class-login.php' );
+include( PATH_CLASSES . 'class-parsedown.php' );
+include( PATH_CLASSES . 'class-security.php' );
+include( PATH_CLASSES . 'class-admin-bootstrap.php' );
 
 // Include functions.
-include( PATH_KERNEL . 'functions.php' );
+include( PATH_INCLUDES . 'functions.php' ); // Old.
+include( PATH_INCLUDES . 'helpers.php' );
+include( PATH_INCLUDES . 'template-tags.php' );
 
 // Include helper classes.
 include( PATH_HELPERS . 'text.class.php' );

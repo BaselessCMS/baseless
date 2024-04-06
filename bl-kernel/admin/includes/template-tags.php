@@ -10,7 +10,7 @@
  * @since      1.0.0
  */
 
-namespace CMS\Tags;
+namespace CMS\Admin_Tags;
 
 /**
  * Admin page content
