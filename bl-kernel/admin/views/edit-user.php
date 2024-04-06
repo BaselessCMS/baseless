@@ -13,6 +13,19 @@ if ( ! defined( 'JSON_CMS' ) ) {
 	die( 'You are not allowed to access this file directly.' );
 }
 
+// Import namespaced functions.
+use function CMS\Help\{
+	site,
+	security,
+	url,
+	lang,
+	users,
+	plugins,
+	page,
+	pages,
+	cats
+};
+
 $nickname = ucwords( str_replace( [ '-', '_' ], ' ', $user->username() ) );
 if ( $user->nickname() ) {
 	$nickname = $user->nickname();

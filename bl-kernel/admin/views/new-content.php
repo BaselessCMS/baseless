@@ -13,6 +13,19 @@ if ( ! defined( 'JSON_CMS' ) ) {
 	die( 'You are not allowed to access this file directly.' );
 }
 
+// Import namespaced functions.
+use function CMS\Help\{
+	site,
+	security,
+	url,
+	lang,
+	users,
+	plugins,
+	page,
+	pages,
+	cats
+};
+
 ?>
 <form class="d-flex flex-column h-100"  id="jsform" method="post" action=""  autocomplete="off">
 	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />

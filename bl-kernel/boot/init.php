@@ -177,8 +177,9 @@ include( PATH_CLASSES . 'class-security.php' );
 include( PATH_CLASSES . 'class-admin-bootstrap.php' );
 
 // Include functions.
-include( PATH_INCLUDES . 'functions.php' ); // Old.
+include( PATH_INCLUDES . 'functions.dep.php' ); // Old.
 include( PATH_INCLUDES . 'helpers.php' );
+include( PATH_INCLUDES . 'functions.php' );
 include( PATH_INCLUDES . 'template-tags.php' );
 
 // Include helper classes.

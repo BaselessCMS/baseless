@@ -9,8 +9,10 @@
  */
 
 // Alias namespaces.
-use CMS\Tags as Tags;
-use CMS\Admin_Tags as Admin;
+use CMS\{
+	Tags as Tags,
+	Admin_Tags as Admin
+};
 
 // Maybe get minified assets.
 $suffix = '.min';

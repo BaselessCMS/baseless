@@ -1,4 +1,18 @@
 <?php
+
+// Import namespaced functions.
+use function CMS\Help\{
+	site,
+	security,
+	url,
+	lang,
+	users,
+	plugins,
+	page,
+	pages,
+	cats
+};
+
 // Preload the first 10 files to not call via AJAX when the user open the first time the media manager
 $listOfFilesByPage = Filesystem::listFiles(PAGE_THUMBNAILS_DIRECTORY, '*', '*', MEDIA_MANAGER_SORT_BY_DATE, MEDIA_MANAGER_NUMBER_OF_FILES);
 $preLoadFiles = array();
