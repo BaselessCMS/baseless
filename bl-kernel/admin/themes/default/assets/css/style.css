@@ -973,8 +973,18 @@ code.select {
   border: 1px solid #ced4da;
 }
 
-#jseditorToolbar {
+.content-editor-toolbar {
   margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25rem 2rem;
+  flex-wrap: wrap;
+}
+
+.content-editor-toolbar-actions {
+  display: flex;
+  gap: 0.25rem;
 }
 
 #jseditorSidebar {
@@ -992,11 +1002,6 @@ code.select {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
   border-top: 1px solid #ccc;
-}
-
-#jseditorToolbarRight {
-  display: flex;
-  gap: 0.25rem;
 }
 
 @media (max-width: 575.98px) {
