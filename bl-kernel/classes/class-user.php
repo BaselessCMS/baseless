@@ -170,13 +170,13 @@ class User {
 		return $this->getValue('vk');
 	}
 
-	public function profilePicture()
-	{
-		$filename = $this->getValue('username').'.png';
-		if (!file_exists(PATH_UPLOADS_PROFILES.$filename)) {
-			return false;
+	public function profilePicture() {
+
+		$filename = $this->getValue( 'username' ) . '.png';
+		if ( ! file_exists( PATH_UPLOADS_PROFILES . $filename ) ) {
+			return HTML_PATH_CORE_IMG . 'avatars/user.png';
 		}
-		return DOMAIN_UPLOADS_PROFILES.$filename;
+		return DOMAIN_UPLOADS_PROFILES . $filename;
 	}
 
 	public function json($returnsArray=false)
