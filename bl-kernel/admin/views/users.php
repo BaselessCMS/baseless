@@ -29,6 +29,12 @@ use function CMS\Help\{
 };
 
 ?>
+<style>
+.admin-table-heading {
+	margin: var( --cms-admin-page--content--table--heading--margin, 0 );
+	font-size: var( --cms-admin-page--content--table--heading--font-size, 1.125rem );
+}
+</style>
 <header class="admin-page-header has-actions">
 
 	<h1><?php lang()->p( 'Registered Users' ); ?></h1>
@@ -38,15 +44,16 @@ use function CMS\Help\{
 	</div>
 </header>
 
-<table class="table table-striped mt-3">
+<table class="table table-striped">
 	<thead>
 		<tr>
-			<th class="border-bottom-0" scope="col"><?php lang()->p( 'Username' ); ?></th>
-			<th class="border-bottom-0 d-none d-lg-table-cell" scope="col"><?php lang()->p( 'Nickname' ); ?></th>
-			<th class="border-bottom-0" scope="col"><?php lang()->p( 'Email' ); ?></th>
-			<th class="border-bottom-0" scope="col"><?php lang()->p( 'Status' ); ?></th>
-			<th class="border-bottom-0" scope="col"><?php lang()->p( 'Role' ); ?></th>
-			<th class="border-bottom-0 d-none d-lg-table-cell" scope="col"><?php lang()->p( 'Registered' ); ?></th>
+			<th scope="col"><?php lang()->p( 'Avatar' ); ?></th>
+			<th scope="col"><?php lang()->p( 'Username' ); ?></th>
+			<th scope="col"><?php lang()->p( 'Nickname' ); ?></th>
+			<th scope="col"><?php lang()->p( 'Email' ); ?></th>
+			<th scope="col"><?php lang()->p( 'Status' ); ?></th>
+			<th scope="col"><?php lang()->p( 'Role' ); ?></th>
+			<th scope="col"><?php lang()->p( 'Registered' ); ?></th>
 		</tr>
 	</thead>
 
@@ -70,9 +77,14 @@ use function CMS\Help\{
 			$role = lang()->g( 'Member' );
 		} ?>
 		<tr>
-			<td><img class="profilePicture mr-1" alt="" src="<?php echo ( \Sanitize :: pathFile( PATH_UPLOADS_PROFILES . $user->username() . '.png' ) ? DOMAIN_UPLOADS_PROFILES . $user->username() . '.png' : HTML_PATH_CORE_IMG . 'default.svg' ); ?>" /><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-user/' . $username; ?>"><?php echo $username; ?></a></td>
+			<td>
+				<img class="profilePicture mr-1" alt="" src="<?php echo ( \Sanitize :: pathFile( PATH_UPLOADS_PROFILES . $user->username() . '.png' ) ? DOMAIN_UPLOADS_PROFILES . $user->username() . '.png' : HTML_PATH_CORE_IMG . 'default.svg' ); ?>" />
+			</td>
+			<td>
+				<h2 class="admin-table-heading"><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-user/' . $username; ?>"><?php echo $username; ?></a></h2>
+			</td>
 
-			<td class="d-none d-lg-table-cell"><?php echo $user->nickname(); ?></td>
+			<td><?php echo $user->nickname(); ?></td>
 
 			<td><?php echo $user->email(); ?></td>
 
@@ -80,7 +92,7 @@ use function CMS\Help\{
 
 			<td><?php echo $role; ?></td>
 
-			<td class="d-none d-lg-table-cell"><?php echo \Date :: format( $user->registered(), DB_DATE_FORMAT, 'M j, Y' ); ?></td>
+			<td><?php echo \Date :: format( $user->registered(), DB_DATE_FORMAT, 'M j, Y' ); ?></td>
 		</tr>
 	<?php
 	} catch ( Exception $e ) {

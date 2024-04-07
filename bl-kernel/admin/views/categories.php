@@ -29,6 +29,12 @@ use function CMS\Help\{
 };
 
 ?>
+<style>
+.admin-table-heading {
+	margin: var( --cms-admin-page--content--table--heading--margin, 0 );
+	font-size: var( --cms-admin-page--content--table--heading--font-size, 1.125rem );
+}
+</style>
 <header class="admin-page-header has-actions">
 
 	<h1><?php lang()->p( 'Categories' ); ?></h1>
@@ -52,7 +58,9 @@ use function CMS\Help\{
 		$cat = new \Category( $key );
 		?>
 		<tr>
-			<td><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-category/' . $key; ?>"><?php echo $cat->name(); ?></a></td>
+			<td>
+				<h2 class="admin-table-heading"><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-category/' . $key; ?>"><?php echo $cat->name(); ?></a></h2>
+			</td>
 			<td><a href="<?php echo $cat->permalink(); ?>"><?php echo url()->filters( 'category', false ) . $key; ?></a></td>
 		</tr>
 	<?php endforeach; ?>

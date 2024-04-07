@@ -44,7 +44,7 @@ function table( $type = 'published' ) {
 		$list = $published;
 		if ( empty( $list ) ) {
 			printf(
-				'<p class="content-table-empty-message">%s</p>',
+				'<p class="admin-table-empty-message">%s</p>',
 				lang()->g( 'There are no pages at this moment.' )
 			);
 			return false;
@@ -53,7 +53,7 @@ function table( $type = 'published' ) {
 		$list = $drafts;
 		if ( empty( $list ) ) {
 			printf(
-				'<p class="content-table-empty-message">%s</p>',
+				'<p class="admin-table-empty-message">%s</p>',
 				lang()->g( 'There are no draft pages at this moment.' )
 			);
 			return false;
@@ -62,7 +62,7 @@ function table( $type = 'published' ) {
 		$list = $scheduled;
 		if ( empty( $list ) ) {
 			printf(
-				'<p class="content-table-empty-message">%s</p>',
+				'<p class="admin-table-empty-message">%s</p>',
 				lang()->g( 'There are no scheduled pages at this moment.' )
 			);
 			return false;
@@ -71,7 +71,7 @@ function table( $type = 'published' ) {
 		$list = $static;
 		if ( empty( $list ) ) {
 			printf(
-				'<p class="content-table-empty-message">%s</p>',
+				'<p class="admin-table-empty-message">%s</p>',
 				lang()->g( 'There are no static pages at this moment.' )
 			);
 			return false;
@@ -80,7 +80,7 @@ function table( $type = 'published' ) {
 		$list = $sticky;
 		if ( empty( $list ) ) {
 			printf(
-				'<p class="content-table-empty-message">%s</p>',
+				'<p class="admin-table-empty-message">%s</p>',
 				lang()->g( 'There are no sticky pages at this moment.' )
 			);
 			return false;
@@ -111,13 +111,13 @@ function table( $type = 'published' ) {
 				$page = new \Page( $pageKey );
 				if ( ! $page->isChild() ) {
 					echo '<tr><td>
-						<div>
+						<h2 class="admin-table-heading">
 							<a href="' . HTML_PATH_ADMIN_ROOT . 'edit-content/' . $page->key() . '">'
 							. ( $page->title() ? $page->title() : '<span class="label-empty-title">' . lang()->g( 'Empty title' ) . '</span> ' ) . '</a>
-						</div>
-						<div>
-							<p>' . ( ( ( ORDER_BY == 'position' ) || ( $type != 'published' ) ) ? lang()->g( 'Position' ) . ': ' . $page->position() : $page->date( MANAGE_CONTENT_DATE_FORMAT ) ) . '</p>
-						</div>
+						</h2>
+						<p class="admin-table-date">
+						' . ( ( ( ORDER_BY == 'position' ) || ( $type != 'published' ) ) ? lang()->g( 'Position' ) . ': ' . $page->position() : $page->date( MANAGE_CONTENT_DATE_FORMAT ) ) . '
+						</p>
 					</td>';
 
 					if ( $type == 'published' || $type == 'static' || $type == 'sticky' ) {
@@ -143,13 +143,13 @@ function table( $type = 'published' ) {
 
 						//if ( $child->published() ) {
 						echo '<tr><td class="child">
-							<div>
+							<h2 class="admin-table-heading">
 								<a href="' . HTML_PATH_ADMIN_ROOT . 'edit-content/' . $child->key() . '">'
 								 . ( $child->title() ? $child->title() : '<span class="label-empty-title">' . lang()->g( 'Empty title' ).'</span> ' ) . '</a>
-							</div>
-							<div>
-								<p>' . ( ( ( ORDER_BY == 'position' ) || ( $type != 'published' ) ) ? lang()->g( 'Position' ) . ': ' . $child->position() : $child->date( MANAGE_CONTENT_DATE_FORMAT ) ) . '</p>
-							</div>
+							</h2>
+							<p class="admin-table-date">
+								' . ( ( ( ORDER_BY == 'position' ) || ( $type != 'published' ) ) ? lang()->g( 'Position' ) . ': ' . $child->position() : $child->date( MANAGE_CONTENT_DATE_FORMAT ) ) . '
+							</p>
 						</td>';
 
 						if ( $type == 'published' || $type == 'static' || $type == 'sticky' ) {
@@ -184,12 +184,12 @@ function table( $type = 'published' ) {
 			try {
 				$page = new \Page( $pageKey );
 				echo '<tr><td>
-					<div>
+					<h2 class="admin-table-heading">
 						<a href="' . HTML_PATH_ADMIN_ROOT . 'edit-content/' . $page->key() . '">' . ( $page->title() ? $page->title() : '<span class="label-empty-title">' . lang()->g( 'Empty title' ) . '</span> ' ) . '</a>
-					</div>
-					<div>
-						<p>' . ( ( $type == 'scheduled' ) ? lang()->g( 'Scheduled' ) . ': ' . $page->date( SCHEDULED_DATE_FORMAT ) : $page->date( MANAGE_CONTENT_DATE_FORMAT ) ) . '</p>
-					</div>
+					</h2>
+					<p class="admin-table-date">
+						<small>' . ( ( $type == 'scheduled' ) ? lang()->g( 'Scheduled' ) . ': ' . $page->date( SCHEDULED_DATE_FORMAT ) : $page->date( MANAGE_CONTENT_DATE_FORMAT ) ) . '</small>
+					</p>
 				</td>';
 
 				if ( $type == 'published' || $type == 'static' || $type == 'sticky' ) {
@@ -220,6 +220,16 @@ function table( $type = 'published' ) {
 }
 
 ?>
+<style>
+.admin-table-heading {
+	margin: var( --cms-admin-page--content--table--heading--margin, 0 );
+	font-size: var( --cms-admin-page--content--table--heading--font-size, 1.125rem );
+}
+.admin-table-date {
+	margin: var( --cms-admin-page--content--table--date--margin, 0 );
+	font-size: var( --cms-admin-page--content--table--date--font-size, 0.875rem );
+}
+</style>
 <header class="admin-page-header has-actions">
 
 	<h1><?php lang()->p( 'Content' ); ?></h1>
