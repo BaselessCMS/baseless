@@ -44,14 +44,14 @@ global $uuid;
 	</header>
 
 	<div id="jseditorToolbar" class="content-editor-toolbar">
-		<div id="jseditorToolbarRight" class="btn-group float-right" role="group" aria-label="Toolbar right">
+		<div id="content-editor-toolbar-modals" class="content-editor-toolbar-actions" role="group">
 
 			<button type="button" class="btn btn-secondary" id="jsmediaManagerOpenModal" data-toggle="modal" data-target="#jsmediaManagerModal"><?php lang()->p( 'Images' ); ?></button>
 
 			<button type="button" class="btn btn-secondary" id="jsoptionsSidebar"><?php lang()->p( 'Options' ); ?></button>
 		</div>
 
-		<div id="jseditorToolbarLeft">
+		<div id="content-editor-toolbar-publish" class="content-editor-toolbar-actions" role="group">
 
 			<button type="button" class="btn btn-primary" id="jsbuttonSave"><?php echo lang()->g( 'Save' ); ?></button>
 

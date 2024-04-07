@@ -536,6 +536,7 @@ code.select {
   -webkit-user-select: all;
      -moz-user-select: all;
           user-select: all;
+  cursor: pointer;
 }
 
 kbd {
