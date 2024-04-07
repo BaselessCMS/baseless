@@ -191,3 +191,64 @@ function site_domain() {
 	}
 	return DOMAIN_BASE;
 }
+
+/**
+ * Helper class instance
+ *
+ * Theme helper class is changed tp
+ * HTML in Bludit version 4.0.
+ *
+ * @since  1.0.0
+ * @return object
+ */
+function helper() {
+
+	if ( bludit_min( 4 ) ) {
+		$helper_class = new \HTML;
+	} else {
+		$helper_class = new \Theme;
+	}
+	return $helper_class;
+}
+
+/**
+ * Plugins hook
+ *
+ * @since  1.0.0
+ * @param  string $name The hook name.
+ * @return mixed
+ */
+function plugins_hook( $name = '' ) {
+
+	if ( bludit_min( 4 ) ) {
+		$hook = execPluginsByHook( $name );
+	} else {
+		$hook = helper()->plugins( $name );
+	}
+
+	if ( $hook ) {
+		echo $hook;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Text replace
+ *
+ * Replaces the `%replace%` variable in
+ * a language file string.
+ *
+ * @since  1.0.0
+ * @param  string $get The language string to get.
+ * @param  string $string The string to replace the variable.
+ * @return string Returns the modified string or the string
+ *                as is if the variable is not found.
+ */
+function text_replace( $get = '', $string = '' ) {
+
+	if ( strstr( lang()->get( $get ), '%replace%' ) ) {
+		return str_replace( '%replace%', $string, lang()->get( $get ) );
+	}
+	return lang()->get( $get );
+}
