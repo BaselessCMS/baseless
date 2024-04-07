@@ -74,7 +74,7 @@
       "zoom",
       //"share",
       "slideShow",
-      //"fullScreen",
+      "fullScreen",
       //"download",
       "thumbs",
       "close"
