@@ -46,7 +46,7 @@
 		"admin"    : "M j Y, H:i",
 		"schedule" : "D, M j Y, H:i",
 		"notify"   : "M j Y, H:i",
-		"manage"   : "M j Y, H:i"
+		"manage"   : "M j, Y"
 	},
 	"media" : {
 		"img_ext"   : ["gif","png","jpg","jpeg","svg","webp"],
