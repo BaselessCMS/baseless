@@ -17,8 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
@@ -26,9 +28,9 @@ use function CMS\Help\{
 	cats
 };
 
-$nickname = ucwords( str_replace( [ '-', '_' ], ' ', $user->username() ) );
-if ( $user->nickname() ) {
-	$nickname = $user->nickname();
+$nickname = ucwords( str_replace( [ '-', '_' ], ' ', user()->username() ) );
+if ( user()->nickname() ) {
+	$nickname = user()->nickname();
 }
 
 ?>
@@ -58,12 +60,12 @@ if ( $user->nickname() ) {
 	<?php
 	echo Bootstrap :: formInputHidden( [
 		'name'  => 'tokenCSRF',
-		'value' => $security->getTokenCSRF()
+		'value' => security()->getTokenCSRF()
 	] );
 
 	echo Bootstrap :: formInputHidden( [
 		'name'  => 'username',
-		'value' => $user->username()
+		'value' => user()->username()
 	] );
 	?>
 
@@ -75,19 +77,19 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'usernameDisabled',
 				'label'       => lang()->g( 'Username' ),
-				'value'       => $user->username(),
+				'value'       => user()->username(),
 				'class'       => '',
 				'placeholder' => '',
 				'disabled'    => true,
 				'tip'         => ''
 			] );
 
-			if ( 'admin' === $login->role() ) {
+			if ( 'admin' === login()->role() ) {
 				echo Bootstrap :: formSelect( [
 					'name'     => 'role',
 					'label'    => lang()->g( 'Role' ),
 					'options'  => [ 'author'=>lang()->g( 'Author' ), 'editor'=>lang()->g( 'Editor' ), 'admin'=>lang()->g( 'Administrator' ) ],
-					'selected' => $user->role(),
+					'selected' => user()->role(),
 					'class'    => '',
 					'tip'      => lang()->g( 'author-can-write-and-edit-their-own-content' )
 				] );
@@ -96,7 +98,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'email',
 				'label'       => lang()->g( 'Email' ),
-				'value'       => $user->email(),
+				'value'       => user()->email(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -114,7 +116,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'firstName',
 				'label'       => lang()->g( 'First Name' ),
-				'value'       => $user->firstName(),
+				'value'       => user()->firstName(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -123,7 +125,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'lastName',
 				'label'       => lang()->g( 'Last Name' ),
-				'value'       => $user->lastName(),
+				'value'       => user()->lastName(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -132,7 +134,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'website',
 				'label'       => lang()->g( 'Website' ),
-				'value'       => $user->website(),
+				'value'       => user()->website(),
 				'class'       => '',
 				'placeholder' => 'https://',
 				'tip'         => ''
@@ -151,7 +153,7 @@ if ( $user->nickname() ) {
 						<!-- <button id="jsbuttonRemovePicture" type="button" class="btn btn-primary w-100 mt-4 mb-4"><i class="fa fa-trash"></i> Remove picture</button> -->
 					</div>
 					<div class="col-lg-8 col-sm-12 p-0 text-center">
-						<img id="jsprofilePicturePreview" class="img-fluid img-thumbnail" alt="Profile picture preview" src="<?php echo ( \Sanitize :: pathFile( PATH_UPLOADS_PROFILES . $user->username() . '.png' ) ? DOMAIN_UPLOADS_PROFILES . $user->username() . '.png?version=' . time() : HTML_PATH_CORE_IMG . 'default.svg' ) ?>" />
+						<img id="jsprofilePicturePreview" class="img-fluid img-thumbnail" alt="Profile picture preview" src="<?php echo ( \Sanitize :: pathFile( PATH_UPLOADS_PROFILES . user()->username() . '.png' ) ? DOMAIN_UPLOADS_PROFILES . user()->username() . '.png?version=' . time() : HTML_PATH_CORE_IMG . 'default.svg' ) ?>" />
 					</div>
 				</div>
 			</div>
@@ -191,7 +193,7 @@ if ( $user->nickname() ) {
 			<div class="form-group row">
 				<label for="change-user-password" class="col-sm-2 col-form-label"><?php lang()->p( 'Password' ); ?></label>
 				<div class="col-sm-10">
-					<a id="change-user-password" href="<?php echo HTML_PATH_ADMIN_ROOT . 'user-password/' . $user->username(); ?>" class="btn btn-primary mr-2"><?php lang()->p( 'Change Password' ); ?></a>
+					<a id="change-user-password" href="<?php echo HTML_PATH_ADMIN_ROOT . 'user-password/' . user()->username(); ?>" class="btn btn-primary mr-2"><?php lang()->p( 'Change Password' ); ?></a>
 				</div>
 			</div>
 
@@ -199,12 +201,12 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'  => 'tokenAuth',
 				'label' => lang()->g( 'Token' ),
-				'value' => $user->tokenAuth(),
+				'value' => user()->tokenAuth(),
 				'class' => '',
 				'tip'   => lang()->g( 'this-token-is-similar-to-a-password-it-should-not-be-shared' )
 			] );
 
-			$users_db = $users->db;
+			$users_db = users()->db;
 			if ( checkRole( [ 'admin' ], false ) && count( $users_db ) > 1 ) : ?>
 			<h2><?php lang()->p( 'Status' ); ?></h2>
 
@@ -212,13 +214,13 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'     => 'status',
 				'label'    => lang()->g( 'Current status' ),
-				'value'    => $user->enabled() ? lang()->g( 'Enabled' ) : lang()->g( 'Disabled' ),
+				'value'    => user()->enabled() ? lang()->g( 'Enabled' ) : lang()->g( 'Disabled' ),
 				'class'    => '',
 				'disabled' => true,
-				'tip'      => $user->enabled() ? '' : lang()->g( 'To enable the user you must set a new password' )
+				'tip'      => user()->enabled() ? '' : lang()->g( 'To enable the user you must set a new password' )
 			] );
 
-			if ( $user->enabled() ) : ?>
+			if ( user()->enabled() ) : ?>
 			<div class="form-group row">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-10">
@@ -236,7 +238,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'twitter',
 				'label'       => 'Twitter',
-				'value'       => $user->twitter(),
+				'value'       => user()->twitter(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -245,7 +247,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'facebook',
 				'label'       => 'Facebook',
-				'value'       => $user->facebook(),
+				'value'       => user()->facebook(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -254,7 +256,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'instagram',
 				'label'       => 'Instagram',
-				'value'       => $user->instagram(),
+				'value'       => user()->instagram(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -263,7 +265,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'youtube',
 				'label'       => 'YouTube',
-				'value'       => $user->youtube(),
+				'value'       => user()->youtube(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -272,7 +274,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'vimeo',
 				'label'       => 'Vimeo',
-				'value'       => $user->vimeo(),
+				'value'       => user()->vimeo(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -281,7 +283,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'codepen',
 				'label'       => 'CodePen',
-				'value'       => $user->codepen(),
+				'value'       => user()->codepen(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -290,7 +292,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'gitlab',
 				'label'       => 'GitLab',
-				'value'       => $user->gitlab(),
+				'value'       => user()->gitlab(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -299,7 +301,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'github',
 				'label'       => 'GitHub',
-				'value'       => $user->github(),
+				'value'       => user()->github(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -308,7 +310,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'linkedin',
 				'label'       => 'LinkedIn',
-				'value'       => $user->linkedin(),
+				'value'       => user()->linkedin(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -317,7 +319,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'xing',
 				'label'       => 'Xing',
-				'value'       => $user->xing(),
+				'value'       => user()->xing(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -326,7 +328,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'mastodon',
 				'label'       => 'Mastodon',
-				'value'       => $user->mastodon(),
+				'value'       => user()->mastodon(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''
@@ -335,7 +337,7 @@ if ( $user->nickname() ) {
 			echo Bootstrap :: formInputText( [
 				'name'        => 'vk',
 				'label'       => 'VK',
-				'value'       => $user->vk(),
+				'value'       => user()->vk(),
 				'class'       => '',
 				'placeholder' => '',
 				'tip'         => ''

@@ -17,8 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
@@ -32,7 +34,7 @@ use function CMS\Help\{
 	<h1 class="login-heading"><a href="<?php echo site()->url(); ?>"><?php echo site()->title(); ?></a></h1>
 
 	<form method="post" action="" autocomplete="off">
-		<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />
+		<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo security()->getTokenCSRF(); ?>" />
 
 		<div id="login-username" class="form-group">
 			<input type="text" value="<?php echo ( isset( $_POST['username'] ) ? \Sanitize :: html( $_POST['username'] ) : '' ); ?>" class="form-control form-control-lg" id="jsusername" name="username" placeholder="<?php lang()->p( 'Username' ); ?>" autofocus>

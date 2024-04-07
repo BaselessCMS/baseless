@@ -17,8 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
@@ -26,41 +28,41 @@ use function CMS\Help\{
 	cats
 };
 
+// Access global variables.
+global $config;
+
 ?>
 <header class="admin-page-header">
 	<h1><?php lang()->p( 'System Info' ); ?></h1>
 </header>
 
-<?php
+<table class="table table-striped mt-3">
+	<tbody>
+		<tr>
+			<td><?php lang()->p( 'PHP Version' ); ?></td>
+			<td><?php echo phpversion(); ?></td>
+		</tr>
 
-echo '<table class="table table-striped mt-3"><tbody>';
+		<tr>
+			<td><?php lang()->p( 'CMS Version' ); ?></td>
+			<td><?php echo CMS_VERSION; ?></td>
+		</tr>
 
-echo '<tr>';
-echo "<td>{$L->g( 'PHP Version' )}</td>";
-echo '<td>' . phpversion() . '</td>';
-echo '</tr>';
+		<tr>
+			<td><?php lang()->p( 'Build Number' ); ?></td>
+			<td><?php echo BLUDIT_BUILD; ?></td>
+		</tr>
 
-echo '<tr>';
-echo "<td>{$L->g( 'CMS Version' )}</td>";
-echo '<td>' . BLUDIT_VERSION . '</td>';
-echo '</tr>';
-
-echo '<tr>';
-echo "<td>{$L->g( 'Build Number' )}</td>";
-echo '<td>' . BLUDIT_BUILD . '</td>';
-echo '</tr>';
-
-echo '<tr>';
-echo "<td>{$L->g( 'Disk Usage' )}</td>";
-echo '<td>' . Filesystem :: bytesToHumanFileSize( Filesystem :: getSize( PATH_ROOT ) ) . '</td>';
-echo '</tr>';
-
-echo '</tbody></table>';
-?>
+		<tr>
+			<td><?php lang()->p( 'Disk Usage' ); ?></td>
+			<td><?php echo \Filesystem :: bytesToHumanFileSize( \Filesystem :: getSize( PATH_ROOT ) ); ?></td>
+		</tr>
+	</tbody>
+</table>
 
 <?php if ( $config['dash_notify_qty'] > 0 ) : ?>
 
-<h2 class="m-0"><?php $L->p( 'Notifications' ); ?></h2>
+<h2 class="m-0"><?php lang()->p( 'Notifications' ); ?></h2>
 
 <table class="table table-striped mt-3">
 	<tbody>
@@ -72,13 +74,13 @@ echo '</tbody></table>';
 	<?php
 	$logs = array_slice( $syslog->db, 0, NOTIFICATIONS_AMOUNT );
 	foreach ( $logs as $log ) :
-		$phrase = $L->g( $log['dictionaryKey'] );
+		$phrase = lang()->g( $log['dictionaryKey'] );
 
 		?>
 		<tr>
 			<td><?php echo $phrase; ?>
 				<?php if ( ! empty( $log['notes'] ) ) {
-				echo ' > ' . $log['notes'];
+				echo $log['notes'];
 				} ?>
 			</td>
 			<td><?php echo \Date :: format( $log['date'], DB_DATE_FORMAT, NOTIFICATIONS_DATE_FORMAT ); ?> <?php lang()->p( 'by' ); ?> <?php echo $log['username']; ?></td>
@@ -110,10 +112,16 @@ printTable( 'Loaded Extensions', get_loaded_extensions() );
 // Locales installed.
 exec( 'locale -a', $locales );
 printTable( 'Locales Installed', $locales );
+if ( ! $locales ) {
+	printf(
+		'<p>%s</p>',
+		lang()->get( 'No locales installed.' )
+	);
+}
 
 // Defined constants.
 $constants = get_defined_constants( true );
 printTable( 'CMS Constants', $constants['user'] );
 
 // Site object.
-printTable( 'Site Object Database', $site->db );
+printTable( 'Site Object Database', site()->db );

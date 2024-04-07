@@ -17,8 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
@@ -44,7 +46,7 @@ use function CMS\Help\{
 	<fieldset class="admin-fieldset">
 		<legend class="screen-reader-text"><?php lang()->p( 'User Fields' ); ?></legend>
 
-		<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />
+		<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo security()->getTokenCSRF(); ?>" />
 
 		<?php
 		echo Bootstrap :: formInputText( [

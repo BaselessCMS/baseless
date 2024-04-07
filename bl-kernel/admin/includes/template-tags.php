@@ -24,7 +24,7 @@ namespace CMS\Admin_Tags;
 function admin_content() {
 
 	// Access global variables.
-	global $categories, $categoryMap, $config, $L, $layout, $login, $page, $pages, $plugin, $plugins, $plugins_installed, $scheduled, $security, $site, $syslog, $themes, $url, $user, $users, $uuid;
+	global $layout, $scheduled, $syslog, $themes;
 
 	if ( \Sanitize :: pathFile( PATH_ADMIN_VIEWS, $layout['view'] . '.php' ) ) {
 		include( PATH_ADMIN_VIEWS . $layout['view'] . '.php' );

@@ -17,8 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
@@ -145,7 +147,7 @@ use function CMS\Help\{
 			echo Bootstrap :: formSelect( [
 				'name'     => 'timezone',
 				'label'    => lang()->g( 'Timezone' ),
-				'options'  => Date :: timezoneList(),
+				'options'  => \Date :: timezoneList(),
 				'selected' => site()->timezone(),
 				'class'    => '',
 				'tip'      => lang()->g( 'select-a-timezone-for-a-correct' )
@@ -157,7 +159,7 @@ use function CMS\Help\{
 				'value'       => site()->dateFormat(),
 				'class'       => '',
 				'placeholder' => '',
-				'tip'         => lang()->g( 'Current format' ) . ': ' . Date :: current(site()->dateFormat() )
+				'tip'         => lang()->g( 'Current format' ) . ': ' . \Date :: current(site()->dateFormat() )
 			] );
 
 			/*
@@ -216,7 +218,7 @@ use function CMS\Help\{
 				'true'  => lang()->g( 'Enabled' ),
 				'false' => lang()->g( 'Disabled' )
 			],
-			'selected' => (site()->markdownParser() ? 'true' : 'false' ),
+			'selected' => ( site()->markdownParser() ? 'true' : 'false' ),
 			'class'    => '',
 			'tip'      => lang()->g( 'Enable the markdown parser for the content of the page.' )
 		] );

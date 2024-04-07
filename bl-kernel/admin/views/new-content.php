@@ -17,8 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
@@ -26,9 +28,12 @@ use function CMS\Help\{
 	cats
 };
 
+// Access global variables.
+global $uuid;
+
 ?>
 <form class="d-flex flex-column h-100"  id="jsform" method="post" action=""  autocomplete="off">
-	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />
+	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo security()->getTokenCSRF(); ?>" />
 	<input type="hidden" id="jsuuid" name="uuid" value="<?php echo $uuid; ?>" />
 	<input type="hidden" id="jstype" name="type" value="published" />
 	<input type="hidden" id="jscoverImage" name="coverImage" value="" />
@@ -43,7 +48,7 @@ use function CMS\Help\{
 
 			<button type="button" class="btn btn-secondary" id="jsmediaManagerOpenModal" data-toggle="modal" data-target="#jsmediaManagerModal"><?php lang()->p( 'Images' ); ?></button>
 
-			<button type="button" class="btn btn-secondary" id="jsoptionsSidebar" style="z-index:30"><?php lang()->p( 'Options' ); ?></button>
+			<button type="button" class="btn btn-secondary" id="jsoptionsSidebar"><?php lang()->p( 'Options' ); ?></button>
 		</div>
 
 		<div id="jseditorToolbarLeft">
@@ -75,7 +80,7 @@ use function CMS\Help\{
 
 				<a class="nav-link" id="nav-advanced-tab" data-toggle="tab" href="#nav-advanced" role="tab" aria-controls="advanced"><?php lang()->p( 'Advanced' ); ?></a>
 
-				<?php if ( ! empty( $site->customFields() ) ) : ?>
+				<?php if ( ! empty( site()->customFields() ) ) : ?>
 				<a class="nav-link" id="nav-custom-tab" data-toggle="tab" href="#nav-custom" role="tab" aria-controls="custom"><?php lang()->p( 'Custom' ); ?></a>
 				<?php endif; ?>
 
@@ -92,7 +97,7 @@ use function CMS\Help\{
 					'selected'    => '',
 					'class'       => '',
 					'emptyOption' => '- ' . lang()->g( 'Uncategorized' ) . ' -',
-					'options'     => $categories->getKeyNameArray()
+					'options'     => cats()->getKeyNameArray()
 				] );
 
 				echo Bootstrap :: formTextareaBlock( [
@@ -155,7 +160,7 @@ use function CMS\Help\{
 					'name'  => 'position',
 					'label' => lang()->g( 'Position' ),
 					'tip'   => lang()->g( 'Field used when ordering content by position' ),
-					'value' => $pages->nextPositionNumber()
+					'value' => pages()->nextPositionNumber()
 				] );
 
 				echo Bootstrap :: formInputTextBlock( [
@@ -228,7 +233,7 @@ use function CMS\Help\{
 					'name'        => '',
 					'label'       => lang()->g( 'Author' ),
 					'placeholder' => '',
-					'value'       => $login->username(),
+					'value'       => login()->username(),
 					'tip'         => '',
 					'disabled'    => true
 				] );
@@ -258,11 +263,11 @@ use function CMS\Help\{
 				});
 				</script>
 			</div>
-			<?php if ( ! empty( $site->customFields() ) ) : ?>
+			<?php if ( ! empty( site()->customFields() ) ) : ?>
 			<div id="nav-custom" class="tab-pane fade" role="tabpanel" aria-labelledby="custom-tab">
 			<?php
-				$customFields = $site->customFields();
-				foreach ( $customFields as $field => $options ) {
+				$custom_fields = site()->customFields();
+				foreach ( $custom_fields as $field => $options ) {
 					if ( ! isset( $options['position'] ) ) {
 
 						if ( 'string' == $options['type'] ) {
@@ -328,8 +333,8 @@ use function CMS\Help\{
 		</div>
 	</div>
 	<?php
-	$customFields = $site->customFields();
-	foreach ( $customFields as $field => $options ) {
+	$custom_fields = site()->customFields();
+	foreach ( $custom_fields as $field => $options ) {
 		if ( isset( $options['position'] ) && ( 'top' == $options['position'] ) ) {
 
 			if ( 'string' == $options['type'] ) {
@@ -365,8 +370,8 @@ use function CMS\Help\{
 	<textarea id="jseditor" class="editable h-100 mb-1"></textarea>
 
 	<?php
-	$customFields = $site->customFields();
-	foreach ( $customFields as $field => $options ) {
+	$custom_fields = site()->customFields();
+	foreach ( $custom_fields as $field => $options ) {
 		if ( isset( $options['position'] ) && ( 'bottom' == $options['position'] ) ) {
 
 			if ( 'string' == $options['type'] ) {

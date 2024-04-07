@@ -17,8 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
@@ -48,7 +50,7 @@ use function CMS\Help\{
 		<?php
 		echo Bootstrap :: formInputHidden( [
 			'name'  => 'tokenCSRF',
-			'value' => $security->getTokenCSRF()
+			'value' => security()->getTokenCSRF()
 		] );
 
 		echo Bootstrap :: formInputText( [

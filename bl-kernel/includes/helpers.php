@@ -41,6 +41,21 @@ function security() {
 }
 
 /**
+ * Login class object
+ *
+ * Function to use inside other functions and
+ * methods rather than calling the global.
+ *
+ * @since  1.0.0
+ * @global object $login Login class
+ * @return object
+ */
+function login() {
+	global $login;
+	return $login;
+}
+
+/**
  * Url class object
  *
  * Function to use inside other functions and
@@ -66,8 +81,23 @@ function url() {
  * @return object
  */
 function lang() {
-	global $L;
-	return $L;
+	global $language;
+	return $language;
+}
+
+/**
+ * User class object
+ *
+ * Function to use inside other functions and
+ * methods rather than calling the global.
+ *
+ * @since  1.0.0
+ * @global object $users User class
+ * @return object
+ */
+function user() {
+	global $user;
+	return $user;
 }
 
 /**

@@ -17,8 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
@@ -29,15 +31,20 @@ use function CMS\Help\{
 ?>
 <form id="jsform" class="d-flex flex-column h-100" method="post" action="" autocomplete="off">
 
-	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />
-	<input type="hidden" id="jsuuid" name="uuid" value="<?php echo $page->uuid(); ?>" />
-	<input type="hidden" id="jstype" name="type" value="<?php echo $page->type(); ?>" />
-	<input type="hidden" id="jscoverImage" name="coverImage" value="<?php echo $page->coverImage( false ); ?>" />
+	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo security()->getTokenCSRF(); ?>" />
+	<input type="hidden" id="jsuuid" name="uuid" value="<?php echo page()->uuid(); ?>" />
+	<input type="hidden" id="jstype" name="type" value="<?php echo page()->type(); ?>" />
+	<input type="hidden" id="jscoverImage" name="coverImage" value="<?php echo page()->coverImage( false ); ?>" />
 	<input type="hidden" id="jscontent" name="content" value="" />
-	<input type="hidden" id="jskey" name="key" value="<?php echo $page->key(); ?>" />
+	<input type="hidden" id="jskey" name="key" value="<?php echo page()->key(); ?>" />
 
 	<header class="admin-page-header">
 		<h1><?php lang()->p( 'Edit Content' ); ?></h1>
+		<?php printf(
+			'<p>%s <code class="select">%s</code></p>',
+			lang()->get( 'Page ID:' ),
+			page()->uuid()
+		); ?>
 	</header>
 
 	<div id="jseditorToolbar">
@@ -54,11 +61,11 @@ use function CMS\Help\{
 
 			<button id="jsbuttonPreview" type="button" class="btn btn-secondary"><?php lang()->p( 'Preview' ); ?></button>
 
-			<span id="jsswitchButton" data-switch="<?php echo ( $page->draft() ? 'draft' : 'publish' ); ?>" class="btn btn-secondary"> <?php echo ( $page->draft() ? lang()->g( 'Draft' ) : lang()->g( 'Published' ) ); ?></span>
+			<span id="jsswitchButton" data-switch="<?php echo ( page()->draft() ? 'draft' : 'publish' ); ?>" class="btn btn-secondary"> <?php echo ( page()->draft() ? lang()->g( 'Draft' ) : lang()->g( 'Published' ) ); ?></span>
 		</div>
 
-		<?php if ( $page->scheduled() ) : ?>
-		<div class="alert alert-warning p-1 mt-1 mb-0"><?php lang()->p( 'scheduled' ); ?>: <?php echo $page->date( SCHEDULED_DATE_FORMAT ); ?></div>
+		<?php if ( page()->scheduled() ) : ?>
+		<div class="alert alert-warning p-1 mt-1 mb-0"><?php lang()->p( 'scheduled' ); ?>: <?php echo page()->date( SCHEDULED_DATE_FORMAT ); ?></div>
 		<?php endif; ?>
 	</div>
 	<script>
@@ -80,7 +87,7 @@ use function CMS\Help\{
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
 				<a class="nav-link active show" id="nav-general-tab"  data-toggle="tab" href="#nav-general"  role="tab" aria-controls="general"><?php lang()->p( 'General' ); ?></a>
 				<a class="nav-link" id="nav-advanced-tab" data-toggle="tab" href="#nav-advanced" role="tab" aria-controls="advanced"><?php lang()->p( 'Advanced' ); ?></a>
-				<?php if ( ! empty( $site->customFields() ) ) : ?>
+				<?php if ( ! empty( site()->customFields() ) ) : ?>
 				<a class="nav-link" id="nav-custom-tab" data-toggle="tab" href="#nav-custom" role="tab" aria-controls="custom"><?php lang()->p( 'Custom' ); ?></a>
 				<?php endif; ?>
 				<a class="nav-link" id="nav-seo-tab" data-toggle="tab" href="#nav-seo" role="tab" aria-controls="seo"><?php lang()->p( 'SEO' ); ?></a>
@@ -93,10 +100,10 @@ use function CMS\Help\{
 				echo Bootstrap :: formSelectBlock( [
 					'name'        => 'category',
 					'label'       => lang()->g( 'Category' ),
-					'selected'    => $page->categoryKey(),
+					'selected'    => page()->categoryKey(),
 					'class'       => '',
 					'emptyOption' => '- ' . lang()->g( 'Uncategorized' ) . ' -',
-					'options'     => $categories->getKeyNameArray()
+					'options'     => cats()->getKeyNameArray()
 				] );
 
 				echo Bootstrap :: formTextareaBlock( [
@@ -104,21 +111,21 @@ use function CMS\Help\{
 					'label'       => lang()->g( 'Description' ),
 					'selected'    => '',
 					'class'       => '',
-					'value'       => $page->description(),
+					'value'       => page()->description(),
 					'rows'        => 5,
 					'placeholder' => lang()->get( 'this-field-can-help-describe-the-content' )
 				] );
 
-				$cover_image    = $page->coverImage( false );
+				$cover_image    = page()->coverImage( false );
 				$external_cover = '';
 				if ( filter_var( $cover_image, FILTER_VALIDATE_URL ) ) {
 					$cover_image = '';
-					$external_cover = $page->coverImage( false );
+					$external_cover = page()->coverImage( false );
 				}
 				?>
 				<label class="mt-4 mb-2 pb-2 w-100"><?php lang()->p( 'Cover Image' ); ?></label>
 				<div>
-					<img id="jscoverImagePreview" class="mx-auto d-block w-100" alt="<?php lang()->p( 'Cover Image Preview' ); ?>" src="<?php echo ( empty( $cover_image ) ? HTML_PATH_CORE_IMG . 'default.svg' : $page->coverImage() ); ?>" />
+					<img id="jscoverImagePreview" class="mx-auto d-block w-100" alt="<?php lang()->p( 'Cover Image Preview' ); ?>" src="<?php echo ( empty( $cover_image ) ? HTML_PATH_CORE_IMG . 'default.svg' : page()->coverImage() ); ?>" />
 				</div>
 				<div class="mt-2 text-center">
 					<button type="button" id="jsbuttonSelectCoverImage" class="btn btn-primary btn-sm"><?php lang()->p( 'Select Cover Image' ); ?></button>
@@ -145,14 +152,14 @@ use function CMS\Help\{
 					'name'        => 'date',
 					'label'       => lang()->g( 'Date' ),
 					'placeholder' => '',
-					'value'       => $page->dateRaw(),
+					'value'       => page()->dateRaw(),
 					'tip'         => lang()->g( 'date-format-format' )
 				] );
 
 				echo Bootstrap :: formSelectBlock( [
 					'name'     => 'typeSelector',
 					'label'    => lang()->g( 'Type' ),
-					'selected' => $page->type(),
+					'selected' => page()->type(),
 					'options'  => [
 						'published' => '- ' . lang()->g( 'Default' ) . ' -',
 						'sticky'    => lang()->g( 'Sticky' ),
@@ -165,7 +172,7 @@ use function CMS\Help\{
 					'name'  => 'position',
 					'label' => lang()->g( 'Position' ),
 					'tip'   => lang()->g( 'Field used when ordering content by position' ),
-					'value' => $page->position()
+					'value' => page()->position()
 				] );
 
 				echo Bootstrap :: formInputTextBlock( [
@@ -173,12 +180,12 @@ use function CMS\Help\{
 					'label'       => lang()->g( 'Tags' ),
 					'placeholder' => '',
 					'tip'         => lang()->g( 'Write the tags separated by comma' ),
-					'value'       => $page->tags()
+					'value'       => page()->tags()
 				] );
 
 				try {
 					$options   = [];
-					$parentKey = $page->parent();
+					$parentKey = page()->parent();
 					if ( ! empty( $parentKey ) ) {
 						$parent  = new \Page( $parentKey );
 						$options = [ $parentKey => $parent->title() ];
@@ -234,7 +241,7 @@ use function CMS\Help\{
 					'name'        => 'template',
 					'label'       => lang()->g( 'Template' ),
 					'placeholder' => '',
-					'value'       => $page->template(),
+					'value'       => page()->template(),
 					'tip'         => lang()->g( 'Write a template name to filter the page in the theme and change the style of the page.' )
 				] );
 
@@ -250,7 +257,7 @@ use function CMS\Help\{
 					'name'        => '',
 					'label'       => lang()->g( 'Author' ),
 					'placeholder' => '',
-					'value'       => $page->username(),
+					'value'       => page()->username(),
 					'tip'         => '',
 					'disabled'    => true
 				] );
@@ -267,11 +274,11 @@ use function CMS\Help\{
 				</script>
 			</div>
 
-			<?php if ( ! empty( $site->customFields() ) ) : ?>
+			<?php if ( ! empty( site()->customFields() ) ) : ?>
 			<div id="nav-custom" class="tab-pane fade" role="tabpanel" aria-labelledby="custom-tab">
 			<?php
-			$customFields = $site->customFields();
-			foreach ( $customFields as $field => $options ) {
+			$custom_fields = site()->customFields();
+			foreach ( $custom_fields as $field => $options ) {
 				if ( ! isset( $options['position'] ) ) {
 					if ( 'string' == $options['type'] ) {
 
@@ -281,7 +288,7 @@ use function CMS\Help\{
 							'tip'         => ( isset( $options['tip'] ) ? $options['tip'] : '' ),
 							'label'       => ( isset( $options['label'] ) ? $options['label'] : '' ),
 							'placeholder' => ( isset( $options['placeholder'] ) ? $options['placeholder'] : '' ),
-							'value'       => $page->custom( $field)
+							'value'       => page()->custom( $field)
 						] );
 
 					} elseif ( 'bool' == $options['type'] ) {
@@ -289,7 +296,7 @@ use function CMS\Help\{
 							'name'        => 'custom['.$field.']',
 							'label'       => ( isset( $options['label'] ) ? $options['label'] : '' ),
 							'placeholder' => ( isset( $options['placeholder'] ) ? $options['placeholder'] : '' ),
-							'checked'     => $page->custom( $field),
+							'checked'     => page()->custom( $field),
 							'labelForCheckbox' => ( isset( $options['tip'] ) ? $options['tip'] : '' )
 						] );
 					}
@@ -306,7 +313,7 @@ use function CMS\Help\{
 					'tip'         => lang()->g( 'URL associated with the content' ),
 					'label'       => lang()->g( 'Friendly URL' ),
 					'placeholder' => lang()->g( 'Leave empty for autocomplete by Bludit.' ),
-					'value'       => $page->slug()
+					'value'       => page()->slug()
 				] );
 
 				echo Bootstrap :: formCheckbox( [
@@ -314,7 +321,7 @@ use function CMS\Help\{
 					'label'            => 'Robots',
 					'labelForCheckbox' => lang()->g( 'apply-code-noindex-code-to-this-page' ),
 					'placeholder'      => '',
-					'checked'          => $page->noindex(),
+					'checked'          => page()->noindex(),
 					'tip'              => lang()->g( 'This tells search engines not to show this page in their search results.' )
 				] );
 
@@ -323,7 +330,7 @@ use function CMS\Help\{
 					'label'            => '',
 					'labelForCheckbox' => lang()->g( 'apply-code-nofollow-code-to-this-page' ),
 					'placeholder'      => '',
-					'checked'          => $page->nofollow(),
+					'checked'          => page()->nofollow(),
 					'tip'              => lang()->g( 'This tells search engines not to follow links on this page.' )
 				] );
 
@@ -332,7 +339,7 @@ use function CMS\Help\{
 					'label'            => '',
 					'labelForCheckbox' => lang()->g( 'apply-code-noarchive-code-to-this-page' ),
 					'placeholder'      => '',
-					'checked'          => $page->noarchive(),
+					'checked'          => page()->noarchive(),
 					'tip'              => lang()->g( 'This tells search engines not to save a cached copy of this page.' )
 				] );
 				?>
@@ -340,9 +347,9 @@ use function CMS\Help\{
 		</div>
 	</div>
 	<?php
-	$customFields = $site->customFields();
+	$custom_fields = site()->customFields();
 
-	foreach ( $customFields as $field => $options ) {
+	foreach ( $custom_fields as $field => $options ) {
 		if ( isset( $options['position'] ) && ( 'top' == $options['position'] ) ) {
 
 			if ( 'string' == $options['type'] ) {
@@ -350,7 +357,7 @@ use function CMS\Help\{
 				echo Bootstrap :: formInputTextBlock( [
 					'name'        => 'custom[' . $field . ']',
 					'label'       => ( isset( $options['label'] ) ? $options['label'] : '' ),
-					'value'       => $page->custom( $field ),
+					'value'       => page()->custom( $field ),
 					'tip'         => ( isset( $options['tip'] ) ? $options['tip'] : '' ),
 					'placeholder' => ( isset( $options['placeholder'] ) ? $options['placeholder'] : '' ),
 					'class'       => 'mb-2',
@@ -363,7 +370,7 @@ use function CMS\Help\{
 					'name'             => 'custom[' . $field . ']',
 					'label'            => ( isset( $options['label'] ) ? $options['label'] : '' ),
 					'placeholder'      => ( isset( $options['placeholder'] ) ? $options['placeholder'] : '' ),
-					'checked'          => $page->custom( $field ),
+					'checked'          => page()->custom( $field ),
 					'labelForCheckbox' => ( isset( $options['tip'] ) ? $options['tip'] : '' ),
 					'class'            => 'mb-2',
 					'labelClass'       => 'mb-2 pb-2 border-bottom w-100'
@@ -373,22 +380,22 @@ use function CMS\Help\{
 	}
 	?>
 	<div class="form-group mb-1">
-		<input id="jstitle" name="title" type="text" class="form-control form-control-lg rounded-0" value="<?php echo $page->title(); ?>" placeholder="<?php lang()->p( 'Enter title' ); ?>">
+		<input id="jstitle" name="title" type="text" class="form-control form-control-lg rounded-0" value="<?php echo page()->title(); ?>" placeholder="<?php lang()->p( 'Enter title' ); ?>">
 	</div>
 
-	<textarea id="jseditor" class="editable h-100"><?php echo $page->contentRaw( true ); ?></textarea>
+	<textarea id="jseditor" class="editable h-100"><?php echo page()->contentRaw( true ); ?></textarea>
 
 	<?php
-	$customFields = $site->customFields();
+	$custom_fields = site()->customFields();
 
-	foreach ( $customFields as $field => $options ) {
+	foreach ( $custom_fields as $field => $options ) {
 		if ( isset( $options['position'] ) && ( 'bottom' == $options['position'] ) ) {
 			if ( 'string' == $options['type'] ) {
 
 				echo Bootstrap :: formInputTextBlock( [
 					'name'        => 'custom[' . $field . ']',
 					'label'       => ( isset( $options['label'] ) ? $options['label'] : '' ),
-					'value'       => $page->custom( $field ),
+					'value'       => page()->custom( $field ),
 					'tip'         => ( isset( $options['tip'] ) ? $options['tip'] : '' ),
 					'placeholder' => ( isset( $options['placeholder'] ) ? $options['placeholder'] : '' ),
 					'class'       => 'mt-2',
@@ -401,7 +408,7 @@ use function CMS\Help\{
 					'name'             => 'custom[' . $field . ']',
 					'label'            => ( isset( $options['label'] ) ? $options['label'] : '' ),
 					'placeholder'      => ( isset( $options['placeholder'] ) ? $options['placeholder'] : '' ),
-					'checked'          => $page->custom( $field ),
+					'checked'          => page()->custom( $field ),
 					'labelForCheckbox' => ( isset( $options['tip'] ) ? $options['tip'] : '' ),
 					'class'            => 'mt-2',
 					'labelClass'       => 'mb-2 pb-2 border-bottom w-100'
@@ -478,7 +485,7 @@ $(document).ready( function() {
 		var content = editorGetContent();
 		var ajax    = new bluditAjax();
 		bluditAjax.saveAsDraft( uuid, title, content ).then( function(data) {
-			var preview = window.open( '<?php echo DOMAIN_PAGES . 'autosave-' . $page->uuid() . '?preview=' . md5( 'autosave-' . $page->uuid() ); ?>', 'bludit-preview' );
+			var preview = window.open( '<?php echo DOMAIN_PAGES . 'autosave-' . page()->uuid() . '?preview=' . md5( 'autosave-' . page()->uuid() ); ?>', 'bludit-preview' );
 			preview.focus();
 		});
 	});

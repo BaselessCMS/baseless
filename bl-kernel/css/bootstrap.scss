@@ -529,13 +529,11 @@ mark {
 }
 
 code {
-	font-size: 87.5%;
-	color: #e83e8c;
-	word-wrap: break-word
-}
+	word-wrap: break-word;
 
-a>code {
-	color: inherit
+	&.select {
+		user-select: all;
+	}
 }
 
 kbd {

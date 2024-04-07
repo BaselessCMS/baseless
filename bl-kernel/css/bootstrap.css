@@ -530,13 +530,12 @@ mark {
 }
 
 code {
-  font-size: 87.5%;
-  color: #e83e8c;
   word-wrap: break-word;
 }
-
-a > code {
-  color: inherit;
+code.select {
+  -webkit-user-select: all;
+     -moz-user-select: all;
+          user-select: all;
 }
 
 kbd {

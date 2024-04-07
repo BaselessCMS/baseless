@@ -17,8 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
@@ -26,9 +28,9 @@ use function CMS\Help\{
 	cats
 };
 
-$nickname = ucwords( str_replace( [ '-', '_' ], ' ', $user->username() ) );
-if ( $user->nickname() ) {
-	$nickname = $user->nickname();
+$nickname = ucwords( str_replace( [ '-', '_' ], ' ', user()->username() ) );
+if ( user()->nickname() ) {
+	$nickname = user()->nickname();
 }
 
 ?>
@@ -42,21 +44,21 @@ if ( $user->nickname() ) {
 
 			<button type="submit" class="btn btn-primary" name="save"><?php lang()->p( 'Save' ); ?></button>
 
-			<a class="btn btn-secondary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-user/' . $user->username() ?>" role="button"><?php lang()->p( 'Cancel' ); ?></a>
+			<a class="btn btn-secondary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-user/' . user()->username() ?>" role="button"><?php lang()->p( 'Cancel' ); ?></a>
 		</div>
 	</header>
 
 	<fieldset class="admin-fieldset">
 		<legend class="screen-reader-text"><?php lang()->p( 'Password Settings' ); ?></legend>
 
-		<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />
-		<input type="hidden" id="jsusername" name="username" value="<?php echo $user->username(); ?>" />
+		<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo security()->getTokenCSRF(); ?>" />
+		<input type="hidden" id="jsusername" name="username" value="<?php echo user()->username(); ?>" />
 
 		<?php
 		echo Bootstrap :: formInputText( [
 			'name'        => 'usernameDisabled',
 			'label'       => lang()->g( 'Username' ),
-			'value'       => $user->username(),
+			'value'       => user()->username(),
 			'class'       => '',
 			'placeholder' => '',
 			'disabled'    => true,

@@ -51,7 +51,7 @@ if (!$categories->exists($categoryKey)) {
 	Redirect::page('categories');
 }
 
-$categoryMap = $categories->getMap($categoryKey);
+$cat_map = cats()->getMap($categoryKey);
 
 // Title of the page.
 $layout['title'] .= sprintf(

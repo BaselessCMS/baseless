@@ -17,14 +17,19 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
 	pages,
 	cats
 };
+
+// Access global variables.
+global $plugins;
 
 ?>
 
@@ -44,7 +49,7 @@ use function CMS\Help\{
 
 	<div class="alert alert-primary"><?php lang()->p( 'Drag and drop to sort the order of plugins in the site sidebar (may not apply to the active theme).' ); ?></div>
 
-	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />
+	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo security()->getTokenCSRF(); ?>" />
 	<input type="hidden" id="jsplugin-list" name="plugin-list" value="" />
 
 	<ul class="list-group list-group-sortable">

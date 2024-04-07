@@ -17,8 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
@@ -50,19 +52,22 @@ use function CMS\Help\{
 
 	<tbody>
 	<?php
-	$list = $users->keys();
+	$list = users()->keys();
 	foreach ( $list as $username ) :
 	try {
 		$user = new \User( $username );
 
-		if ( 'admin' == $user->role() ) {
+		$role = lang()->g( 'Reader' );
+		if ( 'dev' == $user->role() ) {
+			$role = lang()->g( 'Developer' );
+		} elseif ( 'admin' == $user->role() ) {
 			$role = lang()->g( 'Administrator' );
 		} elseif ( 'editor' == $user->role() ) {
 			$role = lang()->g( 'Editor' );
 		} elseif ( 'author' == $user->role() ) {
 			$role = lang()->g( 'Author' );
-		} else {
-			$role = lang()->g( 'Reader' );
+		} elseif ( 'member' == $user->role() ) {
+			$role = lang()->g( 'Member' );
 		} ?>
 		<tr>
 			<td><img class="profilePicture mr-1" alt="" src="<?php echo ( \Sanitize :: pathFile( PATH_UPLOADS_PROFILES . $user->username() . '.png' ) ? DOMAIN_UPLOADS_PROFILES . $user->username() . '.png' : HTML_PATH_CORE_IMG . 'default.svg' ); ?>" /><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-user/' . $username; ?>"><?php echo $username; ?></a></td>

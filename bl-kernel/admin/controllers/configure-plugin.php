@@ -29,11 +29,11 @@ use function CMS\Help\{
 checkRole( [ 'admin' ] );
 
 $plugin = false;
-$pluginClassName = $layout['parameters'];
+$plugin_class = $layout['parameters'];
 
 // Check if the plugin exists.
-if ( isset( $plugins['all'][$pluginClassName] ) ) {
-	$plugin = $plugins['all'][$pluginClassName];
+if ( isset( $plugins['all'][$plugin_class] ) ) {
+	$plugin = $plugins['all'][$plugin_class];
 } else {
 	\Redirect :: page( 'plugins' );
 }

@@ -17,14 +17,19 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
 	pages,
 	cats
 };
+
+// Access global variables.
+global $cat_map;
 
 ?>
 <form id="jsform" method="post" action="" autocomplete="off">
@@ -37,15 +42,15 @@ use function CMS\Help\{
 
 			<button type="submit" class="btn btn-primary" name="save"><?php lang()->p( 'Save' ); ?></button>
 
-			<a class="btn btn-secondary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'dashboard'; ?>" role="button"><?php lang()->p( 'Cancel' ); ?></a>
+			<a class="btn btn-secondary" href="<?php echo HTML_PATH_ADMIN_ROOT . 'categories'; ?>" role="button"><?php lang()->p( 'Cancel' ); ?></a>
 
 			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#jsdeleteModal"><?php lang()->p( 'Delete' ) ?></button>
 		</div>
 	</header>
 
-	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo $security->getTokenCSRF(); ?>" />
+	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo security()->getTokenCSRF(); ?>" />
 	<input type="hidden" id="jsaction" name="action" value="edit" />
-	<input type="hidden" id="jsoldKey" name="oldKey" value="<?php echo $categoryMap['key']; ?>" />
+	<input type="hidden" id="jsoldKey" name="oldKey" value="<?php echo $cat_map['key']; ?>" />
 
 	<fieldset class="admin-fieldset">
 		<legend class="screen-reader-text"><?php lang()->p( 'Category Settings' ); ?></legend>
@@ -54,7 +59,7 @@ use function CMS\Help\{
 		echo Bootstrap :: formInputText( [
 			'name'        => 'name',
 			'label'       => lang()->g( 'Name' ),
-			'value'       => $categoryMap['name'],
+			'value'       => $cat_map['name'],
 			'class'       => '',
 			'placeholder' => '',
 			'tip'         => ''
@@ -63,7 +68,7 @@ use function CMS\Help\{
 		echo Bootstrap :: formTextarea( [
 			'name'        => 'description',
 			'label'       => lang()->g( 'Description' ),
-			'value'       => isset( $categoryMap['description'] ) ? $categoryMap['description'] : '',
+			'value'       => isset( $cat_map['description'] ) ? $cat_map['description'] : '',
 			'class'       => '',
 			'placeholder' => '',
 			'tip'         => '',
@@ -73,7 +78,7 @@ use function CMS\Help\{
 		echo Bootstrap :: formInputText( [
 			'name'        => 'template',
 			'label'       => lang()->g( 'Template' ),
-			'value'       => isset( $categoryMap['template'] ) ? $categoryMap['template'] : '',
+			'value'       => isset( $cat_map['template'] ) ? $cat_map['template'] : '',
 			'class'       => '',
 			'placeholder' => '',
 			'tip'         => ''
@@ -82,10 +87,10 @@ use function CMS\Help\{
 		echo Bootstrap :: formInputText( [
 			'name'        => 'newKey',
 			'label'       => lang()->g( 'Friendly URL' ),
-			'value'       => $categoryMap['key'],
+			'value'       => $cat_map['key'],
 			'class'       => '',
 			'placeholder' => '',
-			'tip'         => DOMAIN_CATEGORIES . $categoryMap['key']
+			'tip'         => DOMAIN_CATEGORIES . $cat_map['key']
 		] );
 		?>
 	</fieldset>

@@ -17,14 +17,19 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
 	pages,
 	cats
 };
+
+// Access global variables.
+global $plugins, $plugins_installed;
 
 ?>
 <header class="admin-page-header has-actions">
@@ -103,8 +108,8 @@ use function CMS\Help\{
 <table class="table">
 	<tbody>
 	<?php
-	$pluginsNotInstalled = array_diff_key( $plugins['all'], $plugins_installed );
-	foreach ( $pluginsNotInstalled as $plugin ) :
+	$not_installed = array_diff_key( $plugins['all'], $plugins_installed );
+	foreach ( $not_installed as $plugin ) :
 
 		// Do not display theme's plugins.
 		if ( 'theme' == $plugin->type() ) {

@@ -1073,3 +1073,12 @@ img.profilePicture {
 .form-label {
   font-weight: 600;
 }
+
+.media-modal-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.media-modal-actions a {
+  display: inline-block;
+}

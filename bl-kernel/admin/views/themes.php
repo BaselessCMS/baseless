@@ -17,8 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	login,
 	url,
 	lang,
+	user,
 	users,
 	plugins,
 	page,
@@ -29,7 +31,7 @@ use function CMS\Help\{
 $settings_url = '';
 foreach ( buildThemes() as $theme ) {
 	if (
-		$theme['dirname'] == $site->theme() &&
+		$theme['dirname'] == site()->theme() &&
 		isset( $theme['plugin'] ) &&
 		getPlugin( $theme['plugin'] )
 	) {
@@ -53,13 +55,13 @@ foreach ( buildThemes() as $theme ) {
 <table class="table mt-3">
 	<thead>
 		<tr>
-			<th class="border-bottom-0 w-25" scope="col"><?php $L->p( 'Name' ); ?></th>
+			<th class="border-bottom-0 w-25" scope="col"><?php lang()->p( 'Name' ); ?></th>
 
-			<th class="border-bottom-0 d-none d-sm-table-cell" scope="col"><?php $L->p( 'Description' ); ?></th>
+			<th class="border-bottom-0 d-none d-sm-table-cell" scope="col"><?php lang()->p( 'Description' ); ?></th>
 
-			<th class="text-center border-bottom-0 d-none d-lg-table-cell" scope="col"><?php $L->p( 'Version' ); ?></th>
+			<th class="text-center border-bottom-0 d-none d-lg-table-cell" scope="col"><?php lang()->p( 'Version' ); ?></th>
 
-			<th class="text-center border-bottom-0 d-none d-lg-table-cell" scope="col"><?php $L->p( 'Author' ); ?></th>
+			<th class="text-center border-bottom-0 d-none d-lg-table-cell" scope="col"><?php lang()->p( 'Author' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -68,14 +70,14 @@ foreach ( buildThemes() as $theme ) {
 	foreach ( $themes as $theme ) : ?>
 		<tr>
 			<td class="align-middle pt-3 pb-3">
-				<div><?php echo $theme['name'] . ( $theme['dirname'] == $site->theme() ? '<span class="badge badge-primary ml-2">' . $L->g( 'Active' ) . '</span>' : '' ); ?></div>
+				<div><?php echo $theme['name'] . ( $theme['dirname'] == site()->theme() ? '<span class="badge badge-primary ml-2">' . lang()->g( 'Active' ) . '</span>' : '' ); ?></div>
 				<div class="mt-1">
 					<?php
-					if ( $theme['dirname'] != $site->theme() ) {
-						echo '<a href="' . HTML_PATH_ADMIN_ROOT . 'install-theme/' . $theme['dirname'] . '">' . $L->g( 'Activate' ) . '</a>';
+					if ( $theme['dirname'] != site()->theme() ) {
+						echo '<a href="' . HTML_PATH_ADMIN_ROOT . 'install-theme/' . $theme['dirname'] . '">' . lang()->g( 'Activate' ) . '</a>';
 					} else {
 						if ( isset( $theme['plugin'] ) ) {
-						echo '<a href="' . HTML_PATH_ADMIN_ROOT . 'configure-plugin/' . $theme['plugin'] . '">' . $L->g( 'Settings' ) . '</a>';
+						echo '<a href="' . HTML_PATH_ADMIN_ROOT . 'configure-plugin/' . $theme['plugin'] . '">' . lang()->g( 'Settings' ) . '</a>';
 						}
 					} ?>
 				</div>
