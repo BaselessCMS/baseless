@@ -28,6 +28,8 @@ use function CMS\Help\{
 	cats
 };
 
+global $autosave;
+
 /**
  * Content type table
  *
@@ -255,7 +257,7 @@ function table( $type = 'published' ) {
 	<li class="nav-item">
 		<a class="nav-link" id="draft-tab" data-toggle="tab" href="#draft" role="tab"><?php lang()->p( 'Draft' ); ?></a>
 	</li>
-	<?php if ( ! empty( $autosave ) ) : ?>
+	<?php if ( $autosave ) : ?>
 	<li class="nav-item">
 		<a class="nav-link" id="autosave-tab" data-toggle="tab" href="#autosave" role="tab"><?php lang()->p( 'Autosave' ); ?></a>
 	</li>
@@ -306,7 +308,7 @@ function table( $type = 'published' ) {
 		<?php table( 'draft' ); ?>
 	</div>
 
-	<?php if ( ! empty( $autosave ) ) : ?>
+	<?php if ( $autosave ) : ?>
 	<div class="tab-pane" id="autosave" role="tabpanel">
 		<?php table( 'autosave' ); ?>
 	</div>

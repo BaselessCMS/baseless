@@ -1,22 +1,31 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
-header('Content-Type: application/json');
+<?php
+/**
+ * Remove logo
+ *
+ * @package    JSON CMS
+ * @subpackage AJAX
+ * @category   Controllers
+ * @since      1.0.0
+ */
 
-/*
-| Delete the site logo
-| This script delete the file and set and empty string in the database
-|
-| @return	array
-*/
-
-// Delete the file
-$logoFilename = $site->logo(false);
-if ($logoFilename) {
-	Filesystem::rmfile(PATH_UPLOADS.$logoFilename);
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
 }
 
-// Remove the logo from the database
-$site->set(array('logo'=>''));
+header( 'Content-Type: application/json' );
 
-ajaxResponse(0, 'Logo removed.');
+/**
+ * Delete the site logo.
+ *
+ * This script delete the file and set and empty string in the database.
+ */
+$logoFilename = $site->logo( false );
+if ( $logoFilename ) {
+	\Filesystem :: rmfile( PATH_UPLOADS . $logoFilename );
+}
 
-?>
+// Remove the logo from the database.
+$site->set( [ 'logo' => '' ] );
+
+ajaxResponse( 0, 'Logo Removed.' );

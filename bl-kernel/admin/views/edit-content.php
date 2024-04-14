@@ -40,11 +40,20 @@ use function CMS\Help\{
 
 	<header class="admin-page-header">
 		<h1><?php lang()->p( 'Edit Content' ); ?></h1>
+		<p>
 		<?php printf(
-			'<p>%s <code class="select">%s</code></p>',
+			'<strong>%s</strong> <code class="select">%s</code>',
 			lang()->get( 'Page ID:' ),
 			page()->uuid()
 		); ?>
+		<br />
+		<?php printf(
+			'<strong>%s</strong> <a href="%s">%s</a>',
+			lang()->get( 'Permalink:' ),
+			page()->permalink(),
+			page()->permalink()
+		); ?>
+		</p>
 	</header>
 
 	<div id="jseditorToolbar" class="content-editor-toolbar">
@@ -483,9 +492,10 @@ $(document).ready( function() {
 		var uuid    = $( '#jsuuid' ).val();
 		var title   = $( '#jstitle' ).val();
 		var content = editorGetContent();
+		var cover   = $( '#jscoverImage' ).val();
 		var ajax    = new bluditAjax();
-		bluditAjax.saveAsDraft( uuid, title, content ).then( function(data) {
-			var preview = window.open( '<?php echo DOMAIN_PAGES . 'autosave-' . page()->uuid() . '?preview=' . md5( 'autosave-' . page()->uuid() ); ?>', 'bludit-preview' );
+		bluditAjax.saveAsDraft( uuid, title, content, cover ).then( function(data) {
+			var preview = window.open( '<?php echo DOMAIN_PAGES . 'autosave-' . page()->uuid() . '?preview=' . md5( 'autosave-' . page()->uuid() ); ?>', 'page-preview' );
 			preview.focus();
 		});
 	});
@@ -525,6 +535,7 @@ $(document).ready( function() {
 			var uuid    = $( '#jsuuid' ).val();
 			var title   = $( '#jstitle' ).val() + "[<?php lang()->p( 'Autosave' ); ?>]";
 			var content = editorGetContent();
+			var cover   = $( '#jscoverImage' ).val();
 
 			// Autosave when content has at least 100 characters.
 			if ( content.length < 100 ) {
@@ -533,7 +544,7 @@ $(document).ready( function() {
 			// Autosave only when the user change the content.
 			if ( currentContent != content ) {
 				currentContent = content;
-				bluditAjax.saveAsDraft( uuid, title, content ).then( function(data) {
+				bluditAjax.saveAsDraft( uuid, title, content, cover ).then( function(data) {
 					if ( data.status == 0 ) {
 						showAlert( "<?php lang()->p( 'Autosave' ); ?>" );
 					}

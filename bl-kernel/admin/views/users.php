@@ -78,7 +78,9 @@ use function CMS\Help\{
 		} ?>
 		<tr>
 			<td>
-				<img class="profilePicture mr-1" alt="" src="<?php echo ( \Sanitize :: pathFile( PATH_UPLOADS_PROFILES . $user->username() . '.png' ) ? DOMAIN_UPLOADS_PROFILES . $user->username() . '.png' : HTML_PATH_CORE_IMG . 'default.svg' ); ?>" />
+				<a href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-user/' . $username; ?>">
+					<img class="avatar user-table-avatar" alt="" src="<?php echo ( \Sanitize :: pathFile( PATH_UPLOADS_PROFILES . $user->username() . '.png' ) ? DOMAIN_UPLOADS_PROFILES . $user->username() . '.png' : HTML_PATH_CORE_IMG . 'avatars/user.png' ); ?>" width="32" height="32" />
+				</a>
 			</td>
 			<td>
 				<h2 class="admin-table-heading"><a href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-user/' . $username; ?>"><?php echo $username; ?></a></h2>

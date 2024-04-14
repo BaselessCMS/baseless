@@ -152,8 +152,8 @@ if ( user()->nickname() ) {
 						</div>
 						<!-- <button id="jsbuttonRemovePicture" type="button" class="btn btn-primary w-100 mt-4 mb-4"><i class="fa fa-trash"></i> Remove picture</button> -->
 					</div>
-					<div class="col-lg-8 col-sm-12 p-0 text-center">
-						<img id="jsprofilePicturePreview" class="img-fluid img-thumbnail" alt="Profile picture preview" src="<?php echo ( \Sanitize :: pathFile( PATH_UPLOADS_PROFILES . user()->username() . '.png' ) ? DOMAIN_UPLOADS_PROFILES . user()->username() . '.png?version=' . time() : HTML_PATH_CORE_IMG . 'default.svg' ) ?>" />
+					<div class="col-lg-4 col-sm-4">
+						<img id="jsprofilePicturePreview" class="avatar edit-user-avatar" alt="Avatar Preview" src="<?php echo user()->profilePicture(); ?>" />
 					</div>
 				</div>
 			</div>
@@ -346,17 +346,3 @@ if ( user()->nickname() ) {
 		</div>
 	</div>
 </form>
-<script>
-	// Open current tab after refresh page
-	$( function() {
-		$( 'a[data-toggle="tab"]' ).on( 'click', function(e) {
-			window.localStorage.setItem( 'activeTab', $(e.target).attr( 'href' ) );
-			console.log( $( e.target ).attr( 'href' ) );
-		});
-		var activeTab = window.localStorage.getItem( 'activeTab' );
-		if ( activeTab ) {
-			$( '#nav-tab a[href="' + activeTab + '"]' ).tab( 'show' );
-			//window.localStorage.removeItem("activeTab");
-		}
-	});
-</script>

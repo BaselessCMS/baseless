@@ -1,6 +1,6 @@
 class bluditAjax {
 
-	static async saveAsDraft(uuid, title, content) {
+	static async saveAsDraft(uuid, title, content, cover) {
 		let url = HTML_PATH_ADMIN_ROOT+"ajax/save-as-draft"
 		try {
 			const response = await fetch(url, {
@@ -14,6 +14,7 @@ class bluditAjax {
 					'uuid': "autosave-" + uuid,
 					'title': title,
 					'content': content,
+					'cover': cover,
 					'type': 'autosave'
 				}),
 			});

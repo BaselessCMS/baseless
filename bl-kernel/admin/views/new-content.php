@@ -443,8 +443,9 @@ $(document).ready( function() {
 		var uuid    = $( '#jsuuid' ).val();
 		var title   = $( '#jstitle' ).val();
 		var content = editorGetContent();
-		bluditAjax.saveAsDraft( uuid, title, content ).then( function(data) {
-			var preview = window.open( "<?php echo DOMAIN_PAGES . 'autosave-' . $uuid . '?preview=' . md5( 'autosave-' . $uuid ); ?>", 'bludit-preview' );
+		var cover   = $( '#jscoverImage' ).val();
+		bluditAjax.saveAsDraft( uuid, title, content, cover ).then( function(data) {
+			var preview = window.open( "<?php echo DOMAIN_PAGES . 'autosave-' . $uuid . '?preview=' . md5( 'autosave-' . $uuid ); ?>", 'page-preview' );
 			preview.focus();
 		});
 	});
@@ -474,6 +475,7 @@ $(document).ready( function() {
 			var uuid    = $( '#jsuuid' ).val();
 			var title   = $( '#jstitle' ).val() + "[<?php lang()->p( 'Autosave' ); ?>]";
 			var content = editorGetContent();
+			var cover   = $( '#jscoverImage' ).val();
 
 			// Autosave when content has at least 100 characters.
 			if ( content.length < 100 ) {
@@ -482,7 +484,7 @@ $(document).ready( function() {
 			// Autosave only when the user change the content.
 			if ( currentContent != content ) {
 				currentContent = content;
-				bluditAjax.saveAsDraft( uuid, title, content ).then( function(data) {
+				bluditAjax.saveAsDraft( uuid, title, content, cover ).then( function(data) {
 					if ( data.status == 0 ) {
 						showAlert( "<?php lang()->p( 'Autosave' ); ?>" );
 					}

@@ -1,42 +1,56 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
-header('Content-Type: application/json');
+<?php
+/**
+ * Get published pages
+ *
+ * @package    JSON CMS
+ * @subpackage AJAX
+ * @category   Controllers
+ * @since      1.0.0
+ */
 
-/*
-| Returns a list of pages and the title contains the query string
-| The returned list have published, sticky and statics pages
-|
-| @_POST['query']	string 	The string to search in the title of the pages
-|
-| @return	array
-*/
-
-// $_GET
-// ----------------------------------------------------------------------------
-// (string) $_GET['query']
-$query = isset($_GET['query']) ? Text::lowercase($_GET['query']) : false;
-// (boolean) $_GET['checkIsParent']
-$checkIsParent = empty($_GET['checkIsParent']) ? false : true;
-// ----------------------------------------------------------------------------
-if ($query===false) {
-	ajaxResponse(1, 'Invalid query.');
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
 }
 
-$result = array();
+header('Content-Type: application/json');
+
+/**
+ * Returns a list of pages and the title contains the query string.
+ * The returned list have published, sticky and statics pages.
+ *
+ * @_POST['query'] string The string to search in the title of the pages.
+ */
+
+// $_GET
+$query = isset( $_GET['query'] ) ? \Text :: lowercase( $_GET['query'] ) : false;
+$checkIsParent = empty( $_GET['checkIsParent'] ) ? false : true;
+
+if ( false === $query ) {
+	ajaxResponse( 1, 'Invalid query.' );
+}
+
+$result   = [];
 $pagesKey = $pages->getDB();
-foreach ($pagesKey as $pageKey) {
+foreach ( $pagesKey as $pageKey ) {
 	try {
-		$page = new Page($pageKey);
-		if ($page->isParent() || !$checkIsParent) {
-			// Check page status
-			if ($page->published() || $page->sticky() || $page->isStatic()) {
-				// Check if the query contains in the title
-				$lowerTitle = Text::lowercase($page->title());
-				if (Text::stringContains($lowerTitle, $query)) {
-					$tmp = array('disabled'=>false);
-					$tmp['id'] = $page->key();
+		$page = new \Page( $pageKey );
+		if ( $page->isParent() || ! $checkIsParent ) {
+
+			// Check page status.
+			if ( $page->published() || $page->sticky() || $page->isStatic() ) {
+
+				// Check if the query contains in the title.
+				$title = \Text :: lowercase( $page->title() );
+				if ( \Text :: stringContains( $title, $query) ) {
+					$tmp = [
+						'disabled' => false
+					];
+					$tmp['id']   = $page->key();
 					$tmp['text'] = $page->title();
 					$tmp['type'] = $page->type();
-					array_push($result, $tmp);
+
+					array_push( $result, $tmp );
 				}
 			}
 		}
@@ -45,6 +59,4 @@ foreach ($pagesKey as $pageKey) {
 	}
 }
 
-exit (json_encode(array('results'=>$result)));
-
-?>
+exit( json_encode( [ 'results' => $result ] ) );

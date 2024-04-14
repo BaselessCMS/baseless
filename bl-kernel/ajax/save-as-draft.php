@@ -1,52 +1,57 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
-header('Content-Type: application/json');
+<?php
+/**
+ * Save as draft
+ *
+ * @package    JSON CMS
+ * @subpackage AJAX
+ * @category   Controllers
+ * @since      1.0.0
+ */
 
-/*
-| Create/edit a page and save as draft
-| If the UUID already exists the page is updated
-|
-| @_POST['title']	string	Page title
-| @_POST['content']	string	Page content
-| @_POST['uuid']	string	Page uuid
-| @_POST['uuid']	string	Page type, by default is draft
-|
-| @return	array
-*/
-
-// $_POST
-// ----------------------------------------------------------------------------
-$title = isset($_POST['title']) ? $_POST['title'] : false;
-$content = isset($_POST['content']) ? $_POST['content'] : false;
-$uuid = isset($_POST['uuid']) ? $_POST['uuid'] : false;
-$type = isset($_POST['type']) ? $_POST['type'] : 'draft';
-// ----------------------------------------------------------------------------
-
-// Check UUID
-if (empty($uuid)) {
-	ajaxResponse(1, 'Save as draft fail. UUID not defined.');
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
 }
 
-$page = array(
-	'uuid'=>$uuid,
-	'key'=>$uuid,
-	'slug'=>$uuid,
-	'title'=>$title,
-	'content'=>$content,
-	'type'=>$type
-);
+header( 'Content-Type: application/json' );
 
-// Get the page key by the UUID
-$pageKey = $pages->getByUUID($uuid);
+/**
+ * $_POST
+ *
+ * Create/edit a page and save as draft.
+ * If the UUID already exists the page is updated.
+ */
+$title   = isset( $_POST['title'] ) ? $_POST['title'] : false;
+$content = isset( $_POST['content'] ) ? $_POST['content'] : false;
+$cover   = isset( $_POST['coverImage'] ) ? $_POST['coverImage'] : false;
+$uuid    = isset( $_POST['uuid'] ) ? $_POST['uuid'] : false;
+$type    = isset( $_POST['type'] ) ? $_POST['type'] : 'draft';
 
-// if pageKey is empty means the page doesn't exist
-if (empty($pageKey)) {
-	createPage($page);
+// Check UUID.
+if ( empty( $uuid ) ) {
+	ajaxResponse( 1, 'Draft save failed. UUID is not defined.' );
+}
+
+$page = [
+	'uuid'    => $uuid,
+	'key'     => $uuid,
+	'slug'    => $uuid,
+	'title'   => $title,
+	'content' => $content,
+	'cover'   => $cover,
+	'type'    => $type
+];
+
+// Get the page key by the UUID.
+$pageKey = $pages->getByUUID( $uuid );
+
+// If pageKey is empty means the page doesn't exist.
+if ( empty( $pageKey ) ) {
+	createPage( $page );
 } else {
-	editPage($page);
+	editPage( $page );
 }
 
-ajaxResponse(0, 'Save as draft successfully.', array(
-	'uuid'=>$uuid
-));
-
-?>
+ajaxResponse( 0, 'Draft saved successfully.', [
+	'uuid' => $uuid
+] );
