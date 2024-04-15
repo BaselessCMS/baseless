@@ -3,7 +3,7 @@
  * JavaScript variables
  *
  * @package    JSON CMS
- * @subpackage Assets
+ * @subpackage Boot
  * @category   Scripts
  * @since      1.0.0
  */

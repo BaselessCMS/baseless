@@ -2,9 +2,10 @@
 /**
  * System config
  *
- * @package  JSON CMS
- * @category Core
- * @since    1.0.0
+ * @package    JSON CMS
+ * @subpackage Boot
+ * @category   Core
+ * @since      1.0.0
  */
 
 // Stop if accessed directly.
