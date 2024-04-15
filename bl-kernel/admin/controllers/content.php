@@ -8,6 +8,8 @@
  * @since      1.0.0
  */
 
+namespace CMS_Admin\Controllers\Content;
+
 // Stop if accessed directly.
 if ( ! defined( 'JSON_CMS' ) ) {
 	die( 'You are not allowed to access this file directly.' );
@@ -38,7 +40,7 @@ checkRole( [ 'admin', 'editor', 'author' ] );
  * @param  array $list
  * @return array
  */
-function filterContentOwner( $list ) {
+function _content_owner( $list ) {
 
 	// Access global variables.
 	global $login, $pages;
@@ -59,13 +61,13 @@ $static    = $pages->getStaticDB( true );
 $sticky    = $pages->getStickyDB( true );
 $autosave  = $pages->getAutosaveDB( true );
 
-// If the user is an Author filter the content he/she can edit
+// If the user is an Author filter the content he/she can edit.
 if ( checkRole( [ 'author' ], false ) ) {
-	$published = filterContentOwner( $published );
-	$drafts    = filterContentOwner( $drafts );
-	$scheduled = filterContentOwner( $scheduled );
-	$static    = filterContentOwner( $static );
-	$sticky    = filterContentOwner( $sticky );
+	$published = _content_owner( $published );
+	$drafts    = _content_owner( $drafts );
+	$scheduled = _content_owner( $scheduled );
+	$static    = _content_owner( $static );
+	$sticky    = _content_owner( $sticky );
 }
 
 // Check if out of range the pageNumber.

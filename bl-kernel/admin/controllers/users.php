@@ -1,4 +1,19 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * User password controller
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Controllers
+ * @since      1.0.0
+ */
+
+namespace CMS_Admin\Controllers\Users;
+
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
 // Import namespaced functions.
 use function CMS\Help\{
@@ -13,32 +28,11 @@ use function CMS\Help\{
 	cats
 };
 
-// ============================================================================
-// Check role
-// ============================================================================
+checkRole( [ 'admin' ] );
 
-checkRole(array('admin'));
-
-// ============================================================================
-// Functions
-// ============================================================================
-
-// ============================================================================
-// Main after POST
-// ============================================================================
-
-// ============================================================================
-// POST Method
-// ============================================================================
-
-if( $_SERVER['REQUEST_METHOD'] == 'POST' )
-{
-	$site->set($_POST);
+if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
+	$site->set( $_POST );
 }
-
-// ============================================================================
-// Main after POST
-// ============================================================================
 
 // Title of the page.
 $layout['title'] .= sprintf(

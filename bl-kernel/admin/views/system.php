@@ -13,6 +13,9 @@ if ( ! defined( 'JSON_CMS' ) ) {
 	die( 'You are not allowed to access this file directly.' );
 }
 
+// Alias namespaces.
+use CMS_Admin\Controllers\System as Ctrl;
+
 // Import namespaced functions.
 use function CMS\Help\{
 	site,
@@ -36,7 +39,7 @@ global $config;
 	<h1><?php lang()->p( 'System Info' ); ?></h1>
 </header>
 
-<table class="table table-striped mt-3">
+<table class="table table-striped system-info-table">
 	<tbody>
 		<tr>
 			<td><?php lang()->p( 'PHP Version' ); ?></td>
@@ -62,9 +65,9 @@ global $config;
 
 <?php if ( $config['dash_notify_qty'] > 0 ) : ?>
 
-<h2 class="m-0"><?php lang()->p( 'Notifications' ); ?></h2>
+<h2 class="system-info-heading"><?php lang()->p( 'Notifications' ); ?></h2>
 
-<table class="table table-striped mt-3">
+<table class="table table-striped system-info-table">
 	<tbody>
 		<tr>
 			<th><?php lang()->p( 'Action' ); ?></th>
@@ -98,20 +101,20 @@ $uploadOptions = [
 	'post_max_size'       => ini_get( 'post_max_size' ),
 	'upload_tmp_dir'      => ini_get( 'upload_tmp_dir' )
 ];
-printTable( 'File Uploads', $uploadOptions );
+Ctrl\table( 'File Uploads', $uploadOptions );
 
 // Loaded extensions.
-printTable( 'Server Information ( $_SERVER )', $_SERVER );
+Ctrl\table( 'Server Information ( $_SERVER )', $_SERVER );
 
 // PHP Ini.
-printTable( 'PHP Configuration Options ( ini_get_all() )', ini_get_all() );
+Ctrl\table( 'PHP Configuration Options ( ini_get_all() )', ini_get_all() );
 
 // Loaded extensions.
-printTable( 'Loaded Extensions', get_loaded_extensions() );
+Ctrl\table( 'Loaded Extensions', get_loaded_extensions() );
 
 // Locales installed.
 exec( 'locale -a', $locales );
-printTable( 'Locales Installed', $locales );
+Ctrl\table( 'Locales Installed', $locales );
 if ( ! $locales ) {
 	printf(
 		'<p>%s</p>',
@@ -121,7 +124,7 @@ if ( ! $locales ) {
 
 // Defined constants.
 $constants = get_defined_constants( true );
-printTable( 'CMS Constants', $constants['user'] );
+Ctrl\table( 'CMS Constants', $constants['user'] );
 
 // Site object.
-printTable( 'Site Object Database', site()->db );
+Ctrl\table( 'Site Object Database', site()->db );

@@ -1,4 +1,19 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Edit category controller
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Controllers
+ * @since      1.0.0
+ */
+
+namespace CMS_Admin\Controllers\Edit_Category;
+
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
 // Import namespaced functions.
 use function CMS\Help\{
@@ -13,45 +28,26 @@ use function CMS\Help\{
 	cats
 };
 
-// ============================================================================
-// Check role
-// ============================================================================
+checkRole( [ 'admin' ] );
 
-checkRole(array('admin'));
-
-// ============================================================================
-// Functions
-// ============================================================================
-
-// ============================================================================
-// Main before POST
-// ============================================================================
-
-// ============================================================================
-// POST Method
-// ============================================================================
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if ($_POST['action']=='delete') {
-		deleteCategory($_POST);
-	} elseif ($_POST['action']=='edit') {
-		editCategory($_POST);
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+	if ( 'delete' == $_POST['action'] ) {
+		deleteCategory( $_POST );
+	} elseif ( 'edit' == $_POST['action'] ) {
+		editCategory( $_POST );
 	}
 
-	Redirect::page('categories');
+	\Redirect :: page( 'categories' );
 }
 
-// ============================================================================
-// Main after POST
-// ============================================================================
 $categoryKey = $layout['parameters'];
 
-if (!$categories->exists($categoryKey)) {
-	Log::set(__METHOD__.LOG_SEP.'Error occurred when trying to get the category: '.$categoryKey);
-	Redirect::page('categories');
+if ( ! $categories->exists( $categoryKey ) ) {
+	\Log :: set( __METHOD__ . LOG_SEP . 'Error occurred when trying to get the category: ' . $categoryKey );
+	\Redirect :: page( 'categories' );
 }
 
-$cat_map = cats()->getMap($categoryKey);
+$cat_map = cats()->getMap( $categoryKey );
 
 // Title of the page.
 $layout['title'] .= sprintf(

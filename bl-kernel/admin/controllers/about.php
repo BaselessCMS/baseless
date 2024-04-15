@@ -8,6 +8,8 @@
  * @since      1.0.0
  */
 
+namespace CMS_Admin\Controllers\About;
+
 // Stop if accessed directly.
 if ( ! defined( 'JSON_CMS' ) ) {
 	die( 'You are not allowed to access this file directly.' );

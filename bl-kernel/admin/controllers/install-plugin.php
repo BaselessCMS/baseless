@@ -1,4 +1,19 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Install plugin controller
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Controllers
+ * @since      1.0.0
+ */
+
+namespace CMS_Admin\Controllers\Install_Plugin;
+
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
 // Import namespaced functions.
 use function CMS\Help\{
@@ -13,40 +28,21 @@ use function CMS\Help\{
 	cats
 };
 
-// ============================================================================
-// Check role
-// ============================================================================
+checkRole( [ 'admin' ] );
 
-checkRole(array('admin'));
-
-// ============================================================================
-// Functions
-// ============================================================================
-
-// ============================================================================
-// Main before POST
-// ============================================================================
-
-// ============================================================================
-// POST Method
-// ============================================================================
-
-// ============================================================================
-// Main after POST
-// ============================================================================
 $pluginClassName = $layout['parameters'];
-if (!activatePlugin($pluginClassName)) {
-	Log::set('Fail when try to activate the plugin.', LOG_TYPE_ERROR);
+if ( ! activatePlugin( $pluginClassName ) ) {
+	\Log :: set( 'Fail when try to activate the plugin.', LOG_TYPE_ERROR );
 }
 
-if (isset($plugins['all'][$pluginClassName])) {
+if ( isset( $plugins['all'][$pluginClassName] ) ) {
 	$plugin = $plugins['all'][$pluginClassName];
 } else {
-	Redirect::page('plugins');
+	\Redirect :: page( 'plugins' );
 }
 
-if (method_exists($plugin, 'form')) {
-	Redirect::page('configure-plugin/'.$pluginClassName);
+if ( method_exists( $plugin, 'form' ) ) {
+	\Redirect :: page( 'configure-plugin/' . $pluginClassName );
 }
 
-Redirect::page('plugins#'.$pluginClassName);
+\Redirect :: page( 'plugins#' . $pluginClassName );

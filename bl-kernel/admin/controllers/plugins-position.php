@@ -1,4 +1,19 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Plugins positions controller
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Controllers
+ * @since      1.0.0
+ */
+
+namespace CMS_Admin\Controllers\Plugins_Pos;
+
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
 // Import namespaced functions.
 use function CMS\Help\{
@@ -13,30 +28,12 @@ use function CMS\Help\{
 	cats
 };
 
-// ============================================================================
-// Check role
-// ============================================================================
+checkRole( [ 'admin' ] );
 
-checkRole(array('admin'));
-
-// ============================================================================
-// Functions
-// ============================================================================
-
-// ============================================================================
-// Main before POST
-// ============================================================================
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	changePluginsPosition(explode(',',$_POST['plugin-list']));
-	Redirect::page('plugins-position');
+if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
+	changePluginsPosition( explode( ',', $_POST['plugin-list'] ) );
+	\Redirect :: page( 'plugins-position' );
 }
-// ============================================================================
-// POST Method
-// ============================================================================
-
-// ============================================================================
-// Main after POST
-// ============================================================================
 
 // Title of the page.
 $layout['title'] .= sprintf(

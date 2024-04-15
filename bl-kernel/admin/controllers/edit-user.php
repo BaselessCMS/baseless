@@ -1,4 +1,19 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Edit user controller
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Controllers
+ * @since      1.0.0
+ */
+
+namespace CMS_Admin\Controllers\Edit_User;
+
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
 // Import namespaced functions.
 use function CMS\Help\{
@@ -13,60 +28,49 @@ use function CMS\Help\{
 	cats
 };
 
-// ============================================================================
-// Functions
-// ============================================================================
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
-// ============================================================================
-// Main before POST
-// ============================================================================
-
-// ============================================================================
-// POST Method
-// ============================================================================
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	// Prevent non-administrators to change other users
-	if ($login->role()!=='admin') {
+	// Prevent non-administrators to change other users.
+	if ( 'admin' !== $login->role() ) {
 		$_POST['username'] = $login->username();
-		unset($_POST['role']);
+		unset( $_POST['role'] );
 	}
 
-	if (isset($_POST['deleteUserAndDeleteContent']) && ($login->role()==='admin')) {
+	if ( isset( $_POST['deleteUserAndDeleteContent'] ) && ( 'admin' === $login->role() ) ) {
 		$_POST['deleteContent'] = true;
-		deleteUser($_POST);
-	} elseif (isset($_POST['deleteUserAndKeepContent']) && ($login->role()==='admin')) {
+		deleteUser( $_POST );
+
+	} elseif ( isset( $_POST['deleteUserAndKeepContent'] ) && ( 'admin' === $login->role() ) ) {
 		$_POST['deleteContent'] = false;
-		deleteUser($_POST);
-	} elseif (isset($_POST['disableUser']) && ($login->role()==='admin')) {
-		disableUser(array('username'=>$_POST['username']));
+		deleteUser( $_POST );
+
+	} elseif ( isset( $_POST['disableUser'] ) && ( 'admin' === $login->role() )) {
+		disableUser( [ 'username' => $_POST['username'] ] );
+
 	} else {
-		editUser($_POST);
+		editUser( $_POST );
 	}
 
-	Alert::set($L->g('The changes have been saved'));
+	\Alert :: set( $L->g( 'The changes have been saved' ) );
 
-	if ($login->role()==='admin') {
-		Redirect::page('users');
+	if ( 'admin' === $login->role() ) {
+		// @todo Make setting for redirect.
+		\Redirect :: page( 'users' );
 	}
-	Redirect::page('edit-user/'.$login->username());
+	\Redirect :: page( 'edit-user/' . $login->username() );
 }
-
-// ============================================================================
-// Main after POST
-// ============================================================================
 
 $username = $layout['parameters'];
 
-// Prevent non-administrators to change other users
-if ($login->role()!=='admin') {
+// Prevent non-administrators to change other users.
+if ( 'admin' !== $login->role() ) {
 	$username = $login->username();
 }
 
 try {
-	$user = new User($username);
-} catch (Exception $e) {
-	Redirect::page('users');
+	$user = new \User( $username );
+} catch ( \Exception $e ) {
+	\Redirect :: page( 'users' );
 }
 
 // Title of the page.

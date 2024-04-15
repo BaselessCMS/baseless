@@ -1,4 +1,19 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Themes management controller
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Controllers
+ * @since      1.0.0
+ */
+
+namespace CMS_Admin\Controllers\Themes;
+
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
 // Import namespaced functions.
 use function CMS\Help\{
@@ -13,23 +28,7 @@ use function CMS\Help\{
 	cats
 };
 
-// ============================================================================
-// Check role
-// ============================================================================
-
-checkRole(array('admin'));
-
-// ============================================================================
-// Main after POST
-// ============================================================================
-
-// ============================================================================
-// POST Method
-// ============================================================================
-
-// ============================================================================
-// Main after POST
-// ============================================================================
+checkRole( [ 'admin' ] );
 
 $themes = buildThemes();
 

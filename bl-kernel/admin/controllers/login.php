@@ -1,4 +1,19 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * Login screen controller
+ *
+ * @package    JSON CMS
+ * @subpackage Admin
+ * @category   Controllers
+ * @since      1.0.0
+ */
+
+namespace CMS_Admin\Controllers\Login;
+
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
 // Import namespaced functions.
 use function CMS\Help\{
@@ -13,81 +28,82 @@ use function CMS\Help\{
 	cats
 };
 
-// ============================================================================
-// Check role
-// ============================================================================
+/**
+ * Check login
+ *
+ * @since  1.0.0
+ * @param  array $args
+ * @global object $L The Language class.
+ * @global object $login The Login class.
+ * @global object $security The Security class.
+ * @return boolean
+ */
+function checkLogin( $args ) {
 
-// ============================================================================
-// Functions
-// ============================================================================
+	global $L, $login, $security;
 
-function checkLogin($args)
-{
-	global $security;
-	global $login;
-	global $L;
-
-	if ($security->isBlocked()) {
-		Alert::set($L->g('IP address has been blocked').'<br>'.$L->g('Try again in a few minutes'), ALERT_STATUS_FAIL);
+	if ( $security->isBlocked() ) {
+		\Alert :: set( $L->g( 'IP address has been blocked' ) . '<br>' . $L->g( 'Try again in a few minutes' ), ALERT_STATUS_FAIL );
 		return false;
 	}
 
-	if ($login->verifyUser($_POST['username'], $_POST['password'])) {
-		if (isset($_POST['remember'])) {
-			$login->setRememberMe($_POST['username']);
+	if ( $login->verifyUser( $_POST['username'], $_POST['password'] ) ) {
+
+		if ( isset( $_POST['remember'] ) ) {
+			$login->setRememberMe( $_POST['username'] );
 		}
-		// Renew the token. This token will be the same inside the session for multiple forms.
+
+		/**
+		 * Renew the token
+		 *
+		 * This token will be the same inside
+		 * the session for multiple forms.
+		 */
 		$security->generateTokenCSRF();
 
-		if (isset($_GET['enableAPI'])) {
-			Redirect::page('api');
+		if ( isset( $_GET['enableAPI'] ) ) {
+			\Redirect :: page( 'api' );
 		}
-		Redirect::page('dashboard');
+		\Redirect :: page( 'dashboard' );
 		return true;
 	}
 
-	// Bruteforce protection, add IP to the blacklist
+	// Brute force protection, add IP to the blacklist.
 	$security->addToBlacklist();
 
-	// Create alert
-	Alert::set($L->g('Username or password incorrect'), ALERT_STATUS_FAIL);
+	// Create alert.
+	\Alert :: set( $L->g( 'Username or password incorrect' ), ALERT_STATUS_FAIL );
 	return false;
 }
 
-function checkRememberMe()
-{
-	global $security;
-	global $login;
+/**
+ * Remember Me checkbox
+ *
+ * @since  1.0.0
+ * @global object $login The Login class.
+ * @global object $security The Security class.
+ * @return boolean
+ */
+function checkRememberMe() {
 
-	if ($security->isBlocked()) {
+	global $login, $security;
+
+	if ( $security->isBlocked() ) {
 		return false;
 	}
 
-	if ($login->verifyUserByRemember()) {
+	if ( $login->verifyUserByRemember() ) {
 		$security->generateTokenCSRF();
-		Redirect::page('dashboard');
+		\Redirect :: page( 'dashboard' );
 		return true;
 	}
-
 	return false;
 }
 
-// ============================================================================
-// Main before POST
-// ============================================================================
-
-if ($_SERVER['REQUEST_METHOD']!=='POST') {
+if ( 'POST' !=== $_SERVER['REQUEST_METHOD'] ) {
 	checkRememberMe();
 }
 
-// ============================================================================
-// POST Method
-// ============================================================================
-
-if ($_SERVER['REQUEST_METHOD']=='POST') {
-	checkLogin($_POST);
+if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
+	checkLogin( $_POST );
 }
-
-// ============================================================================
-// Main after POST
-// ============================================================================
