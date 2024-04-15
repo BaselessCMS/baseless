@@ -2,9 +2,10 @@
 /**
  * Header
  *
- * @package  JSON CMS
- * @category Boot Rules
- * @since    1.0.0
+ * @package    JSON CMS
+ * @subpackage Boot
+ * @category   Rules
+ * @since      1.0.0
  */
 
 // Stop if accessed directly.
