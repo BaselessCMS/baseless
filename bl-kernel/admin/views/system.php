@@ -14,7 +14,7 @@ if ( ! defined( 'JSON_CMS' ) ) {
 }
 
 // Alias namespaces.
-use CMS_Admin\Controllers\System as Ctrl;
+use CMS\Admin\Controllers\System as Ctrl;
 
 // Import namespaced functions.
 use function CMS\Help\{

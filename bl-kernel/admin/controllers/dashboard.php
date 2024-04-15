@@ -8,7 +8,7 @@
  * @since      1.0.0
  */
 
-namespace CMS_Admin\Controllers\Dashboard;
+namespace CMS\Admin\Controllers\Dashboard;
 
 // Stop if accessed directly.
 if ( ! defined( 'JSON_CMS' ) ) {

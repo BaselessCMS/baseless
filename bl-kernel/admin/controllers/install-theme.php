@@ -8,7 +8,7 @@
  * @since      1.0.0
  */
 
-namespace CMS_Admin\Controllers\Install_Theme;
+namespace CMS\Admin\Controllers\Install_Theme;
 
 // Stop if accessed directly.
 if ( ! defined( 'JSON_CMS' ) ) {

@@ -8,7 +8,7 @@
  * @since      1.0.0
  */
 
-namespace CMS_Admin\Controllers\Plugin_Settings;
+namespace CMS\Admin\Controllers\Plugin_Settings;
 
 // Stop if accessed directly.
 if ( ! defined( 'JSON_CMS' ) ) {

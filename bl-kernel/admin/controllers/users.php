@@ -8,7 +8,7 @@
  * @since      1.0.0
  */
 
-namespace CMS_Admin\Controllers\Users;
+namespace CMS\Admin\Controllers\Users;
 
 // Stop if accessed directly.
 if ( ! defined( 'JSON_CMS' ) ) {

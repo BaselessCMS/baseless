@@ -8,7 +8,7 @@
  * @since      1.0.0
  */
 
-namespace CMS_Admin\Controllers\Edit_Category;
+namespace CMS\Admin\Controllers\Edit_Category;
 
 // Stop if accessed directly.
 if ( ! defined( 'JSON_CMS' ) ) {
