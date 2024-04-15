@@ -100,7 +100,7 @@ function checkRememberMe() {
 	return false;
 }
 
-if ( 'POST' !=== $_SERVER['REQUEST_METHOD'] ) {
+if ( 'POST' !== $_SERVER['REQUEST_METHOD'] ) {
 	checkRememberMe();
 }
 
