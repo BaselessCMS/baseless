@@ -28,6 +28,9 @@ use function CMS\Help\{
 	cats
 };
 
+// Access global variables.
+global $plugin;
+
 ?>
 <form id="jsform" class="configure-plugin" method="post" action="" autocomplete="off">
 	<header class="admin-page-header has-actions">
