@@ -1,19 +1,43 @@
 <?php
+/**
+ * Admin theme bootstrap
+ *
+ * Taken from the default Bludit admin theme
+ * and improved.
+ *
+ * @package    JSON CMS
+ * @subpackage Classes
+ * @category   Admin
+ * @since      1.0.0
+ *
+ * @todo Deprecate this class and rid the CMS admin
+ *       of admin theme dependencies.
+ */
 
 class Bootstrap {
 
-	public static function modal($args) {
-
-		$buttonSecondary = $args['buttonSecondary'];
-		$buttonSecondaryClass = $args['buttonSecondaryClass'];
+	/**
+	 * Modal window
+	 *
+	 * Markup for modal content.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @access static
+	 * @param  array $args
+	 * @return string Returns modal window markup.
+	 */
+	public static function modal( $args ) {
 
 		$buttonPrimary = $args['buttonPrimary'];
 		$buttonPrimaryClass = $args['buttonPrimaryClass'];
 
-		$modalText = $args['modalText'];
-		$modalTitle = $args['modalTitle'];
-		$modalId = $args['modalId'];
+		$buttonSecondary = $args['buttonSecondary'];
+		$buttonSecondaryClass = $args['buttonSecondaryClass'];
 
+		$modalText  = $args['modalText'];
+		$modalTitle = $args['modalTitle'];
+		$modalId    = $args['modalId'];
 
 return <<<EOF
 <div id="$modalId" class="modal fade" tabindex="-1" role="dialog">
@@ -33,123 +57,336 @@ return <<<EOF
 EOF;
 	}
 
-	public static function link($args)
-	{
-		$options = 'href="'.$args['href'].'"';
-		if (isset($args['class'])) {
-			$options .= ' class="'.$args['class'].'"';
+	/**
+	 * Print link
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @access static
+	 * @param  mixed $args
+	 * @param  array $defaults
+	 * @return string Returns the link markup.
+	 */
+	public static function link( $args = null, $defaults = [] ) {
+
+		// Default arguments.
+		$defaults = [
+			'href'   => '',
+			'target' => false,
+			'icon'   => '',
+			'text'   => '',
+			'class'  => ''
+		];
+
+		// Maybe override defaults.
+		if ( is_array( $args ) && $args ) {
+			$args = array_merge( $defaults, $args );
+		} else {
+			$args = $defaults;
 		}
-		if (isset($args['target'])) {
-			$options .= ' target="'.$args['target'].'"';
+
+		$text = $args['text'];
+		// If deprecated key `title`.
+		if ( isset( $args['title'] ) ) {
+			$text = $args['title'];
 		}
 
-		if (isset($args['icon'])) {
-			return '<a '.$options.'><span class="fa fa-'.$args['icon'].'"></span>'.$args['title'].'</a>';
+		$target = '';
+		if ( $args['target'] && ( '_blank' == $args['target'] || 'blank' == $args['target'] ) ) {
+			$target = ' target="_blank" rel="noopener noreferrer" ';
 		}
 
-		return '<a '.$options.'>'.$args['title'].'</a>';
-	}
-
-	public static function pageTitle($args)
-	{
-		$icon = $args['icon'];
-		$title = $args['title'];
-return <<<EOF
-<h2 class="mt-0 mb-3">
-	<span class="fa fa-$icon" style="font-size: 0.9em;"></span><span>$title</span>
-</h2>
-EOF;
-	}
-
-	public static function formOpen($args)
-	{
-		$class = empty($args['class'])?'':'class="'.$args['class'].'"';
-		$id = empty($args['id'])?'':'id="'.$args['id'].'"';
-		$enctype = empty($args['enctype'])?'':'enctype="'.$args['enctype'].'"';
-		$action = empty($args['action'])?'action=""':'action="'.$args['action'].'"';
-		$method = empty($args['method'])?'method="post"':'method="'.$args['method'].'"';
-		$style = empty($args['style'])?'':'style="'.$args['style'].'"';
-
-return <<<EOF
-<form $class $enctype $id $method $action $style autocomplete="off">
-EOF;
-	}
-
-	public static function formClose()
-	{
-return <<<EOF
-</form>
-<script>
-$(document).ready(function() {
-	// Prevent the form submit when press enter key.
-	$("form").keypress(function(e) {
-		if ((e.which == 13) && (e.target.type !== "textarea")) {
-			return false;
+		$class = '';
+		if ( ! empty( $args['class'] ) ) {
+			$class = ' class="' . $args['class'] . '" ';
 		}
-	});
-});
-</script>
-EOF;
+
+		$icon = '';
+		if ( ! empty( $args['icon'] ) ) {
+			$icon = '<span class="fa fa-' . $args['icon'] . '"></span> ';
+		}
+
+		$html = '';
+		if ( ! empty( $args['href'] ) && ! empty( $text ) ) {
+			$html = sprintf(
+				'<a href="%s"%s%s>%s%s</a>',
+				$args['href'],
+				$target,
+				$class,
+				$icon,
+				$text
+			);
+		}
+		return $html;
 	}
 
-	public static function formTitle($args)
-	{
-		$title = $args['title'];
-return <<<EOF
-<h3 class="form-section-heading admin-form-section-heading">$title</h3>
-EOF;
+	/**
+	 * Page title
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @access static
+	 * @param  mixed $args
+	 * @param  array $defaults
+	 * @global object $L The Language class.
+	 * @return string
+	 */
+	public static function pageTitle( $args = null, $defaults = [] ) {
+
+		// Access global variables.
+		global $L;
+
+		// Default arguments.
+		$defaults = [
+			'text'  => $L->get( 'Page Title' ),
+			'icon'  => '',
+			'class' => 'admin-page-heading'
+		];
+
+		// Maybe override defaults.
+		if ( is_array( $args ) && $args ) {
+			$args = array_merge( $defaults, $args );
+		} else {
+			$args = $defaults;
+		}
+
+		$text = $args['text'];
+		// If deprecated key `title`.
+		if ( isset( $args['title'] ) ) {
+			$text = $args['title'];
+		}
+
+		if ( ! empty( $args['icon'] ) ) {
+			$html = sprintf(
+				'<h1 class="%s"><span class="fa fa-%s"></span> %s</h1>',
+				$args['class'],
+				$args['icon'],
+				$text
+			);
+		} else {
+			$html = sprintf(
+				'<h1 class="%s">%s</h1>',
+				$args['class'],
+				$text
+			);
+		}
+		return $html;
 	}
 
-	public static function formInputTextBlock($args)
-	{
-		$name = $args['name'];
-		$disabled = empty($args['disabled'])?'':'disabled';
+	/**
+	 * Form open
+	 *
+	 * Prints the opening tag of a form element.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @access static
+	 * @param  mixed $args
+	 * @param  array $defaults
+	 * @return string
+	 */
+	public static function formOpen( $args = null, $defaults = [] ) {
+
+		// Default arguments.
+		$defaults = [
+			'id'      => '',
+			'class'   => '',
+			'enctype' => '',
+			'action'  => '',
+			'method'  => 'post',
+			'autoc'   => 'off',
+			'style'   => ''
+		];
+
+		// Maybe override defaults.
+		if ( is_array( $args ) && $args ) {
+			$args = array_merge( $defaults, $args );
+		} else {
+			$args = $defaults;
+		}
+
+		$id = '';
+		if ( ! empty( $args['id'] ) ) {
+			$id = 'id="' . $args['id'] . '"';
+		}
+
+		$class = '';
+		if ( ! empty( $args['class'] ) ) {
+			$class = 'class="' . $args['class'] . '"';
+		}
+
+		$enctype = '';
+		if ( ! empty( $args['enctype'] ) ) {
+			$enctype = 'enctype="' . $args['enctype'] . '"';
+		}
+
+		$action = '';
+		if ( ! empty( $args['action'] ) ) {
+			$action = 'action="' . $args['action'] . '"';
+		}
+
+		$method = '';
+		if ( ! empty( $args['method'] ) ) {
+			$method = 'method="' . $args['method'] . '"';
+		}
+
+		$autocomplete = 'autocomplete="' . $args['autoc'] . '"';
+
+		$style = '';
+		if ( ! empty( $args['style'] ) ) {
+			$style = 'style="' . $args['style'] . '"';
+		}
+
+		return "<form {$id} {$class} {$enctype} {$method} {$action} {$autocomplete} {$style} >";
+	}
+
+	/**
+	 * Form close
+	 *
+	 * Prints the closing tag of a form element
+	 * plus some JavaScript.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @access static
+	 * @return string
+	 */
+	public static function formClose() {
+
+		return <<<EOF
+		</form>
+		<script>
+		$(document).ready( function() {
+			// Prevent the form submit when press enter key.
+			$( 'form' ).keypress( function(e) {
+				if ( ( e.which == 13 ) && ( e.target.type !== 'textarea' ) ) {
+					return false;
+				}
+			});
+		});
+		</script>
+		EOF;
+	}
+
+	/**
+	 * Form title
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @access static
+	 * @param  mixed $args
+	 * @param  array $defaults
+	 * @return string Returns the heading markup.
+	 */
+	public static function formTitle( $args = null, $defaults = [] ) {
+
+		// Default arguments.
+		$defaults = [
+			'elem'   => 'h2',
+			'text'   => '',
+			'class'  => 'form-section-heading admin-form-section-heading'
+		];
+
+		// Maybe override defaults.
+		if ( is_array( $args ) && $args ) {
+			$args = array_merge( $defaults, $args );
+		} else {
+			$args = $defaults;
+		}
+
+		$text = $args['text'];
+		// If deprecated key `title`.
+		if ( isset( $args['title'] ) ) {
+			$text = $args['title'];
+		}
+
+		return sprintf(
+			'<%s class="%s">%s</%s>',
+			$args['elem'],
+			$args['class'],
+			$text,
+			$args['elem']
+		);
+	}
+
+	/**
+	 * Form block, text input
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @access static
+	 * @param  mixed $args
+	 * @param  array $defaults
+	 * @return mixed
+	 */
+	public static function formInputTextBlock( $args = null, $defaults = [] ) {
+
+		// Default arguments.
+		$defaults = [
+			'name'        => '',
+			'id'          => '',
+			'value'       => '',
+			'placeholder' => '',
+			'disabled'    => false,
+			'class'       => 'form-group',
+			'label'       => '',
+			'labelClass'  => 'form-input-label',
+			'tip'         => ''
+		];
+
+		// Maybe override defaults.
+		if ( is_array( $args ) && $args ) {
+			$args = array_merge( $defaults, $args );
+		} else {
+			$args = $defaults;
+		}
+
+		$disabled    = empty($args['disabled'])?'':'disabled';
 		$placeholder = isset($args['placeholder'])?$args['placeholder']:'';
-		$value = isset($args['value'])?$args['value']:'';
 
-		$id = 'js'.$name;
-		if (isset($args['id'])) {
+		$id = 'js' . $args['name'];
+		if ( ! empty( $args['id'] ) ) {
 			$id = $args['id'];
 		}
 
 		$tip = '';
-		if (!empty($args['tip'])) {
-			$tip = '<small class="form-text text-muted">'.$args['tip'].'</small>';
+		if ( ! empty( $args['tip'] ) ) {
+			$tip = '<small class="form-tip">' . $args['tip'] . '</small>';
 		}
 
-		$class = 'form-group m-0';
-		if (isset($args['class'])) {
-			$class = $args['class'];
+		$html = sprintf(
+			'<div class="%s">',
+			$args['class']
+		);
+
+		if ( ! empty( $args['label'] ) ) {
+			$html .= sprintf(
+				'<label for="%s">%s</label>',
+				$args['name'],
+				$args['label']
+			);
 		}
 
-		$labelClass = 'mt-4 mb-2 pb-2 border-bottom text-uppercase w-100';
-		if (isset($args['labelClass'])) {
-			$labelClass = $args['labelClass'];
-		}
+		$html .= sprintf(
+			'<input type="text" id="%s" name="%s" value="%s" class="form-control"%s%s />',
+			$id,
+			$args['name'],
+			$args['value'],
+			( ! empty( $args['placeholder'] ) ? ' placeholder="' . $args['placeholder'] . '"' : '' ),
+			( true == $args['disabled'] ? ' disabled="disabled"' : '' )
+		);
+		$html .= '</div>';
 
-		$label = '';
-		if (!empty($args['label'])) {
-			$label = '<label class="'.$labelClass.'" for="'.$id.'">'.$args['label'].'</label>';
+		if ( ! empty( $args['name'] ) && ! empty( $args['value'] ) ) {
+			return $html;
 		}
-
-		$type = 'text';
-		if (isset($args['type'])) {
-			$type = $args['type'];
-		}
-
-return <<<EOF
-<div class="$class">
-	$label
-	<input type="text" value="$value" class="form-control" id="$id" name="$name" placeholder="$placeholder" $disabled>
-	$tip
-</div>
-EOF;
+		return null;
 	}
 
-	public static function formInputFile($args)
-	{
-		$id = 'js'.$args['name'];
-		if (isset($args['id'])) {
+	public static function formInputFile( $args ) {
+
+		$id = 'js' . $args['name'];
+		if ( isset( $args['id'] ) ) {
 			$id = $args['id'];
 		}
 
