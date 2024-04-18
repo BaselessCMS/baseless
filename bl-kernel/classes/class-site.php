@@ -164,155 +164,406 @@ class Site extends dbJSON {
 		return false;
 	}
 
+	/**
+	 * Thumbnail width
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function thumbnailWidth() {
 		return $this->getField( 'thumbnailWidth' );
 	}
 
+	/**
+	 * Thumbnail height
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function thumbnailHeight() {
 		return $this->getField( 'thumbnailHeight' );
 	}
 
+	/**
+	 * Thumbnail quality
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function thumbnailQuality() {
 		return $this->getField( 'thumbnailQuality' );
 	}
 
+	/**
+	 * Autosave interval
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function autosaveInterval() {
 		return $this->getField( 'autosaveInterval' );
 	}
 
+	/**
+	 * Allow Unicode characters in the URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return boolean
+	 */
 	public function extremeFriendly() {
 		return $this->getField( 'extremeFriendly' );
 	}
 
+	/**
+	 * Markdown parser
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return boolean
+	 */
 	public function markdownParser() {
 		return $this->getField( 'markdownParser' );
 	}
 
+	/**
+	 * X/Twitter URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function twitter() {
 		return $this->getField( 'twitter' );
 	}
 
+	/**
+	 * Facebook URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function facebook() {
 		return $this->getField( 'facebook' );
 	}
 
+	/**
+	 * Instagram URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function instagram() {
 		return $this->getField( 'instagram' );
 	}
 
+	/**
+	 * YouTube URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function youtube() {
 		return $this->getField( 'youtube' );
 	}
 
+	/**
+	 * Vimeo URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function vimeo() {
 		return $this->getField( 'vimeo' );
 	}
 
+	/**
+	 * CodePen URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function codepen() {
 		return $this->getField( 'codepen' );
 	}
 
+	/**
+	 * GitHub URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function github() {
 		return $this->getField( 'github' );
 	}
 
+	/**
+	 * GitLab URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function gitlab() {
 		return $this->getField( 'gitlab' );
 	}
 
+	/**
+	 * LinkedIn URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function linkedin() {
 		return $this->getField( 'linkedin' );
 	}
 
+	/**
+	 * Xing URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function xing() {
 		return $this->getField( 'xing' );
 	}
 
+	/**
+	 * Mastodon URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function mastodon() {
 		return $this->getField( 'mastodon' );
 	}
 
+	/**
+	 * Dribble URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function dribbble() {
 		return $this->getField( 'dribbble' );
 	}
 
+	/**
+	 * VK URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function vk() {
 		return $this->getField( 'vk' );
 	}
 
+	/**
+	 * Order posts by
+	 *
+	 * Date or position.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function orderBy() {
 		return $this->getField( 'orderBy' );
 	}
 
+	/**
+	 * Restrict image
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return boolean
+	 */
 	public function imageRestrict() {
 		return $this->getField( 'imageRestrict' );
 	}
 
+	/**
+	 * Image relative path
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return boolean
+	 */
 	public function imageRelativeToAbsolute() {
 		return $this->getField( 'imageRelativeToAbsolute' );
 	}
 
-	// Returns the site title
+	/**
+	 * Site title
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function title() {
 		return $this->getField( 'title' );
 	}
 
-	// Returns the site slogan
+	/**
+	 * Site slogan
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function slogan() {
 		return $this->getField( 'slogan' );
 	}
 
-	// Returns the site description
+	/**
+	 * Site description
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function description() {
 		return $this->getField( 'description' );
 	}
 
+	/**
+	 * From email
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function emailFrom() {
 		return $this->getField( 'emailFrom' );
 	}
 
+	/**
+	 * Date format
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function dateFormat() {
 		return $this->getField( 'dateFormat' );
 	}
 
+	/**
+	 * Time format
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function timeFormat() {
 		return $this->getField( 'timeFormat' );
 	}
 
-	// Returns the site theme name
+	/**
+	 * Active frontend theme
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function theme() {
 		return $this->getField( 'theme' );
 	}
 
-	// Returns the admin theme name
+	/**
+	 * Active backend theme
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function adminTheme() {
 		return $this->getField( 'adminTheme' );
 	}
 
-	// Returns the footer text
+	/**
+	 * Site footer text.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function footer() {
 		return $this->getField( 'footer' );
 	}
 
+	/**
+	 * Title format: pages
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function titleFormatPages() {
 		return $this->getField( 'titleFormatPages' );
 	}
 
+	/**
+	 * Title format: home page
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function titleFormatHomepage() {
 		return $this->getField( 'titleFormatHomepage' );
 	}
 
+	/**
+	 * Title format: categories
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function titleFormatCategory() {
 		return $this->getField( 'titleFormatCategory' );
 	}
 
+	/**
+	 * Title format: tags
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function titleFormatTag() {
 		return $this->getField( 'titleFormatTag' );
 	}
 
-	// Returns the absolute URL of the site logo
-	// If you set $absolute=false returns only the filename
+	/**
+	 * Site logo
+	 *
+	 * Returns the absolute URL of the site logo.
+	 * If $absolute is false, only the filename is returned.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  boolean $absolute
+	 * @return string
+	 */
 	public function logo( $absolute = true ) {
+
 		$logo = $this->getField( 'logo' );
 		if ( $absolute && $logo ) {
 			return DOMAIN_UPLOADS . $logo;
@@ -320,14 +571,33 @@ class Site extends dbJSON {
 		return $logo;
 	}
 
-	// Returns the full domain and base url
-	// For example, https://www.domain.com/bludit
+	/**
+	 * CMS URL
+	 *
+	 * Returns the full domain and base url.
+	 *
+	 * @example https://www.domain.com
+	 * @example https://www.domain.com/blog
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function url() {
 		return $this->getField( 'url' );
 	}
 
-	// Returns the protocol and the domain, without the base url
-	// For example, http://www.domain.com
+	/**
+	 * Site Domain
+	 *
+	 * Returns the protocol and the domain without the base url.
+	 *
+	 * @example https://www.domain.com
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function domain() {
 
 		// If the URL field is not set, try detect the domain.
@@ -351,27 +621,61 @@ class Site extends dbJSON {
 		return $scheme . $domain . $port;
 	}
 
-	// Returns the timezone.
+	/**
+	 * Site time zone
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function timezone() {
 		return $this->getField( 'timezone' );
 	}
 
+	/**
+	 * URL path
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function urlPath() {
 		$url = $this->getField( 'url' );
 		return parse_url( $url, PHP_URL_PATH );
 	}
 
+	/**
+	 * URL scheme
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function isHTTPS() {
 		$url = $this->getField( 'url' );
 		return parse_url( $url, PHP_URL_SCHEME ) === 'https';
 	}
 
-	// Returns the current build / version of Bludit.
+	/**
+	 * Build version
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function currentBuild() {
 		return $this->getField( 'currentBuild' );
 	}
 
-	// Returns the amount of pages per page
+	/**
+	 * Items per page
+	 *
+	 * For paginated content.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return integer
+	 */
 	public function itemsPerPage() {
 		$value = $this->getField( 'itemsPerPage' );
 		if ( ( $value > 0 ) or ( $value == -1 ) ) {
@@ -380,24 +684,50 @@ class Site extends dbJSON {
 		return 6;
 	}
 
-	// Returns the current language.
+	/**
+	 * CMS/site language
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function language() {
 		return $this->getField( 'language' );
 	}
 
-	// Returns the sort version of the site's language
+	/**
+	 * CMS/site language, short version
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function languageShortVersion() {
 		$current = $this->language();
 		$explode = explode( '_', $current );
 		return $explode[0];
 	}
 
-	// Returns the current locale.
+	/**
+	 * CMS/site locale
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function locale() {
 		return $this->getField( 'locale' );
 	}
 
-	// Returns the current homepage, FALSE if not defined homepage
+	/**
+	 * Home page content
+	 *
+	 * Sequential posts or a static page.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return mixed Returns a page key to use as front page or false.
+	 */
 	public function homepage() {
 		$homepage = $this->getField( 'homepage' );
 		if ( empty( $homepage ) ) {
@@ -406,16 +736,32 @@ class Site extends dbJSON {
 		return $homepage;
 	}
 
-	// Returns the page key for the page not found
+	/**
+	 * $)$ error page
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function pageNotFound() {
 		$pageNotFound = $this->getField( 'pageNotFound' );
 		return $pageNotFound;
 	}
 
 	// Set the locale, returns TRUE is success, FALSE otherwise
+	/**
+	 * Set locale
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string $locale
+	 * @return void
+	 */
 	public function setLocale( $locale ) {
+
 		$localeList = explode( ',', $locale );
 		foreach ( $localeList as $locale ) {
+
 			$locale = trim( $locale );
 			if ( setlocale( LC_ALL, $locale . '.UTF-8' ) !== false ) {
 				return true;
@@ -428,12 +774,27 @@ class Site extends dbJSON {
 		return false;
 	}
 
-	// Set the timezone.
+	/**
+	 * Set the timezone.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string $timezone
+	 * @return string
+	 */
 	public function setTimezone( $timezone ) {
 		return date_default_timezone_set( $timezone );
 	}
 
-	// Returns the custom fields as array.
+	/**
+	 * Custom fields
+	 *
+	 * Returns the custom fields as array.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return array
+	 */
 	public function customFields() {
 		$customFields = \Sanitize :: htmlDecode( $this->getField( 'customFields' ) );
 		return json_decode( $customFields, true );

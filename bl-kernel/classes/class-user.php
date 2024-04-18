@@ -1,175 +1,280 @@
-<?php defined('BLUDIT') or die('Bludit CMS.');
+<?php
+/**
+ * User object
+ *
+ * @package    JSON CMS
+ * @subpackage Classes
+ * @category   Core
+ * @since      1.0.0
+ */
+
+// Stop if accessed directly.
+if ( ! defined( 'JSON_CMS' ) ) {
+	die( 'You are not allowed to access this file directly.' );
+}
 
 class User {
+
+	/**
+	 * User variables
+	 *
+	 * @since  1.0.0
+	 * @access protected
+	 * @var    array
+	 */
 	protected $vars;
 
-	function __construct($username)
-	{
+	/**
+	 * Constructor method
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  string $username
+	 * @global object $users The Users class.
+	 * @return self
+	 */
+	public function __construct( $username ) {
+
+		// Access global variables.
 		global $users;
 
 		$this->vars['username'] = $username;
 
-		if ($username===false) {
+		if ( false === $username ) {
 			$row = $users->getDefaultFields();
 		} else {
-			if (Text::isEmpty($username) || !$users->exists($username)) {
-				$errorMessage = 'User not found in the database by username ['.$username.']';
-				Log::set(__METHOD__.LOG_SEP.$errorMessage);
-				throw new Exception($errorMessage);
+			if ( \Text :: isEmpty( $username ) || ! $users->exists( $username ) ) {
+				$errorMessage = 'User not found in the database by username [' . $username . ']';
+				\Log :: set( __METHOD__ . LOG_SEP . $errorMessage );
+				throw new \Exception( $errorMessage );
 			}
-			$row = $users->getUserDB($username);
+			$row = $users->getUserDB( $username );
 		}
 
-		foreach ($row as $field=>$value) {
-			$this->setField($field, $value);
+		foreach ( $row as $field => $value ) {
+			$this->setField( $field, $value );
 		}
 	}
 
-	public function getValue($field)
-	{
-		if (isset($this->vars[$field])) {
+	public function getValue( $field ) {
+		if ( isset( $this->vars[$field] ) ) {
 			return $this->vars[$field];
 		}
 		return false;
 	}
 
-	public function setField($field, $value)
-	{
+	public function setField( $field, $value ) {
 		$this->vars[$field] = $value;
 		return true;
 	}
 
-	public function getDB()
-	{
+	public function getDB() {
 		return $this->vars;
 	}
 
-	public function username()
-	{
+	public function username() {
 		return $this->getValue('username');
 	}
 
-	public function description()
-	{
+	public function description() {
 		return $this->getValue('description');
 	}
 
-	public function nickname()
-	{
+	public function nickname() {
 		return $this->getValue('nickname');
 	}
 
-	public function firstName()
-	{
+	public function firstName() {
 		return $this->getValue('firstName');
 	}
 
-	public function lastName()
-	{
+	public function lastName() {
 		return $this->getValue('lastName');
 	}
 
-	public function tokenAuth()
-	{
+	public function tokenAuth() {
 		return $this->getValue('tokenAuth');
 	}
 
-	public function role()
-	{
+	public function role() {
 		return $this->getValue('role');
 	}
 
-	public function password()
-	{
+	public function password() {
 		return $this->getValue('password');
 	}
 
-	public function enabled()
-	{
+	public function enabled() {
 		$password = $this->getValue('password');
 		return $password != '!';
 	}
 
-	public function salt()
-	{
+	public function salt() {
 		return $this->getValue('salt');
 	}
 
-	public function email()
-	{
+	public function email() {
 		return $this->getValue('email');
 	}
 
-	public function registered()
-	{
+	public function registered() {
 		return $this->getValue('registered');
 	}
 
-	public function website()
-	{
+	public function website() {
 		return $this->getValue('website');
 	}
 
-	public function twitter()
-	{
-		return $this->getValue('twitter');
+	/**
+	 * X/Twitter URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function twitter() {
+		return $this->getValue( 'twitter' );
 	}
 
-	public function facebook()
-	{
-		return $this->getValue('facebook');
+	/**
+	 * Facebook URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function facebook() {
+		return $this->getValue( 'facebook' );
 	}
 
-	public function instagram()
-	{
-		return $this->getValue('instagram');
+	/**
+	 * Instagram URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function instagram() {
+		return $this->getValue( 'instagram' );
 	}
 
-	public function youtube()
-	{
-		return $this->getValue('youtube');
+	/**
+	 * YouTube URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function youtube() {
+		return $this->getValue( 'youtube' );
 	}
 
-	public function vimeo()
-	{
-		return $this->getValue('vimeo');
+	/**
+	 * Vimeo URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function vimeo() {
+		return $this->getValue( 'vimeo' );
 	}
 
-	public function codepen()
-	{
-		return $this->getValue('codepen');
+	/**
+	 * CodePen URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function codepen() {
+		return $this->getValue( 'codepen' );
 	}
 
-	public function github()
-	{
-		return $this->getValue('github');
+	/**
+	 * GitHub URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function github() {
+		return $this->getValue( 'github' );
 	}
 
-	public function gitlab()
-	{
-		return $this->getValue('gitlab');
+	/**
+	 * GitLab URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function gitlab() {
+		return $this->getValue( 'gitlab' );
 	}
 
-	public function linkedin()
-	{
-		return $this->getValue('linkedin');
+	/**
+	 * LinkedIn URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function linkedin() {
+		return $this->getValue( 'linkedin' );
 	}
 
-	public function xing()
-	{
-		return $this->getValue('xing');
+	/**
+	 * Xing URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function xing() {
+		return $this->getValue( 'xing' );
 	}
 
-	public function mastodon()
-	{
-		return $this->getValue('mastodon');
+	/**
+	 * Mastodon URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function mastodon() {
+		return $this->getValue( 'mastodon' );
 	}
 
-	public function vk()
-	{
-		return $this->getValue('vk');
+	/**
+	 * Dribble URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function dribbble() {
+		return $this->getValue( 'dribbble' );
 	}
 
+	/**
+	 * VK URL
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
+	public function vk() {
+		return $this->getValue( 'vk' );
+	}
+
+	/**
+	 * Avatar/Profile picture
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string
+	 */
 	public function profilePicture() {
 
 		$filename = $this->getValue( 'username' ) . '.png';
@@ -179,33 +284,39 @@ class User {
 		return DOMAIN_UPLOADS_PROFILES . $filename;
 	}
 
-	public function json($returnsArray=false)
-	{
-		$tmp['username'] 	= $this->username();
-		$tmp['firstName'] 	= $this->firstName();
-		$tmp['lastName'] 	= $this->lastName();
-		$tmp['nickname'] 	= $this->nickname();
-		$tmp['description'] = $this->description();
-		$tmp['website'] 	= $this->website();
-		$tmp['twitter'] 	= $this->twitter();
-		$tmp['facebook'] 	= $this->facebook();
-		$tmp['instagram'] 	= $this->instagram();
-		$tmp['youtube'] 	= $this->youtube();
-		$tmp['vimeo'] 	    = $this->vimeo();
-		$tmp['codepen'] 	= $this->codepen();
-		$tmp['github'] 		= $this->github();
-		$tmp['gitlab'] 		= $this->gitlab();
-		$tmp['linkedin'] 	= $this->linkedin();
-		$tmp['xing'] 		= $this->xing();
-		$tmp['mastodon']	= $this->mastodon();
-		$tmp['vk']		= $this->vk();
-		$tmp['profilePicture']	= $this->profilePicture();
+	/**
+	 * User data in JSON
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  boolean $returnsArray
+	 * @return array
+	 */
+	public function json( $returnsArray = false ) {
 
-		if ($returnsArray) {
+		$tmp['username']       = $this->username();
+		$tmp['firstName']      = $this->firstName();
+		$tmp['lastName']       = $this->lastName();
+		$tmp['nickname']       = $this->nickname();
+		$tmp['description']    = $this->description();
+		$tmp['website']        = $this->website();
+		$tmp['twitter']        = $this->twitter();
+		$tmp['facebook']       = $this->facebook();
+		$tmp['instagram']      = $this->instagram();
+		$tmp['youtube']        = $this->youtube();
+		$tmp['vimeo']          = $this->vimeo();
+		$tmp['codepen']        = $this->codepen();
+		$tmp['github']         = $this->github();
+		$tmp['gitlab']         = $this->gitlab();
+		$tmp['linkedin']       = $this->linkedin();
+		$tmp['xing']           = $this->xing();
+		$tmp['mastodon']       = $this->mastodon();
+		$tmp['vk']             = $this->vk();
+		$tmp['profilePicture'] = $this->profilePicture();
+
+		if ( $returnsArray ) {
 			return $tmp;
 		}
-
-		return json_encode($tmp);
+		return json_encode( $tmp );
 	}
-
 }
