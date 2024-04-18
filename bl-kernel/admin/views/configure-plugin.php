@@ -45,7 +45,9 @@ global $plugin;
 	</header>
 
 	<input type="hidden" id="jstokenCSRF" name="tokenCSRF" value="<?php echo security()->getTokenCSRF(); ?>">
-	<?php echo $plugin->form(); ?>
+	<?php if ( method_exists( $plugin->className(), 'form' ) ) {
+		echo $plugin->form();
+	} ?>
 </form>
 
 <script>
