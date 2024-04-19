@@ -169,7 +169,7 @@ EOF;
 	// The line is a json array with the hash IP of the visitor and the time
 	public function addVisitor()
 	{
-		if (Cookie::get('BLUDIT-KEY') && $this->getValue('excludeAdmins')) {
+		if (Cookie::get('JSON-CMS-KEY') && $this->getValue('excludeAdmins')) {
 			return false;
 		}
 		$currentTime = Date::current('Y-m-d H:i:s');

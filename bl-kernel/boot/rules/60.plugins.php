@@ -87,8 +87,11 @@ function buildPlugins() {
 	// Load each plugin classes.
 	foreach ( $list as $path ) {
 
-		// Check if the directory has the plugin.php.
-		if ( file_exists( $path . DS . 'plugin.php' ) ) {
+		// Get the core plugin file.
+		if ( file_exists( $path . DS . 'init.php' ) ) {
+			include_once( $path . DS . 'init.php' );
+		// Deprecated.
+		} elseif ( file_exists( $path . DS . 'plugin.php' ) ) {
 			include_once( $path . DS . 'plugin.php' );
 		}
 	}

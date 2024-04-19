@@ -116,7 +116,7 @@ define( 'PATH_CONTENT', PATH_ROOT . 'bl-content' . DS );
 define( 'PATH_RULES', PATH_KERNEL . 'boot' . DS . 'rules' . DS );
 define( 'PATH_INCLUDES', PATH_KERNEL . 'includes' . DS );
 define( 'PATH_CLASSES', PATH_KERNEL . 'classes' . DS );
-define( 'PATH_HELPERS', PATH_KERNEL . 'helpers' . DS );
+define( 'PATH_HELPERS', PATH_CLASSES ); // Deprecated.
 define( 'PATH_AJAX', PATH_KERNEL . 'ajax' . DS );
 define( 'PATH_ASSETS', PATH_KERNEL . 'assets' . DS );
 define( 'PATH_CORE_JS', PATH_ASSETS . 'js' . DS );
@@ -156,7 +156,7 @@ mb_internal_encoding( CHARSET );
 // Set HTTP output character encoding.
 mb_http_output( CHARSET );
 
-// Include classes.
+// Include core classes.
 include( PATH_CLASSES . 'class-dbjson.php' );
 include( PATH_CLASSES . 'class-dblist.php' );
 include( PATH_CLASSES . 'class-plugin.php' );
@@ -184,22 +184,22 @@ include( PATH_INCLUDES . 'functions.php' );
 include( PATH_INCLUDES . 'template-tags.php' );
 
 // Include helper classes.
-include( PATH_HELPERS . 'text.class.php' );
-include( PATH_HELPERS . 'log.class.php' );
-include( PATH_HELPERS . 'date.class.php' );
-include( PATH_HELPERS . 'theme.class.php' );
-include( PATH_HELPERS . 'session.class.php' );
-include( PATH_HELPERS . 'redirect.class.php' );
-include( PATH_HELPERS . 'sanitize.class.php' );
-include( PATH_HELPERS . 'valid.class.php' );
-include( PATH_HELPERS . 'email.class.php' );
-include( PATH_HELPERS . 'filesystem.class.php' );
-include( PATH_HELPERS . 'alert.class.php' );
-include( PATH_HELPERS . 'paginator.class.php' );
-include( PATH_HELPERS . 'image.class.php' );
-include( PATH_HELPERS . 'tcp.class.php' );
-include( PATH_HELPERS . 'dom.class.php' );
-include( PATH_HELPERS . 'cookie.class.php' );
+include( PATH_CLASSES . 'class-text.php' );
+include( PATH_CLASSES . 'class-log.php' );
+include( PATH_CLASSES . 'class-date.php' );
+include( PATH_CLASSES . 'class-theme.php' );
+include( PATH_CLASSES . 'class-session.php' );
+include( PATH_CLASSES . 'class-redirect.php' );
+include( PATH_CLASSES . 'class-sanitize.php' );
+include( PATH_CLASSES . 'class-valid.php' );
+include( PATH_CLASSES . 'class-email.php' );
+include( PATH_CLASSES . 'class-filesystem.php' );
+include( PATH_CLASSES . 'class-alert.php' );
+include( PATH_CLASSES . 'class-paginator.php' );
+include( PATH_CLASSES . 'class-image.php' );
+include( PATH_CLASSES . 'class-tcp.php' );
+include( PATH_CLASSES . 'class-dom.php' );
+include( PATH_CLASSES . 'class-cookie.php' );
 
 // Instantiate classes.
 $pages 		= new Pages();
