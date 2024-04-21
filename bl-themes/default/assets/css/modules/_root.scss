@@ -1,0 +1,48 @@
+///
+/// CSS variables
+///
+
+:root {
+	// Font stacks.
+	--cms-fonts--sans-stack: #{$fonts_sans};
+	--cms-fonts--serif-stack: #{$fonts_serif};
+	--cms-fonts--monospace-stack: #{$fonts_monospace};
+	--cms-fonts--display-stack: #{$fonts_sans};
+
+	// Layout general.
+	--cms-spacing--horz: 2rem;
+	--cms-spacing--vert: 2rem;
+	--cms-wrapper--general--max-width: 1280px;
+	--cms-wrapper--general--margin: 0 auto;
+	--cms-wrapper--general--padding: 0;
+	--cms-wrapper--page--padding: var( --cms-spacing--vert ) var( --cms-spacing--horz );
+
+	// Layout elements.
+	--cms-box--border-style: solid;
+	--cms-box--border-width: 1px;
+	--cms-box--border-color: #{$light_gray};
+	--cms-box--border-color--dark: #{$medium_gray};
+	--cms-box--border: var( --cms-box--border-style ) var( --cms-box--border-width ) var( --cms-box--border-color );
+	--cms-box--border--dark: var( --cms-box--border-style ) var( --cms-box--border-width ) var( --cms-box--border-color--dark );
+
+	// Body & general text.
+	--cms-body--font-family: var( --cms-fonts--sans-stack );
+	--cms-body--font-size: 1rem;
+	--cms-body--bg-color: var( --cms-scheme-color--body );
+	--cms-body--bg-color--dark: var( --cms-scheme-color--body--dark );
+	--cms-body--text-color: var( --cms-scheme-color--text );
+	--cms-body--text-color--dark: var( --cms-scheme-color--text--dark );
+
+	--cms-display--font-family: var( --cms-fonts--display-stack );
+	--cms-display--font-weight: 600;
+	--cms-display--letter-spacing: normal;
+
+	--cms-text-shadow: 0.05em 0.05em 0.05em #{rgba( $color: black, $alpha: 0.625 )};
+
+	// Site header.
+	--cms-site--header--padding: calc( var( --cms-spacing--vert ) / 2 ) var( --cms-spacing--horz );
+	--cms-site--description--margin: 0;
+
+	// Page content.
+	--cms-page--cover--figure--height: 320px;
+}

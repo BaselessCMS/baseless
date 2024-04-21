@@ -396,7 +396,7 @@ function install( $adminPassword, $timezone ) {
 		'language'     => $L->currentLanguage(),
 		'locale'       => $L->locale(),
 		'timezone'     => $timezone,
-		'theme'        => 'frontend',
+		'theme'        => 'default',
 		'adminTheme'   => 'default',
 		'homepage'     => '',
 		'pageNotFound' => '',
@@ -549,9 +549,9 @@ function install( $adminPassword, $timezone ) {
 		LOCK_EX
 	);
 
-	// File plugins/frontend/db.php
+	// File plugins/default/db.php
 	file_put_contents(
-		PATH_PLUGINS_DATABASES . 'frontend' . DS . 'db.php',
+		PATH_PLUGINS_DATABASES . 'default' . DS . 'db.php',
 		$dataHead . json_encode(
 			[
 				'position' => 1

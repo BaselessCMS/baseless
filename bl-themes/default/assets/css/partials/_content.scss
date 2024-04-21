@@ -1,0 +1,14 @@
+///
+/// Content stylesheet
+///
+
+.page-cover {
+	overflow: hidden;
+	height: var( --cms-page--cover--figure--height );
+
+	img {
+		max-height: var( --cms-page--cover--figure--height );
+		object-fit: cover;
+		object-position: center center;
+	}
+}

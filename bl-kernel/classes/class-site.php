@@ -31,7 +31,7 @@ class Site extends dbJSON {
 		'language'     => 'en',
 		'locale'       => 'en, en_US, en_AU, en_CA, en_GB, en_IE, en_NZ',
 		'timezone'     => 'America/Argentina/Buenos_Aires',
-		'theme'        => 'frontend',
+		'theme'        => 'default',
 		'adminTheme'   => 'default',
 		'homepage'     => '',
 		'pageNotFound' => '',
