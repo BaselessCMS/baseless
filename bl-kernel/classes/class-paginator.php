@@ -11,7 +11,7 @@
  */
 
 // Stop if accessed directly.
-if ( ! defined( 'BLUDIT' ) ) {
+if ( ! defined( 'JSON_CMS' ) ) {
 	die( 'You are not allowed to access this file directly.' );
 }
 
