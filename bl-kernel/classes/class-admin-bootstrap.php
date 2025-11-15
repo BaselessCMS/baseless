@@ -383,6 +383,15 @@ EOF;
 		return null;
 	}
 
+	/**
+	 * File input field.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @access static
+	 * @param  array $args
+	 * @return void
+	 */
 	public static function formInputFile( $args ) {
 
 		$id = 'js' . $args['name'];
@@ -391,40 +400,40 @@ EOF;
 		}
 
 		$class = 'custom-file';
-		if (isset($args['class'])) {
-			$class = $class.' '.$args['class'];
+		if ( isset( $args['class'] ) ) {
+			$class = $class . ' ' . $args['class'];
 		}
 
-		$html  = '<div class="'.$class.'">';
-		$html .= '<input type="file" class="custom-file-input" id="'.$id.'">';
-		$html .= '<label class="custom-file-label" for="'.$id.'">'.$args['label'].'</label>';
+		$html  = '<div class="' . $class . '">';
+		$html .= '<input type="file" class="custom-file-input" id="' . $id . '">';
+		$html .= '<label class="custom-file-label" for="' . $id . '">' . $args['label'] . '</label>';
 		$html .= '</div>';
 
 		return $html;
 	}
 
-	public static function formTextarea($args)
-	{
-		$id = 'js'.$args['name'];
-		if (isset($args['id'])) {
+	public static function formTextarea( $args ) {
+
+		$id = 'js' . $args['name'];
+		if ( isset( $args['id'] ) ) {
 			$id = $args['id'];
 		}
 
 		$class = 'form-control';
-		if (isset($args['class'])) {
-			$class = $class.' '.$args['class'];
+		if ( isset( $args['class'] ) ) {
+			$class = $class . ' ' . $args['class'];
 		}
 
 		$html = '<div class="form-group row">';
 
-		if (!empty($args['label'])) {
-			$html .= '<label for="'.$id.'" class="col-sm-2 col-form-label">'.$args['label'].'</label>';
+		if ( ! empty( $args['label'] ) ) {
+			$html .= '<label for="' . $id . '" class="col-sm-2 col-form-label">' . $args['label'] . '</label>';
 		}
 
 		$html .= '<div class="col-sm-10">';
-		$html .= '<textarea class="'.$class.'" id="'.$id.'" name="'.$args['name'].'" rows="'.$args['rows'].'" placeholder="'.$args['placeholder'].'">'.$args['value'].'</textarea>';
-		if (isset($args['tip'])) {
-			$html .= '<small class="form-text text-muted">'.$args['tip'].'</small>';
+		$html .= '<textarea class="' . $class . '" id="' . $id . '" name="' . $args['name'] . '" rows="' . $args['rows'] . '" placeholder="' . $args['placeholder'] . '">' . $args['value'] . '</textarea>';
+		if ( isset( $args['tip'] ) ) {
+			$html .= '<small class="form-text text-muted">' . $args['tip'] . '</small>';
 		}
 		$html .= '</div>';
 		$html .= '</div>';
@@ -432,34 +441,33 @@ EOF;
 		return $html;
 	}
 
-	public static function formTextareaBlock($args)
-	{
-		$id = 'js'.$args['name'];
-		if (isset($args['id'])) {
+	public static function formTextareaBlock( $args ) {
+
+		$id = 'js' . $args['name'];
+		if ( isset( $args['id'] ) ) {
 			$id = $args['id'];
 		}
 
 		$class = 'form-control';
-		if (!empty($args['class'])) {
-			$class = $class.' '.$args['class'];
+		if ( ! empty( $args['class'] ) ) {
+			$class = $class . ' ' . $args['class'];
 		}
 
 		$html = '<div class="form-group m-0">';
-		if (!empty($args['label'])) {
-			$html .= '<label class="mt-4 mb-2 pb-2 border-bottom text-uppercase w-100" for="'.$id.'">'.$args['label'].'</label>';
+		if ( ! empty( $args['label'] ) ) {
+			$html .= '<label class="mt-4 mb-2 pb-2 border-bottom text-uppercase w-100" for="' . $id . '">' . $args['label'] . '</label>';
 		}
 
-		$html .= '<textarea class="'.$class.'" id="'.$id.'" name="'.$args['name'].'" rows="'.$args['rows'].'" placeholder="'.$args['placeholder'].'">'.$args['value'].'</textarea>';
-		if (!empty($args['tip'])) {
-			$html .= '<small class="form-text text-muted">'.$args['tip'].'</small>';
+		$html .= '<textarea class="' . $class . '" id="' . $id . '" name="' . $args['name'] . '" rows="' . $args['rows'] . '" placeholder="' . $args['placeholder'] . '">' . $args['value'] . '</textarea>';
+		if ( ! empty( $args['tip'] ) ) {
+			$html .= '<small class="form-text text-muted">' . $args['tip'] . '</small>';
 		}
 		$html .= '</div>';
 
 		return $html;
 	}
 
-	public static function formInputText($args)
-	{
+	public static function formInputText( $args ) {
 		$name = $args['name'];
 		$disabled = empty($args['disabled'])?'':'disabled';
 		$readonly = empty($args['readonly'])?'':'readonly';

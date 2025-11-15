@@ -202,13 +202,7 @@ function site_domain() {
  * @return object
  */
 function helper() {
-
-	if ( bludit_min( 4 ) ) {
-		$helper_class = new \HTML;
-	} else {
-		$helper_class = new \Theme;
-	}
-	return $helper_class;
+	return new \Theme;
 }
 
 /**
@@ -220,11 +214,7 @@ function helper() {
  */
 function plugins_hook( $name = '' ) {
 
-	if ( bludit_min( 4 ) ) {
-		$hook = execPluginsByHook( $name );
-	} else {
-		$hook = helper()->plugins( $name );
-	}
+	$hook = helper()->plugins( $name );
 
 	if ( $hook ) {
 		echo $hook;

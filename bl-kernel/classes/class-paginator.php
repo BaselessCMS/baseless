@@ -38,6 +38,7 @@ class Paginator {
 		'showNextPrev'  => false
 	];
 
+
 	public static function set( $key, $value ) {
 		self :: $pager[$key] = $value;
 	}
@@ -85,8 +86,7 @@ class Paginator {
 	}
 
 	// Returns the absolute URL for the next page.
-	public static function nextPageUrl()
-	{
+	public static function nextPageUrl() {
 		return self :: numberUrl( self :: nextPage() );
 	}
 
@@ -95,7 +95,7 @@ class Paginator {
 		return self :: numberUrl( self :: prevPage() );
 	}
 
-	// Return the absoulte URL with the page number.
+	// Return the absolute URL with the page number.
 	public static function numberUrl( $pageNumber ) {
 
 		// Access global variables.
