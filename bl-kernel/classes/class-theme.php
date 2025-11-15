@@ -505,30 +505,6 @@ class Theme {
 	}
 
 	/**
-	 * Bootstrap icons stylesheet
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @access static
-	 * @return string
-	 */
-	public static function cssBootstrapIcons() {
-		return '<link rel="stylesheet" type="text/css" href="' . DOMAIN_CORE_CSS . 'bootstrap-icons/bootstrap-icons.css?version=' . CMS_VERSION . '">' . PHP_EOL;
-	}
-
-	/**
-	 * LineAwesome icons stylesheet
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @access static
-	 * @return string
-	 */
-	public static function cssLineAwesome() {
-		return '<link rel="stylesheet" type="text/css" href="' . DOMAIN_CORE_CSS . 'line-awesome/css/line-awesome-font-awesome.min.css?version=' . CMS_VERSION . '">' . PHP_EOL;
-	}
-
-	/**
 	 * Enqueue jQuery sortable script
 	 *
 	 * @since  1.0.0

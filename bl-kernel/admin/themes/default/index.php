@@ -38,21 +38,17 @@ if ( defined( 'DEBUG_MODE' ) && DEBUG_MODE ) {
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="<?php echo HTML_PATH_CORE_IMG . 'favicon.png?version=' . BLUDIT_VERSION; ?>">
 
+	<link rel="stylesheet" type="text/css" href="<?php echo DOMAIN_ADMIN_THEME; ?>assets/css/bootstrap.min.css?version=<?php echo CMS_VERSION; ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo DOMAIN_CORE_CSS; ?>line-awesome/css/line-awesome-font-awesome.min.css?version=<?php echo CMS_VERSION; ?>">
 	<?php
-		echo Theme :: cssBootstrap();
-		echo Theme :: cssLineAwesome();
 		echo Theme :: css( [
 			'style.css'
 		], DOMAIN_ADMIN_THEME . 'assets/css/' );
 		echo Theme :: css( array(
-			// 'style.css',
-			// 'bootstrap-mods.css'
-		), DOMAIN_ADMIN_THEME_CSS );
-		echo Theme :: css( array(
 			'jquery.datetimepicker.min.css',
 			'select2.min.css',
 			'select2-bootstrap4.min.css'
-		), DOMAIN_CORE_CSS );
+		), DOMAIN_ADMIN_THEME . 'assets/css/' );
 	?>
 
 	<?php
