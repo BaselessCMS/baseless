@@ -24,7 +24,7 @@ function config() {
 
 	$config = false;
 	if ( file_exists( PATH_ROOT . 'config.json' ) ) {
-		$config = file_get_contents( PATH_ROOT . 'config.json' );
+		$config = file_get_contents( PATH_BOOT . 'config.json' );
 	}
 
 	// False if no config file.
