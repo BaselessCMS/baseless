@@ -52,11 +52,6 @@ global $config;
 		</tr>
 
 		<tr>
-			<td><?php lang()->p( 'Build Number' ); ?></td>
-			<td><?php echo BLUDIT_BUILD; ?></td>
-		</tr>
-
-		<tr>
 			<td><?php lang()->p( 'Disk Usage' ); ?></td>
 			<td><?php echo \Filesystem :: bytesToHumanFileSize( \Filesystem :: getSize( PATH_ROOT ) ); ?></td>
 		</tr>

@@ -46,16 +46,12 @@ $config = config();
 
 // Die if no config file.
 if ( ! $config ) {
-	die( 'This website needs a config.json file in the CMS root directory.' );
+	die( 'This website needs a config.json file in the CMS boot directory.' );
 }
 
-// System definitions.
-define( 'BLUDIT_VERSION', $config['system']['version'] );
-define( 'BLUDIT_RELEASE_DATE', $config['system']['date'] );
-define( 'BLUDIT_BUILD', $config['system']['build'] );
-define( 'CMS_VERSION', $config['system']['version'] );
-define( 'CMS_RELEASE_DATE', $config['system']['date'] );
-define( 'CMS_BUILD', $config['system']['build'] );
+// CMS version.
+define( 'BLUDIT_VERSION', '1.0.0' );
+define( 'CMS_VERSION', '1.0.0' );
 
 // Change to true for debugging.
 define( 'DEBUG_MODE', $config['debug']['mode'] );
