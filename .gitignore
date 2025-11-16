@@ -5,6 +5,9 @@ dbgenerator.php
 bl-content/*
 !bl-content/.keep
 bl-content-migrator
+bl-plugins/categories-lists
+bl-plugins/tags-lists
+bl-plugins/searchforms
 bl-plugins/timemachine
 bl-plugins/timemachine-x
 bl-plugins/discovery
