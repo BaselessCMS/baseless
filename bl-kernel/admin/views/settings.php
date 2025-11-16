@@ -49,8 +49,6 @@ use function CMS\Help\{
 
 					<a class="nav-item nav-link" id="nav-meta-tab" data-toggle="tab" href="#meta" role="tab" aria-controls="nav-meta" aria-selected="false"><?php lang()->p( 'Meta' ); ?></a>
 
-					<a class="nav-item nav-link" id="nav-social-tab" data-toggle="tab" href="#social" role="tab" aria-controls="nav-social" aria-selected="false"><?php lang()->p( 'Networks' ); ?></a>
-
 					<a class="nav-item nav-link" id="nav-custom-fields-tab" data-toggle="tab" href="#custom-fields" role="tab" aria-controls="nav-custom-fields" aria-selected="false"><?php lang()->p( 'Custom Fields' ); ?></a>
 				</div>
 			</nav>
@@ -486,130 +484,6 @@ use function CMS\Help\{
 					'class'       => '',
 					'placeholder' => '',
 					'tip'         => lang()->g( 'Variables Allowed' ) . ' <code>{{tag-name}}</code> <code>{{site-title}}</code> <code>{{site-slogan}}</code> <code>{{site-description}}</code>'
-				] );
-				?>
-			</div>
-
-			<div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
-
-				<h2><?php lang()->p( 'Media Network Links' ); ?></h2>
-
-				<?php
-				echo Bootstrap :: formInputText( [
-					'name'        => 'twitter',
-					'label'       => 'Twitter',
-					'value'       => site()->twitter(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'facebook',
-					'label'       => 'Facebook',
-					'value'       => site()->facebook(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'instagram',
-					'label'       => 'Instagram',
-					'value'       => site()->instagram(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'youtube',
-					'label'       => 'YouTube',
-					'value'       => site()->instagram(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'vimeo',
-					'label'       => 'Vimeo',
-					'value'       => site()->vimeo(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'codepen',
-					'label'       => 'CodePen',
-					'value'       => site()->codepen(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'gitlab',
-					'label'       => 'GitLab',
-					'value'       => site()->gitlab(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'github',
-					'label'       => 'GitHub',
-					'value'       => site()->github(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'linkedin',
-					'label'       => 'LinkedIn',
-					'value'       => site()->linkedin(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'xing',
-					'label'       => 'Xing',
-					'value'       => site()->xing(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'mastodon',
-					'label'       => 'Mastodon',
-					'value'       => site()->mastodon(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'dribbble',
-					'label'       => 'Dribbble',
-					'value'       => site()->dribbble(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
-				] );
-
-				echo Bootstrap :: formInputText( [
-					'name'        => 'vk',
-					'label'       => 'VK',
-					'value'       => site()->vk(),
-					'class'       => '',
-					'placeholder' => '',
-					'tip'         => ''
 				] );
 				?>
 			</div>

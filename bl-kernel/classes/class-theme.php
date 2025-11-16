@@ -16,44 +16,6 @@ if ( ! defined( 'JSON_CMS' ) ) {
 class Theme {
 
 	/**
-	 * Site networks
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @access static
-	 * @global object $site The Site class.
-	 * @return array
-	 */
-	public static function socialNetworks() {
-
-		// Access global variables.
-		global $site;
-
-		$socialNetworks = [
-			'twitter'   => 'Twitter',
-			'facebook'  => 'Facebook',
-			'instagram' => 'Instagram',
-			'youtube'   => 'YouTube',
-			'vimeo'     => 'Vimeo',
-			'codepen'   => 'Codepen',
-			'github'    => 'Github',
-			'gitlab'    => 'GitLab',
-			'linkedin'  => 'Linkedin',
-			'xing'      => 'Xing',
-			'mastodon'  => 'Mastodon',
-			'dribbble'  => 'Dribble',
-			'vk'        => 'VK'
-		];
-
-		foreach ( $socialNetworks as $key => $label ) {
-			if ( ! $site->{$key}() ) {
-				unset( $socialNetworks[$key] );
-			}
-		}
-		return $socialNetworks;
-	}
-
-	/**
 	 * Site title
 	 *
 	 * @since  1.0.0

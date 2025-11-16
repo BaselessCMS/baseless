@@ -51,8 +51,6 @@ if ( user()->nickname() ) {
 
 			<a class="nav-item nav-link" id="nav-avatar-tab" data-toggle="tab" href="#avatar" role="tab" aria-controls="nav-avatar" aria-selected="false"><?php lang()->p( 'Avatar' ) ?></a>
 
-			<a class="nav-item nav-link" id="nav-links-tab" data-toggle="tab" href="#links" role="tab" aria-controls="nav-links" aria-selected="false"><?php lang()->p( 'Links' ) ?></a>
-
 			<a class="nav-item nav-link" id="nav-security-tab" data-toggle="tab" href="#security" role="tab" aria-controls="nav-security" aria-selected="false"><?php lang()->p( 'Security' ) ?></a>
 		</div>
 	</nav>
@@ -231,118 +229,6 @@ if ( user()->nickname() ) {
 			</div>
 			<?php endif; endif;
 		?>
-		</div>
-
-		<div class="tab-pane fade" id="links" role="tabpanel" aria-labelledby="nav-links-tab">
-			<?php
-			echo Bootstrap :: formInputText( [
-				'name'        => 'twitter',
-				'label'       => 'Twitter',
-				'value'       => user()->twitter(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
-			echo Bootstrap :: formInputText( [
-				'name'        => 'facebook',
-				'label'       => 'Facebook',
-				'value'       => user()->facebook(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
-			echo Bootstrap :: formInputText( [
-				'name'        => 'instagram',
-				'label'       => 'Instagram',
-				'value'       => user()->instagram(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
-			echo Bootstrap :: formInputText( [
-				'name'        => 'youtube',
-				'label'       => 'YouTube',
-				'value'       => user()->youtube(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
-			echo Bootstrap :: formInputText( [
-				'name'        => 'vimeo',
-				'label'       => 'Vimeo',
-				'value'       => user()->vimeo(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
-			echo Bootstrap :: formInputText( [
-				'name'        => 'codepen',
-				'label'       => 'CodePen',
-				'value'       => user()->codepen(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
-			echo Bootstrap :: formInputText( [
-				'name'        => 'gitlab',
-				'label'       => 'GitLab',
-				'value'       => user()->gitlab(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
-			echo Bootstrap :: formInputText( [
-				'name'        => 'github',
-				'label'       => 'GitHub',
-				'value'       => user()->github(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
-			echo Bootstrap :: formInputText( [
-				'name'        => 'linkedin',
-				'label'       => 'LinkedIn',
-				'value'       => user()->linkedin(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
-			echo Bootstrap :: formInputText( [
-				'name'        => 'xing',
-				'label'       => 'Xing',
-				'value'       => user()->xing(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
-			echo Bootstrap :: formInputText( [
-				'name'        => 'mastodon',
-				'label'       => 'Mastodon',
-				'value'       => user()->mastodon(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-
-			echo Bootstrap :: formInputText( [
-				'name'        => 'vk',
-				'label'       => 'VK',
-				'value'       => user()->vk(),
-				'class'       => '',
-				'placeholder' => '',
-				'tip'         => ''
-			] );
-			?>
 		</div>
 	</div>
 </form>

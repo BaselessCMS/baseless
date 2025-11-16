@@ -408,14 +408,6 @@ function install( $adminPassword, $timezone ) {
 		'emailFrom'    => 'no-reply@' . DOMAIN,
 		'orderBy'      => 'date',
 		'currentBuild' => '0',
-		'twitter'      => '',
-		'facebook'     => '',
-		'codepen'      => '',
-		'github'       => '',
-		'instagram'    => '',
-		'gitlab'       => '',
-		'linkedin'     => '',
-		'xing'         => '',
 		'dateFormat'   => 'F j, Y',
 		'extremeFriendly'         => true,
 		'autosaveInterval'        => 2,
@@ -446,14 +438,6 @@ function install( $adminPassword, $timezone ) {
 			'tokenRemember' => '',
 			'tokenAuth'     => $tokenAuth,
 			'tokenAuthTTL'  => '2009-03-15 14:00',
-			'twitter'       => '',
-			'facebook'      => '',
-			'instagram'     => '',
-			'codepen'       => '',
-			'linkedin'      => '',
-			'xing'          => '',
-			'github'        => '',
-			'gitlab'        => ''
 		]
 	];
 	file_put_contents( PATH_DATABASES . 'users.php', $dataHead . json_encode( $data, JSON_PRETTY_PRINT), LOCK_EX);

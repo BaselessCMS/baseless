@@ -35,18 +35,7 @@ class Users extends dbJSON {
 		'tokenRemember' => '',
 		'tokenAuth'     => '',
 		'tokenAuthTTL'  => '2024-04-03 10:17',
-		'website'       => '',
-		'twitter'       => '',
-		'facebook'      => '',
-		'instagram'     => '',
-		'youtube'       => '',
-		'vimeo'         => '',
-		'codepen'       => '',
-		'github'        => '',
-		'gitlab'        => '',
-		'linkedin'      => '',
-		'mastodon'      => '',
-		'vk'            => ''
+		'website'       => ''
 	];
 
 	/**

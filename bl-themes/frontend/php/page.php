@@ -67,36 +67,6 @@
 										<?php echo $fullName?>
 									</strong>
 								</h4>
-								<ul class="social">
-									<?php if ($page->user('twitter')) : ?>
-									<li class="nav-item">
-										<a class="twitter" href="<?php echo $page->user('twitter') ?>" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="Twitter" rel="nofollow noreferrer">
-											<i class="icon-twitter" aria-hidden="true"></i>
-										</a>
-									</li>
-									<?php endif ?>
-									<?php if ($page->user('facebook')) : ?>
-									<li class="nav-item">
-										<a class="facebook" href="<?php echo $page->user('facebook') ?>" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="Facebook" rel="nofollow noreferrer">
-											<i class="icon-facebook" aria-hidden="true"></i>
-										</a>
-									</li>
-									<?php endif ?>
-									<?php if ($page->user('github')) : ?>
-									<li class="nav-item">
-										<a class="github" href="<?php echo $page->user('github') ?>" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="GitHub" rel="nofollow noreferrer">
-											<i class="icon-github" aria-hidden="true"></i>
-										</a>
-									</li>
-									<?php endif ?>
-									<?php if ($page->user('gitlab')) : ?>
-									<li class="nav-item">
-										<a class="gitlab" href="<?php echo $page->user('gitlab') ?>" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="GitLab" rel="nofollow noreferrer">
-											<i class="icon-gitlab" aria-hidden="true"></i>
-										</a>
-									</li>
-									<?php endif ?>
-								</ul>
 							</div>
 						</div>
 					</section>
