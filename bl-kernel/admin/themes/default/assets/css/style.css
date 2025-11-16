@@ -18,9 +18,12 @@ audio, canvas, progress, video {
 }
 
 html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   overflow-y: scroll;
   font-size: 100%;
+  -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -29,13 +32,18 @@ html {
 }
 
 body {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   font-size: inherit;
   line-height: 1;
 }
 
 *, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
   box-sizing: inherit;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
@@ -56,6 +64,8 @@ img {
 hr {
   display: block;
   width: 100%;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0;
   border: 0;
@@ -112,7 +122,22 @@ input::-webkit-inner-spin-button {
   opacity: 1;
 }
 
+*::-webkit-input-placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+*:-ms-input-placeholder {
+  color: #888;
+  opacity: 1;
+}
+
 *::-moz-placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+*::-ms-input-placeholder {
   color: #888;
   opacity: 1;
 }
@@ -244,6 +269,17 @@ b, strong, optgroup {
   overflow: hidden;
   zoom: 1;
 }
+
+@-webkit-keyframes spinner {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
 @keyframes spinner {
   from {
     transform: rotate(0deg);
@@ -296,8 +332,7 @@ body {
   font-weight: var(--cms-body--font-weight, normal);
   font-style: var(--cms-body--font-style, normal);
   font-variant: var(--cms-body--font-variant, normal);
-  -webkit-text-decoration: var(--cms-body--text-decoration);
-          text-decoration: var(--cms-body--text-decoration);
+  text-decoration: var(--cms-body--text-decoration);
   text-transform: var(--cms-body--text-transform);
   letter-spacing: var(--cms-body--letter-spacing, normal);
   word-spacing: var(--cms-body--word-spacing, normal);
@@ -394,8 +429,7 @@ a {
   font-weight: var(--cms-link--font-weight, inherit);
   font-style: var(--cms-link--font-style, inherit);
   font-variant: var(--cms-link--font-variant, inherit);
-  -webkit-text-decoration: var(--cms-link--text-decoration);
-          text-decoration: var(--cms-link--text-decoration);
+  text-decoration: var(--cms-link--text-decoration);
   text-underline-offset: var(--cms-link--text-underline-offset);
   text-transform: var(--cms-link--text-transform, inherit);
   letter-spacing: var(--cms-link--letter-spacing, inherit);
@@ -453,8 +487,7 @@ h2 {
   line-height: var(--cms-heading-primary--line-height, inherit);
   letter-spacing: var(--cms-heading-primary--letter-spacing, -0.015em);
   word-spacing: var(--cms-heading-primary--word-spacing, -0.0325em);
-  -webkit-text-decoration: var(--cms-heading-primary--text-decoration);
-          text-decoration: var(--cms-heading-primary--text-decoration);
+  text-decoration: var(--cms-heading-primary--text-decoration);
   text-transform: var(--cms-heading-primary--text-transform);
   color: var(--cms-heading-primary--text-color, var(--cms-body--text-color));
 }
@@ -471,8 +504,7 @@ h2 a {
   font-weight: var(--cms-heading-primary--link--font-weight, inherit);
   font-style: var(--cms-heading-primary--link--font-style, inherit);
   font-variant: var(--cms-heading-primary--link--font-variant, inherit);
-  -webkit-text-decoration: var(--cms-heading-primary--link--text-decoration, none);
-          text-decoration: var(--cms-heading-primary--link--text-decoration, none);
+  text-decoration: var(--cms-heading-primary--link--text-decoration, none);
   text-transform: var(--cms-heading-primary--link--text-transform);
   color: var(--cms-heading-primary--link--text-color, var(--cms-link--text-color));
 }
@@ -505,8 +537,7 @@ h4 {
   line-height: var(--cms-heading-secondary--line-height, inherit);
   letter-spacing: var(--cms-heading-secondary--letter-spacing, normal);
   word-spacing: var(--cms-heading-secondary--word-spacing, -0.0325em);
-  -webkit-text-decoration: var(--cms-heading-secondary--text-decoration);
-          text-decoration: var(--cms-heading-secondary--text-decoration);
+  text-decoration: var(--cms-heading-secondary--text-decoration);
   text-transform: var(--cms-heading-secondary--text-transform);
   color: var(--cms-heading-secondary--text-color, var(--cms-body--text-color));
 }
@@ -523,8 +554,7 @@ h4 a {
   font-weight: var(--cms-heading-secondary--link--font-weight, inherit);
   font-style: var(--cms-heading-secondary--link--font-style, inherit);
   font-variant: var(--cms-heading-secondary--link--font-variant, inherit);
-  -webkit-text-decoration: var(--cms-heading-secondary--link--text-decoration, none);
-          text-decoration: var(--cms-heading-secondary--link--text-decoration, none);
+  text-decoration: var(--cms-heading-secondary--link--text-decoration, none);
   text-transform: var(--cms-heading-secondary--link--text-transform);
   color: var(--cms-heading-secondary--link--text-color, var(--cms-link--text-color));
 }
@@ -557,8 +587,7 @@ h6 {
   line-height: var(--cms-heading-tertiary--line-height, inherit);
   letter-spacing: var(--cms-heading-tertiary--letter-spacing, normal);
   word-spacing: var(--cms-heading-tertiary--word-spacing, -0.0325em);
-  -webkit-text-decoration: var(--cms-heading-tertiary--text-decoration);
-          text-decoration: var(--cms-heading-tertiary--text-decoration);
+  text-decoration: var(--cms-heading-tertiary--text-decoration);
   text-transform: var(--cms-heading-tertiary--text-transform);
   color: var(--cms-heading-tertiary--text-color, var(--cms-body--text-color));
 }
@@ -634,9 +663,7 @@ code {
 }
 
 code.select {
-  -webkit-user-select: all;
-     -moz-user-select: all;
-          user-select: all;
+  user-select: all;
 }
 
 .text-muted {
@@ -908,12 +935,9 @@ code.select {
 }
 
 #admin-sidebar {
-  width: -moz-max-content;
   width: max-content;
   padding: 2rem 0;
-  max-width: -moz-max-content;
   max-width: max-content;
-  min-width: -moz-max-content;
   min-width: max-content;
   background-color: var(--cms-admin--sidebar--bg-color);
   color: var(--cms-admin--sidebar--text-color);
@@ -1089,7 +1113,9 @@ img.profilePicture {
 }
 
 .nav {
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   gap: 0.25rem;
   padding-left: 0;
