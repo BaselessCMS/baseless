@@ -33,13 +33,13 @@ foreach ( $content as $page ) : ?>
 		<ul>
 			<?php if ( Paginator :: showPrev() ) : ?>
 				<li>
-					<a href="<?php echo Paginator :: previousPageUrl(); ?>" tabindex="-1">&#9664; <?php echo $L->get( 'Previous' ); ?></a>
+					<a href="<?php echo Paginator :: previousPageUrl(); ?>" tabindex="-1"><?php echo $L->get( 'Previous' ); ?></a>
 				</li>
 			<?php endif; ?>
 
 			<?php if ( Paginator :: showNext() ) : ?>
 				<li>
-					<a href="<?php echo Paginator::nextPageUrl() ?>"><?php echo $L->get( 'Next' ); ?> &#9658;</a>
+					<a href="<?php echo Paginator::nextPageUrl() ?>"><?php echo $L->get( 'Next' ); ?></a>
 				</li>
 			<?php endif; ?>
 		</ul>

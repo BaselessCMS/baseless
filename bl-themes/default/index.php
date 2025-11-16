@@ -33,6 +33,7 @@ if ( 'page' == $url->whereAmI() ) {
 			include( THEME_DIR . 'views/content/home.php' );
 		}
 		?>
+		<aside><?php echo Theme :: plugins( 'siteSidebar' ); ?></aside>
 	</div>
 
 </body>
