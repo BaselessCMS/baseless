@@ -33,6 +33,7 @@ class Site extends dbJSON {
 		'timezone'     => 'America/Argentina/Buenos_Aires',
 		'theme'        => 'default',
 		'adminTheme'   => 'default',
+		'plugins'      => [],
 		'homepage'     => '',
 		'pageNotFound' => '',
 		'uriPage'      => '/',

@@ -111,7 +111,7 @@ function get_svg_icon( $type = 'regular', $filename = '' ) {
 	// Access global variables.
 	global $site;
 
-	$path = PATH_ASSETS . 'images' . DS . 'svg' . DS . $type . DS . $filename . '.svg';
+	$path = PATH_ASSETS . 'images' . DS . 'svg' . DS . 'icons' . DS . $type . DS . $filename . '.svg';
 	$args = [
 		'svg',
 		'g',
