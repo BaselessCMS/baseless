@@ -348,6 +348,7 @@ define( 'HTML_PATH_ADMIN_ROOT', HTML_PATH_ROOT . ADMIN_URI_FILTER . '/' );
 define( 'HTML_PATH_ADMIN_THEME', HTML_PATH_ROOT . 'bl-kernel/admin/themes/' . $site->adminTheme() . '/' );
 define( 'HTML_PATH_ADMIN_THEME_JS',	HTML_PATH_ADMIN_THEME . 'js/' );
 define( 'HTML_PATH_ADMIN_THEME_CSS', HTML_PATH_ADMIN_THEME . 'css/' );
+define( 'HTML_PATH_CORE_ASSETS', HTML_PATH_ROOT . 'bl-kernel/assets/' );
 define( 'HTML_PATH_CORE_JS', HTML_PATH_ROOT . 'bl-kernel/assets/js/' );
 define( 'HTML_PATH_CORE_CSS', HTML_PATH_ROOT . 'bl-kernel/css/' );
 define( 'HTML_PATH_CORE_IMG', HTML_PATH_ROOT . 'bl-kernel/assets/images/' );
@@ -403,6 +404,7 @@ define( 'THEME_DIR_LANG', THEME_DIR . 'languages' . DS );
 // These paths are absolutes for the user/browser.
 define( 'DOMAIN', $site->domain() );
 define( 'DOMAIN_BASE', DOMAIN . HTML_PATH_ROOT );
+define( 'DOMAIN_CORE_ASSETS', DOMAIN . HTML_PATH_CORE_ASSETS );
 define( 'DOMAIN_CORE_JS', DOMAIN . HTML_PATH_CORE_JS );
 define( 'DOMAIN_CORE_CSS', DOMAIN . HTML_PATH_CORE_CSS );
 define( 'DOMAIN_THEME', DOMAIN . HTML_PATH_THEME );
