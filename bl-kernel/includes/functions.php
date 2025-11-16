@@ -149,12 +149,12 @@ function svg_icon( $filename, $type = 'regular', $wrap = true, $class = '' ) {
 
 	if ( true == $wrap ) {
 		printf(
-			'<span class="svg-icon%s">%s</span>',
+			'<span class="svg-icon %s">%s</span>',
 			$class,
-			get_svg_icon( $filename )
+			get_svg_icon( $type, $filename )
 		);
 	} else {
-		echo get_svg_icon( $filename );
+		echo get_svg_icon( $type, $filename );
 	}
 }
 

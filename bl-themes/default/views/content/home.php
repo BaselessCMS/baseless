@@ -8,6 +8,21 @@
  * @since      1.0.0
  */
 
+// Access namespaced functions.
+use function CMS\Func\{
+	is_rtl,
+	svg_icon
+};
+
+// Navigation icons.
+if ( CMS\Func\is_rtl() ) {
+	$prev = 'angle-right';
+	$next = 'angle-left';
+} else {
+	$prev = 'angle-left';
+	$next = 'angle-right';
+}
+
 if ( empty( $content ) ) : ?>
 	<h2><?php $language->p( 'No Posts Found' ); ?></h2>
 <?php
@@ -33,13 +48,13 @@ foreach ( $content as $page ) : ?>
 		<ul>
 			<?php if ( Paginator :: showPrev() ) : ?>
 				<li>
-					<a href="<?php echo Paginator :: previousPageUrl(); ?>" tabindex="-1"><?php echo $L->get( 'Previous' ); ?></a>
+					<a href="<?php echo Paginator :: previousPageUrl(); ?>" tabindex="-1"><?php svg_icon( $prev ); ?> <?php echo $L->get( 'Previous' ); ?></a>
 				</li>
 			<?php endif; ?>
 
 			<?php if ( Paginator :: showNext() ) : ?>
 				<li>
-					<a href="<?php echo Paginator::nextPageUrl() ?>"><?php echo $L->get( 'Next' ); ?></a>
+					<a href="<?php echo Paginator :: nextPageUrl() ?>"><?php echo $L->get( 'Next' ); ?> <?php CMS\Func\svg_icon( $next ); ?></a>
 				</li>
 			<?php endif; ?>
 		</ul>
