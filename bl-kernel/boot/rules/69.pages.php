@@ -13,6 +13,11 @@ if ( ! defined( 'JSON_CMS' ) ) {
 	die( 'You are not allowed to access this file directly.' );
 }
 
+// Import namespaced functions.
+use function CMS\Help\{
+	syslog
+};
+
 /**
  * Array with pages, each page is a page object.
  *
@@ -56,7 +61,7 @@ if ( $pages->scheduler() ) {
     reindexCategories();
 
 	// Add to syslog.
-	$syslog->add( [
+	syslog()->add( [
 		'dictionaryKey' => 'content-published-from-scheduler',
 		'notes'         => ''
 	] );

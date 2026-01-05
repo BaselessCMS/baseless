@@ -41,6 +41,21 @@ function security() {
 }
 
 /**
+ * Syslog class object
+ *
+ * Function to use inside other functions and
+ * methods rather than calling the global.
+ *
+ * @since  1.0.0
+ * @global object $syslog Syslog class
+ * @return object
+ */
+function syslog() {
+	global $syslog;
+	return $syslog;
+}
+
+/**
  * Login class object
  *
  * Function to use inside other functions and
@@ -116,14 +131,14 @@ function users() {
 }
 
 /**
- * Plugins class object
+ * Plugins array
  *
  * Function to use inside other functions and
  * methods rather than calling the global.
  *
  * @since  1.0.0
- * @global object $plugins Plugins class
- * @return object
+ * @global array $plugins Plugins class
+ * @return array
  */
 function plugins() {
 	global $plugins;
@@ -137,11 +152,15 @@ function plugins() {
  * methods rather than calling the global.
  *
  * @since  1.0.0
+ * @param  mixed $string The page key or false.
  * @global object $page Page class
  * @return object
  */
-function page() {
+function page( $key = false ) {
 	global $page;
+	if ( $key ) {
+		return new \Page( $key );
+	}
 	return $page;
 }
 
@@ -173,6 +192,21 @@ function pages() {
 function cats() {
 	global $categories;
 	return $categories;
+}
+
+/**
+ * Tags class object
+ *
+ * Function to use inside other functions and
+ * methods rather than calling the global.
+ *
+ * @since  1.0.0
+ * @global object $tags Tags class
+ * @return object
+ */
+function tags() {
+	global $tags;
+	return $tags;
 }
 
 /**

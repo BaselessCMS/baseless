@@ -1010,7 +1010,7 @@ class Pages extends dbJSON {
 		$tmpslug = \Text :: removeLineBreaks( $tmpslug );
 		$tmpslug = \Text :: truncate( $tmpslug, $truncateLength, '' );
 
-		return string;
+		return $tmpslug;
 	}
 
 	/**

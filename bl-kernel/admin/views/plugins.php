@@ -29,7 +29,7 @@ use function CMS\Help\{
 };
 
 // Access global variables.
-global $plugins, $plugins_installed;
+global $plugins_installed;
 
 ?>
 <header class="admin-page-header has-actions">
@@ -108,6 +108,7 @@ global $plugins, $plugins_installed;
 <table class="table">
 	<tbody>
 	<?php
+	$plugins = plugins();
 	$not_installed = array_diff_key( $plugins['all'], $plugins_installed );
 	foreach ( $not_installed as $plugin ) :
 

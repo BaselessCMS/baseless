@@ -19,6 +19,7 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	syslog,
 	url,
 	lang,
 	users,
@@ -41,7 +42,7 @@ if ( checkRole( [ 'author' ], false ) ) {
 	if ( $page->username() !== $login->username() ) {
 
 		// Add to syslog.
-		$syslog->add( [
+		syslog()->add( [
 			'dictionaryKey' => 'access-denied',
 			'notes'         => $login->username()
 		] );

@@ -28,9 +28,6 @@ use function CMS\Help\{
 	cats
 };
 
-// Access global variables.
-global $plugins;
-
 ?>
 
 <form class="tab-content"  id="jsform" method="post" action=""  autocomplete="off">
@@ -54,6 +51,7 @@ global $plugins;
 
 	<ul class="list-group list-group-sortable">
 	<?php
+	$plugins = plugins();
 	foreach ( $plugins['siteSidebar'] as $sortable ) {
 		printf(
 			'<li class="list-group-item" data-plugin="%s"><span class="fa fa-arrows-v"></span> %s</li>',

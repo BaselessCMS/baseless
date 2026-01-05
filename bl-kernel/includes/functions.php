@@ -12,17 +12,17 @@ namespace CMS\Func;
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	login,
-	url,
+	cats,
 	lang,
-	user,
-	users,
-	plugins,
+	login,
 	page,
 	pages,
-	cats
+	plugins,
+	security,
+	site,
+	url,
+	user,
+	users,
 };
 
 /**

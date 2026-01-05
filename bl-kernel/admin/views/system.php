@@ -20,6 +20,7 @@ use CMS\Admin\Controllers\System as Ctrl;
 use function CMS\Help\{
 	site,
 	security,
+	syslog,
 	login,
 	url,
 	lang,
@@ -70,7 +71,7 @@ global $config;
 		</tr>
 
 	<?php
-	$logs = array_slice( $syslog->db, 0, NOTIFICATIONS_AMOUNT );
+	$logs = array_slice( syslog()->db, 0, NOTIFICATIONS_AMOUNT );
 	foreach ( $logs as $log ) :
 		$phrase = lang()->g( $log['dictionaryKey'] );
 

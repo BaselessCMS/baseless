@@ -12,6 +12,12 @@
 
 namespace CMS\Admin_Tags;
 
+// Import namespaced functions.
+use function CMS\Help\{
+	lang,
+	syslog
+};
+
 /**
  * Admin page content
  *
@@ -24,7 +30,7 @@ namespace CMS\Admin_Tags;
 function admin_content() {
 
 	// Access global variables.
-	global $layout, $scheduled, $syslog, $themes;
+	global $layout, $scheduled, $themes;
 
 	if ( \Sanitize :: pathFile( PATH_ADMIN_VIEWS, $layout['view'] . '.php' ) ) {
 		include( PATH_ADMIN_VIEWS . $layout['view'] . '.php' );
@@ -33,11 +39,11 @@ function admin_content() {
 	} else {
 		printf(
 			'<h1>%s</h1>',
-			$L->get( '404 Error: Page Not Found' )
+			lang()->get( '404 Error: Page Not Found' )
 		);
 		printf(
 			'<p>%s</p>',
-			$L->get( 'Try looking for a link in the admin menu.' )
+			lang()->get( 'Try looking for a link in the admin menu.' )
 		);
 	}
 }

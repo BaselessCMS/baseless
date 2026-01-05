@@ -19,6 +19,7 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	site,
 	security,
+	syslog,
 	url,
 	lang,
 	users,
@@ -48,7 +49,7 @@ if ( ! method_exists( $plugin, 'form' ) ) {
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 	// Add to syslog.
-	$syslog->add( [
+	syslog()->add( [
 		'dictionaryKey' => 'plugin-configured',
 		'notes' => $plugin->name()
 	] );
