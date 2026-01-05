@@ -258,15 +258,20 @@ class Plugin {
 		foreach ( $this->dbFields as $key => $value ) {
 
 			if ( is_array( $value ) ) {
-				$value = $value;
+				$array_fields = [];
+				foreach ( $value as $array_field ) {
+					if ( is_int( $array_field ) ) {
+						$array_field = Sanitize :: int( $array_field );
+					} elseif ( is_string( $array_field ) ) {
+						$array_field = Sanitize :: html( $array_field );
+					}
+					$array_fields[] = $array_field;
+				}
+				$value = $array_fields;
+			} elseif ( is_int( $value ) ) {
+				$value = Sanitize :: int( $value );
 			} else {
-				$value = \Sanitize :: html( $value );
-			}
-
-			if ( 'false' === $value ) {
-				$value = false;
-			} elseif ( 'true' === $value ) {
-				$value = true;
+				$value = Sanitize :: html( $value );
 			}
 
 			settype( $value, gettype( $this->dbFields[$key] ) );
@@ -320,16 +325,26 @@ class Plugin {
 
 			if ( isset( $args[$field] ) ) {
 
-				// @todo Look into sanitizing array values.
 				if ( is_array( $args[$field] ) ) {
-					$value = $args[$field];
+					$array_fields = [];
+					foreach ( $args[$field] as $array_field ) {
+						if ( is_int( $array_field ) ) {
+							$array_field = Sanitize :: int( $array_field );
+						} elseif ( is_string( $array_field ) ) {
+							$array_field = Sanitize :: html( $array_field );
+						}
+						$array_fields[] = $array_field;
+					}
+					$value = $array_fields;
+				} elseif ( is_int( $args[$field] ) ) {
+					$value = Sanitize :: int( $args[$field] );
 				} else {
 					$value = Sanitize :: html( $args[$field] );
 				}
 
-				if ( $value === 'false' ) {
+				if ( 'false' === $value ) {
 					$value = false;
-				} elseif ( $value === 'true' ) {
+				} elseif ( 'true' === $value ) {
 					$value = true;
 				}
 
