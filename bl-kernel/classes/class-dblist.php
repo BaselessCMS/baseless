@@ -144,16 +144,16 @@ class dbList extends dbJSON {
 
 		$key = $this->generateKey( $args['name'] );
 
-		$this->db[$key]['name'] = \Sanitize :: removeTags( $args['name'] );
+		$this->db[$key]['name'] = strip_tags( $args['name'] );
 
 		$this->db[$key]['template'] = '';
 		if ( isset( $args['template'] ) ) {
-			$this->db[$key]['template'] = \Sanitize :: removeTags( $args['template'] );
+			$this->db[$key]['template'] = strip_tags( $args['template'] );
 		}
 
 		$this->db[$key]['description'] = '';
 		if ( isset( $args['description'] ) ) {
-			$this->db[$key]['description'] = \Sanitize :: removeTags( $args['description'] );
+			$this->db[$key]['description'] = strip_tags( $args['description'] );
 		}
 
 		$this->db[$key]['list'] = [];
@@ -202,16 +202,16 @@ class dbList extends dbJSON {
 			return false;
 		}
 
-		$this->db[$args['newKey']]['name'] = \Sanitize :: removeTags( $args['name'] );
+		$this->db[$args['newKey']]['name'] = strip_tags( $args['name'] );
 
 		$this->db[$args['newKey']]['template'] = '';
 		if ( isset( $args['template'] ) ) {
-			$this->db[$args['newKey']]['template'] = \Sanitize :: removeTags( $args['template'] );
+			$this->db[$args['newKey']]['template'] = strip_tags( $args['template'] );
 		}
 
 		$this->db[$args['newKey']]['description'] = '';
 		if ( isset( $args['description'] ) ) {
-			$this->db[$args['newKey']]['description'] = \Sanitize :: removeTags( $args['description'] );
+			$this->db[$args['newKey']]['description'] = strip_tags( $args['description'] );
 		}
 
 		$this->db[$args['newKey']]['list'] = $this->db[$args['oldKey']]['list'];

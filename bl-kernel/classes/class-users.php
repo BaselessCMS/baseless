@@ -126,7 +126,7 @@ class Users extends dbJSON {
 				$finalValue = $args[$field];
 
 				// Remove HTML and PHP tags.
-				$finalValue = \Sanitize :: removeTags( $finalValue );
+				$finalValue = strip_tags( $finalValue );
 
 				// Sanitize if will be stored on database.
 				$finalValue = \Sanitize :: html( $finalValue );
@@ -172,7 +172,7 @@ class Users extends dbJSON {
 					$finalValue = $args[$field];
 
 					// Remove HTML and PHP tags.
-					$finalValue = \Sanitize :: removeTags( $finalValue );
+					$finalValue = strip_tags( $finalValue );
 
 					// Sanitize if will be stored on database.
 					$finalValue = \Sanitize :: html( $finalValue );

@@ -16,19 +16,6 @@ if ( ! defined( 'JSON_CMS' ) ) {
 class Sanitize {
 
 	/**
-	 * Remove tags
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @access static
-	 * @param  string $text
-	 * @return string
-	 */
-	public static function removeTags( $text ) {
-		return strip_tags( $text );
-	}
-
-	/**
 	 * HTML entities
 	 *
 	 * Converts special characters to HTML entities.
@@ -36,17 +23,21 @@ class Sanitize {
 	 * @since  1.0.0
 	 * @access public
 	 * @access static
-	 * @param  string $text
+	 * @param  string $value
 	 * @return string
 	 */
-	public static function html( $text ) {
+	public static function html( $value ) {
+
+		if ( ! is_string( $value ) ) {
+			return $value;
+		}
 
 		$flags = ENT_COMPAT;
 
 		if ( defined( 'ENT_HTML5' ) ) {
 			$flags = ENT_COMPAT|ENT_HTML5;
 		}
-		return htmlspecialchars( $text, $flags, CHARSET );
+		return htmlspecialchars( $value, $flags, CHARSET );
 	}
 
 	/**
@@ -57,17 +48,21 @@ class Sanitize {
 	 * @since  1.0.0
 	 * @access public
 	 * @access static
-	 * @param  string $text
+	 * @param  string $value
 	 * @return string
 	 */
-	public static function htmlDecode( $text ) {
+	public static function htmlDecode( $value ) {
+
+		if ( ! is_string( $value ) ) {
+			return $value;
+		}
 
 		$flags = ENT_COMPAT;
 
 		if ( defined( 'ENT_HTML5' ) ) {
 			$flags = ENT_COMPAT|ENT_HTML5;
 		}
-		return htmlspecialchars_decode( $text, $flags );
+		return htmlspecialchars_decode( $value, $flags );
 	}
 
 	/**
@@ -117,11 +112,15 @@ class Sanitize {
 	 * @since  1.0.0
 	 * @access public
 	 * @access static
-	 * @param  string $email
+	 * @param  string $value
 	 * @return string
 	 */
-	public static function email( $email ) {
-		return ( filter_var( $email, FILTER_SANITIZE_EMAIL ) );
+	public static function email( $value ) {
+
+		if ( ! is_string( $value ) ) {
+			return $value;
+		}
+		return ( filter_var( $value, FILTER_SANITIZE_EMAIL ) );
 	}
 
 	/**
@@ -132,11 +131,15 @@ class Sanitize {
 	 * @since  1.0.0
 	 * @access public
 	 * @access static
-	 * @param  string $url
+	 * @param  string $value
 	 * @return string
 	 */
-	public static function url( $url ) {
-		return ( filter_var( $url, FILTER_SANITIZE_URL ) );
+	public static function url( $value ) {
+
+		if ( ! is_string( $value ) ) {
+			return $value;
+		}
+		return ( filter_var( $value, FILTER_SANITIZE_URL ) );
 	}
 
 	/**
@@ -151,11 +154,9 @@ class Sanitize {
 	public static function int( $value ) {
 
 		$value = (int)$value;
-
 		if ( $value >= 0 ) {
 			return $value;
-		} else {
-			return 0;
 		}
+		return 0;
 	}
 }
