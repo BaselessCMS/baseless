@@ -9,6 +9,7 @@ bl-plugins/categories-lists
 bl-plugins/tags-lists
 bl-plugins/searchforms
 bl-plugins/timemachine
+bl-plugins/recovery-points
 bl-plugins/timemachine-x
 bl-plugins/discovery
 bl-plugins/updater
