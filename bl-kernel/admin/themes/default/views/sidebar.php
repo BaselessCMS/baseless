@@ -5,10 +5,6 @@
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'dashboard' ?>"><span class="fa fa-dashboard"></span><?php $L->p( 'Dashboard' ) ?></a>
 	</li>
 
-	<li>
-		<a class="top-level-link" href="<?php echo HTML_PATH_ROOT ?>"><span class="fa fa-home"></span><?php $L->p( 'Website' ) ?></a>
-	</li>
-
 	<?php if ( ! checkRole( [ 'admin' ], false) ): ?>
 	<li>
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'content' ?>"><span class="fa fa-archive"></span><?php $L->p( 'Content' ) ?></a>
@@ -67,6 +63,10 @@
 			}
 		?>
 	<?php endif; ?>
+	<li>
+		<a class="top-level-link" href="<?php echo HTML_PATH_ROOT ?>"><span class="fa fa-home"></span><?php $L->p( 'Website' ) ?></a>
+	</li>
+
 	<li>
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'logout' ?>"><span class="fa fa-arrow-circle-right"></span><?php $L->p( 'Logout' ) ?></a>
 	</li>
