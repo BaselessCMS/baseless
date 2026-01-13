@@ -237,7 +237,7 @@ use function CMS\Help\{
 					'options'  => $options,
 					'selected' => false,
 					'class'    => '',
-					'tip'      => lang()->g( 'Returning page for the main page' )
+					'tip'      => lang()->g( 'Set a static page for the home page rather than the posts index.' )
 				] );
 				?>
 				<script>
@@ -284,7 +284,7 @@ use function CMS\Help\{
 					'options'  => $options,
 					'selected' => false,
 					'class'    => '',
-					'tip'      => lang()->g( 'Returning page when the page doesn\'t exist' )
+					'tip'      => lang()->g( 'Page to display on 404 error, URL not found.' )
 				] );
 				?>
 
