@@ -42,20 +42,17 @@
 	</li>
 
 	<li>
-		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins' ?>"><span class="fa fa-plug"></span><?php $L->p( 'Plugins' ) ?></a>
+		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'themes' ?>"><span class="fa fa-desktop"></span><?php $L->p( 'Themes' ) ?></a>
 	</li>
 
 	<li>
-		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'themes' ?>"><span class="fa fa-desktop"></span><?php $L->p( 'Themes' ) ?></a>
+		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'plugins' ?>"><span class="fa fa-plug"></span><?php $L->p( 'Plugins' ) ?></a>
 	</li>
 
 	<li class="nav-item">
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'settings' ?>"><span class="fa fa-gear"></span><?php $L->p( 'Settings' ) ?></a>
 	</li>
 
-	<li class="nav-item">
-		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'system' ?>"><span class="fa fa-code"></span><?php $L->p( 'System' ) ?></a>
-	</li>
 	<?php endif; ?>
 
 	<?php if ( checkRole( [ 'admin', 'editor' ], false ) ): ?>

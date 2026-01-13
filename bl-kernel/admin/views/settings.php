@@ -50,6 +50,8 @@ use function CMS\Help\{
 					<a class="nav-item nav-link" id="nav-meta-tab" data-toggle="tab" href="#meta" role="tab" aria-controls="nav-meta" aria-selected="false"><?php lang()->p( 'Meta' ); ?></a>
 
 					<a class="nav-item nav-link" id="nav-custom-fields-tab" data-toggle="tab" href="#custom-fields" role="tab" aria-controls="nav-custom-fields" aria-selected="false"><?php lang()->p( 'Custom Fields' ); ?></a>
+
+					<a class="nav-item nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'system' ?>" role="link" aria-selected="false"><?php lang()->p( 'System' ); ?></a>
 				</div>
 			</nav>
 
