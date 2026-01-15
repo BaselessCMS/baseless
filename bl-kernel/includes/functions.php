@@ -103,10 +103,11 @@ function asset_min() {
  *
  * @since  1.0.0
  * @param  string $filename Name of the SVG file.
+ * @param  string $type Directory of SVG icons.
  * @return mixed Returns the contents of the SVG file or
  *               returns null if the filename is not found.
  */
-function get_svg_icon( $type = 'regular', $filename = '' ) {
+function get_svg_icon( $filename, $type = 'regular' ) {
 
 	// Access global variables.
 	global $site;
@@ -135,25 +136,32 @@ function get_svg_icon( $type = 'regular', $filename = '' ) {
  *
  * @since  1.0.0
  * @param  string $filename Name of the SVG file.
- * @param  boolean $wrap Wraps the icon in HTML if true.
- * @param  string $class Additional class names for the wrapper.
- * @param  string $title Contents of the title attribute if
- *                       $wrap is true.
- * @return void
+ * @param  array $args
+ * @return string Returns the icon markup.
  */
-function svg_icon( $filename, $type = 'regular', $wrap = true, $class = '' ) {
+function svg_icon( $filename, $args = [] ) {
 
-	if ( ! empty( $class ) ) {
-		$class = ' ' . $class;
-	}
+	$default = [
+		'type'  => 'regular',
+		'wrap'  => true,
+		'echo'  => true,
+		'class' => 'svg-icon'
+	];
+	$args = array_merge( $default, $args );
 
-	if ( true == $wrap ) {
-		printf(
-			'<span class="svg-icon %s">%s</span>',
-			$class,
-			get_svg_icon( $type, $filename )
+	if ( true == $args['wrap'] ) {
+		$icon = sprintf(
+			'<span class="%s">%s</span>',
+			$args['class'],
+			get_svg_icon( $filename, $args['type'] )
 		);
 	} else {
-		echo get_svg_icon( $type, $filename );
+		$icon = get_svg_icon( $filename, $args['type'] );
+	}
+
+	if ( $args['echo'] ) {
+		echo $icon;
+	} else {
+		return $icon;
 	}
 }
