@@ -1,0 +1,38 @@
+///
+/// Admin menu
+///
+
+#admin-menu {
+	width: max-content;
+	padding: 2rem 0;
+	max-width: max-content;
+	min-width: max-content;
+	background-color: var( --cms-admin--sidebar--bg-color );
+	color: var( --cms-admin--sidebar--text-color );
+
+	a {
+		text-decoration: none;
+		background-color: var( --cms-admin--sidebar--link--bg-color );
+		color: var( --cms-admin--sidebar--link--text-color );
+
+		&:hover,
+		&:focus {
+			background-color: var( --cms-admin--sidebar--link--action--bg-color );
+			color: var( --cms-admin--sidebar--link--action--text-color );
+		}
+
+		&.top-level-link {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			gap: 0 0.325em;
+			padding: var( --cms-admin--menu--item--link--top, 0.5em 1rem );
+			font-weight: 600;
+		}
+
+		.svg-icon {
+			width: 1.25em;
+		}
+	}
+}

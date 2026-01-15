@@ -89,8 +89,8 @@ if ( defined( 'DEBUG_MODE' ) && DEBUG_MODE ) {
 
 <div id="admin-page">
 
-	<div id="admin-sidebar">
-		<?php include( 'views/sidebar.php' ); ?>
+	<div id="admin-menu">
+		<?php include( 'views/menu.php' ); ?>
 	</div>
 
 	<div id="admin-content">

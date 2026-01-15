@@ -7,6 +7,7 @@
 @import 'modules/_utility';
 @import 'modules/_root';
 @import 'partials/_setup';
+@import 'partials/_menu';
 
 .login-screen {
 	width: 100%;
@@ -50,35 +51,6 @@
 	align-items: var( --cms-admin--page--align-items );
 	justify-content: var( --cms-admin--page--justify-content );
 	gap: var( --cms-admin--page--gap );
-}
-
-#admin-sidebar {
-	width: max-content;
-	padding: 2rem 0;
-	max-width: max-content;
-	min-width: max-content;
-	background-color: var( --cms-admin--sidebar--bg-color );
-	color: var( --cms-admin--sidebar--text-color );
-
-	a {
-		text-decoration: none;
-		background-color: var( --cms-admin--sidebar--link--bg-color );
-		color: var( --cms-admin--sidebar--link--text-color );
-
-		&:hover,
-		&:focus {
-			background-color: var( --cms-admin--sidebar--link--action--bg-color );
-			color: var( --cms-admin--sidebar--link--action--text-color );
-		}
-
-		&.top-level-link {
-			display: block;
-			padding: var( --cms-admin--menu--item--link--top, 0.5em 1rem );
-			font-weight: 600;
-		}
-	}
-
-	#admin-menu {}
 }
 
 #admin-content {
