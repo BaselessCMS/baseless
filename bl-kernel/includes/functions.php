@@ -149,7 +149,7 @@ function svg_icon( $filename, $args = [] ) {
 	];
 	$args = array_merge( $default, $args );
 
-	if ( true == $args['wrap'] ) {
+	if ( $args['wrap'] ) {
 		$icon = sprintf(
 			'<span class="%s">%s</span>',
 			$args['class'],
