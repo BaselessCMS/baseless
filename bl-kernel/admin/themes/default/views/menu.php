@@ -37,7 +37,7 @@ use function CMS\Func\{
 	<?php endif; ?>
 
 	<li>
-		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'new-content'; ?>"><?php svg_icon( 'pencil' ); ?> <span class="admin-menu-text"><?php $L->p( 'New content' ); ?></span></a>
+		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'new-content'; ?>"><?php svg_icon( 'pencil' ); ?> <span class="admin-menu-text"><?php $L->p( 'Compose' ); ?></span></a>
 	</li>
 
 	<?php if ( checkRole( [ 'admin' ], false ) ) : ?>
