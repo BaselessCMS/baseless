@@ -137,7 +137,7 @@ function table( $type = 'published' ) {
 					echo '<a href="' . HTML_PATH_ADMIN_ROOT . 'edit-content/' . $page->key() . '"><i class="fa fa-edit"></i>' . lang()->g( 'Edit' ) . '</a>' . PHP_EOL;
 
 					if ( count( $page->children() ) == 0 ) {
-						echo '<a href="#" class="text-danger deletePageButton" data-toggle="modal" data-target="#jsdeletePageModal" data-key="' . $page->key() . '"><i class="fa fa-trash"></i>' . lang()->g( 'Delete' ) . '</a>' . PHP_EOL;
+						echo '<a href="#" class="text-danger delete_pageButton" data-toggle="modal" data-target="#jsdelete_pageModal" data-key="' . $page->key() . '"><i class="fa fa-trash"></i>' . lang()->g( 'Delete' ) . '</a>' . PHP_EOL;
 					}
 					echo '</td></tr>';
 
@@ -171,7 +171,7 @@ function table( $type = 'published' ) {
 						}
 						echo '<a href="' . HTML_PATH_ADMIN_ROOT . 'edit-content/' . $child->key() . '"><i class="fa fa-edit"></i>' . lang()->g( 'Edit' ) . '</a>' . PHP_EOL;
 
-						echo '<a class="text-danger deletePageButton" href="#" data-toggle="modal" data-target="#jsdeletePageModal" data-key="'.$child->key() . '"><i class="fa fa-trash"></i>' . lang()->g( 'Delete' ) . '</a>' . PHP_EOL;
+						echo '<a class="text-danger delete_pageButton" href="#" data-toggle="modal" data-target="#jsdelete_pageModal" data-key="'.$child->key() . '"><i class="fa fa-trash"></i>' . lang()->g( 'Delete' ) . '</a>' . PHP_EOL;
 
 						echo '</td></tr>';
 						//}
@@ -210,7 +210,7 @@ function table( $type = 'published' ) {
 				}
 				echo '<a href="' . HTML_PATH_ADMIN_ROOT . 'edit-content/' . $page->key() . '"><i class="fa fa-edit"></i>' . lang()->g( 'Edit' ).'</a>' . PHP_EOL;
 				if ( count( $page->children() ) == 0 ) {
-					echo '<a href="#" class="text-danger deletePageButton" data-toggle="modal" data-target="#jsdeletePageModal" data-key="' . $page->key() . '"><i class="fa fa-trash"></i>' . lang()->g( 'Delete' ) . '</a>' . PHP_EOL;
+					echo '<a href="#" class="text-danger delete_pageButton" data-toggle="modal" data-target="#jsdelete_pageModal" data-key="' . $page->key() . '"><i class="fa fa-trash"></i>' . lang()->g( 'Delete' ) . '</a>' . PHP_EOL;
 				}
 				echo '</td></tr>';
 			} catch ( Exception $e ) {
@@ -318,12 +318,12 @@ function table( $type = 'published' ) {
 <?php
 	echo \Bootstrap :: modal( [
 		'buttonPrimary'        => lang()->g( 'Delete' ),
-		'buttonPrimaryClass'   => 'btn-danger deletePageModalAcceptButton',
+		'buttonPrimaryClass'   => 'btn-danger delete_pageModalAcceptButton',
 		'buttonSecondary'      => lang()->g( 'Cancel' ),
 		'buttonSecondaryClass' => 'btn-link',
 		'modalTitle'           => lang()->g( 'Delete content' ),
 		'modalText'            => lang()->g( 'Are you sure you want to delete this page' ),
-		'modalId'              => 'jsdeletePageModal'
+		'modalId'              => 'jsdelete_pageModal'
 	] );
 ?>
 <script>
@@ -332,12 +332,12 @@ $(document ).ready( function() {
 	var key = false;
 
 	// Button for delete a page in the table.
-	$( '.deletePageButton' ).on( 'click', function() {
+	$( '.delete_pageButton' ).on( 'click', function() {
 		key = $(this).data( 'key' );
 	});
 
 	// Event from button accept from the modal.
-	$( '.deletePageModalAcceptButton' ).on( 'click', function() {
+	$( '.delete_pageModalAcceptButton' ).on( 'click', function() {
 
 		var form = jQuery( '<form>', {
 			'action' : HTML_PATH_ADMIN_ROOT + 'edit-content/' + key,

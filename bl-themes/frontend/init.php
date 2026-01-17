@@ -39,7 +39,7 @@ if(count($pubList) != $searchJson->count() ){
 	$searchJson->truncate();
 	foreach ($pubList as $pageKey) {
 		try {
-			$tpage = buildPage($pageKey);
+			$tpage = build_page($pageKey);
 
 			// Process $ clean content
 			$tcont = str_replace('<', ' <', $tpage->content(false));

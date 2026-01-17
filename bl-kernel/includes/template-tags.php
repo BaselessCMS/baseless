@@ -48,7 +48,7 @@ function admin_url() {
  * @return mixed
  */
 function rss_url() {
-	if ( pluginActivated( 'pluginRSS' ) ) {
+	if ( plugin_activated( 'pluginRSS' ) ) {
 		return DOMAIN_BASE . 'rss.xml';
 	}
 	return false;
@@ -61,7 +61,7 @@ function rss_url() {
  * @return mixed
  */
 function sitemap_url() {
-	if ( pluginActivated( 'pluginSitemap' ) ) {
+	if ( plugin_activated( 'pluginSitemap' ) ) {
 		return DOMAIN_BASE . 'sitemap.xml';
 	}
 	return false;

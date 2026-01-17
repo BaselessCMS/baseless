@@ -33,7 +33,7 @@ foreach ( buildThemes() as $theme ) {
 	if (
 		$theme['dirname'] == site()->theme() &&
 		isset( $theme['plugin'] ) &&
-		getPlugin( $theme['plugin'] )
+		get_plugin( $theme['plugin'] )
 	) {
 		$settings_url = HTML_PATH_ADMIN_ROOT . 'configure-plugin/' . $theme['plugin'];
 		break;

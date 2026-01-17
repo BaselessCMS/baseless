@@ -98,7 +98,7 @@ class Users extends dbJSON {
 	 * @param  string $username
 	 * @return void
 	 */
-	public function disableUser( $username ) {
+	public function disable_user( $username ) {
 		$this->db[$username]['password'] = '!';
 		return $this->save();
 	}

@@ -47,9 +47,9 @@ $pageKey = $pages->getByUUID( $uuid );
 
 // If pageKey is empty means the page doesn't exist.
 if ( empty( $pageKey ) ) {
-	createPage( $page );
+	create_page( $page );
 } else {
-	editPage( $page );
+	edit_page( $page );
 }
 
 ajaxResponse( 0, 'Draft saved successfully.', [

@@ -31,7 +31,7 @@ use function CMS\Help\{
 checkRole( [ 'admin' ] );
 
 if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
-	changePluginsPosition( explode( ',', $_POST['plugin-list'] ) );
+	change_plugin_order( explode( ',', $_POST['plugin-list'] ) );
 	\Redirect :: page( 'plugins-position' );
 }
 

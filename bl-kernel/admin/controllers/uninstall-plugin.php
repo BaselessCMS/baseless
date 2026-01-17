@@ -31,6 +31,6 @@ use function CMS\Help\{
 checkRole( [ 'admin' ] );
 
 $pluginClassName = $layout['parameters'];
-deactivatePlugin( $pluginClassName );
+deactivate_plugin( $pluginClassName );
 
 \Redirect :: page( 'plugins' );

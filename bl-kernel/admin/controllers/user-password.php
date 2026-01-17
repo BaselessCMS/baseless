@@ -36,7 +36,7 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
 	    $username = $login->username();
 	}
 
-	if ( changeUserPassword( [
+	if ( change_user_password( [
 		'username'        => $username,
 		'newPassword'     => $_POST['newPassword'],
 		'confirmPassword' => $_POST['confirmPassword']

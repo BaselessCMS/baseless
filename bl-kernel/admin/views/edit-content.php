@@ -429,7 +429,7 @@ use function CMS\Help\{
 </form>
 
 <!-- Modal for Delete page -->
-<div id="jsdeletePageModal" class="modal" tabindex="-1" role="dialog">
+<div id="jsdelete_pageModal" class="modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">

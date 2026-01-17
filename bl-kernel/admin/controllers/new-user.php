@@ -31,7 +31,7 @@ use function CMS\Help\{
 checkRole( [ 'admin' ] );
 
 if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
-	if ( createUser( $_POST ) ) {
+	if ( create_user( $_POST ) ) {
 		\Redirect :: page( 'users' );
 	}
 }

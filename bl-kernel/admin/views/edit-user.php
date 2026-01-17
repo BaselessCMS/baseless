@@ -222,9 +222,9 @@ if ( user()->nickname() ) {
 			<div class="form-group row">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-10">
-					<button type="submit" class="btn btn-warning mr-2" id="jsdisableUser" name="disableUser"><?php lang()->p( 'Disable Uuser' ); ?></button>
-					<button type="submit" class="btn btn-danger mr-2" id="jsdeleteUserAndKeepContent" name="deleteUserAndKeepContent"><?php lang()->p( 'Delete User' ); ?></button>
-					<button type="submit" class="btn btn-danger mr-2" id="jsdeleteUserAndDeleteContent" name="deleteUserAndDeleteContent"><?php lang()->p( 'Delete User & Content' ); ?></button>
+					<button type="submit" class="btn btn-warning mr-2" id="jsdisable_user" name="disable_user"><?php lang()->p( 'Disable Uuser' ); ?></button>
+					<button type="submit" class="btn btn-danger mr-2" id="jsdelete_userAndKeepContent" name="delete_userAndKeepContent"><?php lang()->p( 'Delete User' ); ?></button>
+					<button type="submit" class="btn btn-danger mr-2" id="jsdelete_userAndDeleteContent" name="delete_userAndDeleteContent"><?php lang()->p( 'Delete User & Content' ); ?></button>
 				</div>
 			</div>
 			<?php endif; endif;

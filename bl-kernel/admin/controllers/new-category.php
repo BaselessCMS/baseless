@@ -31,8 +31,8 @@ use function CMS\Help\{
 checkRole( [ 'admin' ] );
 
 if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
-	if ( createCategory( $_POST ) ) {
-		Redirect :: page( 'categories' );
+	if ( create_category( $_POST ) ) {
+		\Redirect :: page( 'categories' );
 	}
 }
 

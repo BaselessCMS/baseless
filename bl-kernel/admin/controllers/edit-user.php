@@ -36,19 +36,19 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 		unset( $_POST['role'] );
 	}
 
-	if ( isset( $_POST['deleteUserAndDeleteContent'] ) && ( 'admin' === $login->role() ) ) {
+	if ( isset( $_POST['delete_userAndDeleteContent'] ) && ( 'admin' === $login->role() ) ) {
 		$_POST['deleteContent'] = true;
-		deleteUser( $_POST );
+		delete_user( $_POST );
 
-	} elseif ( isset( $_POST['deleteUserAndKeepContent'] ) && ( 'admin' === $login->role() ) ) {
+	} elseif ( isset( $_POST['delete_userAndKeepContent'] ) && ( 'admin' === $login->role() ) ) {
 		$_POST['deleteContent'] = false;
-		deleteUser( $_POST );
+		delete_user( $_POST );
 
-	} elseif ( isset( $_POST['disableUser'] ) && ( 'admin' === $login->role() )) {
-		disableUser( [ 'username' => $_POST['username'] ] );
+	} elseif ( isset( $_POST['disable_user'] ) && ( 'admin' === $login->role() )) {
+		disable_user( [ 'username' => $_POST['username'] ] );
 
 	} else {
-		editUser( $_POST );
+		edit_user( $_POST );
 	}
 
 	\Alert :: set( $L->g( 'The changes have been saved' ) );

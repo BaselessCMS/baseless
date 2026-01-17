@@ -31,7 +31,7 @@ use function CMS\Help\{
 checkRole( [ 'admin' ] );
 
 $pluginClassName = $layout['parameters'];
-if ( ! activatePlugin( $pluginClassName ) ) {
+if ( ! activate_plugin( $pluginClassName ) ) {
 	\Log :: set( 'Fail when try to activate the plugin.', LOG_TYPE_ERROR );
 }
 

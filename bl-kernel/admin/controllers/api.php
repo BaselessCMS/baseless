@@ -28,10 +28,10 @@ use function CMS\Help\{
 
 checkRole( [ 'admin' ] );
 
-activatePlugin( 'pluginAPI' );
+activate_plugin( 'pluginAPI' );
 
 $apiURL    = DOMAIN_BASE . 'api/';
-$pluginAPI = getPlugin ( 'pluginAPI' );
+$pluginAPI = get_plugin ( 'pluginAPI' );
 $apiToken  = $pluginAPI->getToken();
 $username  = $login->username();
 $admin     = new \User( $username );

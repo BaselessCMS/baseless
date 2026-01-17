@@ -13,7 +13,7 @@ if ( ! defined( 'JSON_CMS' ) ) {
 	die( 'You are not allowed to access this file directly.' );
 }
 
-$themePlugin = getPlugin($site->theme()); // Returns plugin object or False
+$themePlugin = get_plugin($site->theme()); // Returns plugin object or False
 
 /**
  * Build themes

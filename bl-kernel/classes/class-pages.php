@@ -449,7 +449,7 @@ class Pages extends dbJSON {
 	 * @param  string $args
 	 * @return boolean
 	 */
-	public function deletePagesByUser( $args ) {
+	public function delete_pagesByUser( $args ) {
 
 		$username = $args['username'];
 

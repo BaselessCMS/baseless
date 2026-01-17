@@ -31,7 +31,7 @@ use function CMS\Help\{
 checkRole( [ 'admin', 'editor', 'author' ] );
 
 if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
-	createPage( $_POST );
+	create_page( $_POST );
 	\Redirect :: page( 'content' );
 }
 

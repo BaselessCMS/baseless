@@ -56,11 +56,11 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 	if ( 'delete' === $_POST['type'] ) {
 
-		if ( deletePage( $_POST['key'] ) ) {
+		if ( delete_page( $_POST['key'] ) ) {
 			\Alert :: set( $L->g( 'The changes have been saved' ) );
 		}
 	} else {
-		$key = editPage( $_POST );
+		$key = edit_page( $_POST );
 
 		if ( false !== $key  ) {
 			\Alert :: set( $L->g( 'The changes have been saved' ) );

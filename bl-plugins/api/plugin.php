@@ -144,16 +144,16 @@ class pluginAPI extends Plugin {
 		// (PUT) /api/pages/<key>
 		elseif ( ($method==='PUT') && ($parameters[0]==='pages') && !empty($parameters[1]) && $writePermissions ) {
 			$pageKey = $parameters[1];
-			$data = $this->editPage($pageKey, $inputs);
+			$data = $this->edit_page($pageKey, $inputs);
 		}
 		// (DELETE) /api/pages/<key>
 		elseif ( ($method==='DELETE') && ($parameters[0]==='pages') && !empty($parameters[1]) && $writePermissions ) {
 			$pageKey = $parameters[1];
-			$data = $this->deletePage($pageKey);
+			$data = $this->delete_page($pageKey);
 		}
 		// (POST) /api/pages
 		elseif ( ($method==='POST') && ($parameters[0]==='pages') && empty($parameters[1]) && $writePermissions ) {
-			$data = $this->createPage($inputs);
+			$data = $this->create_page($inputs);
 		}
 		// (GET) /api/settings
 		elseif ( ($method==='GET') && ($parameters[0]==='settings') && empty($parameters[1]) && $writePermissions ) {
@@ -178,7 +178,7 @@ class pluginAPI extends Plugin {
 		}
 		// (GET) /api/categories
 		elseif ( ($method==='GET') && ($parameters[0]==='categories') && empty($parameters[1]) ) {
-			$data = $this->getCategories();
+			$data = $this->get_categories();
 		}
 		// (GET) /api/categories/<key>
 		elseif ( ($method==='GET') && ($parameters[0]==='categories') && !empty($parameters[1]) ) {
@@ -406,7 +406,7 @@ class pluginAPI extends Plugin {
 		}
 	}
 
-	private function createPage($args)
+	private function create_page($args)
 	{
 		// Unsanitize content because all values are sanitized
 		if (isset($args['content'])) {
@@ -414,7 +414,7 @@ class pluginAPI extends Plugin {
 		}
 
 		// This function is defined on functions.php
-		$key = createPage($args);
+		$key = create_page($args);
 		if ($key===false) {
 			return array(
 				'status'=>'1',
@@ -429,7 +429,7 @@ class pluginAPI extends Plugin {
 		);
 	}
 
-	private function editPage($key, $args)
+	private function edit_page($key, $args)
 	{
 		// Unsanitize content because all values are sanitized
 		if (isset($args['content'])) {
@@ -437,7 +437,7 @@ class pluginAPI extends Plugin {
 		}
 
 		$args['key'] = $key;
-		$newKey = editPage($args);
+		$newKey = edit_page($args);
 
 		if ($newKey===false) {
 			return array(
@@ -453,9 +453,9 @@ class pluginAPI extends Plugin {
 		);
 	}
 
-	private function deletePage($key)
+	private function delete_page($key)
 	{
-		if (deletePage($key)) {
+		if (delete_page($key)) {
 			return array(
 				'status'=>'0',
 				'message'=>'Page deleted.'
@@ -577,7 +577,7 @@ class pluginAPI extends Plugin {
 	 |
 	 | @return	array
          */
-	private function getCategories()
+	private function get_categories()
 	{
 		global $categories;
 		$tmp = array(

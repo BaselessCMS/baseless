@@ -76,7 +76,7 @@ class pluginNavigation extends Plugin {
 		// Pages order by position
 		if (ORDER_BY=='position') {
 			// Get parents
-			$parents = buildParentPages();
+			$parents = build_parent_pages();
 			foreach ($parents as $parent) {
 				$html .= '<li class="parent">';
 				$html .= '<a href="' . $parent->permalink() . '">' . $parent->title() . '</a>';

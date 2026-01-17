@@ -94,7 +94,7 @@ class Theme {
 	 * @return mixed
 	 */
 	public static function rssUrl() {
-		if ( pluginActivated( 'pluginRSS' ) ) {
+		if ( plugin_activated( 'pluginRSS' ) ) {
 			return DOMAIN_BASE . 'rss.xml';
 		}
 		return false;
@@ -109,7 +109,7 @@ class Theme {
 	 * @return mixed
 	 */
 	public static function sitemapUrl() {
-		if ( pluginActivated( 'pluginSitemap' ) ) {
+		if ( plugin_activated( 'pluginSitemap' ) ) {
 			return DOMAIN_BASE . 'sitemap.xml';
 		}
 		return false;

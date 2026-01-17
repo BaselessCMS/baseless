@@ -32,9 +32,9 @@ checkRole( [ 'admin' ] );
 
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	if ( 'delete' == $_POST['action'] ) {
-		deleteCategory( $_POST );
+		delete_category( $_POST );
 	} elseif ( 'edit' == $_POST['action'] ) {
-		editCategory( $_POST );
+		edit_category( $_POST );
 	}
 
 	\Redirect :: page( 'categories' );

@@ -49,7 +49,7 @@ $page = false;
  *		N => page object
  * ]```
 */
-$staticContent = $staticPages = buildStaticPages();
+$staticContent = $staticPages = build_static_pages();
 
 // Execute the scheduler.
 if ( $pages->scheduler() ) {
@@ -57,8 +57,8 @@ if ( $pages->scheduler() ) {
 	// Execute plugins with the hook afterPageCreate.
 	Theme :: plugins( 'afterPageCreate' );
 
-	reindexTags();
-    reindexCategories();
+	reindex_tags();
+    reindex_categories();
 
 	// Add to syslog.
 	syslog()->add( [
@@ -79,19 +79,19 @@ if ( $site->homepage() && $url->whereAmI() === 'home' ) {
 
 // Build specific page.
 if ( $url->whereAmI() === 'page' ) {
-	$content[0] = $page = buildThePage();
+	$content[0] = $page = build_the_page();
 
 // Build content by tag.
 } elseif ( $url->whereAmI() === 'tag' ) {
-	$content = buildPagesByTag();
+	$content = build_pages_by_tag();
 
 // Build content by category.
 } elseif ( $url->whereAmI() === 'category' ) {
-	$content = buildPagesByCategory();
+	$content = build_pages_by_category();
 
 // Build content for the homepage.
 } elseif ( ( $url->whereAmI() === 'home' ) || ( $url->whereAmI() === 'blog' ) ) {
-        $content = buildPagesForHome();
+        $content = build_pages_for_home();
 }
 
 if ( isset( $content[0] ) ) {
@@ -100,5 +100,5 @@ if ( isset( $content[0] ) ) {
 
 // If set notFound, create the page 404.
 if ( $url->notFound() ) {
-	$content[0] = $page = buildErrorPage();
+	$content[0] = $page = build_error_page();
 }
