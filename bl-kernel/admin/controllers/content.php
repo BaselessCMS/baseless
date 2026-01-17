@@ -28,7 +28,7 @@ use function CMS\Help\{
 	cats
 };
 
-checkRole( [ 'admin', 'editor', 'author' ] );
+check_role( [ 'admin', 'editor', 'author' ] );
 
 /**
  * Content filter owner
@@ -62,7 +62,7 @@ $sticky    = $pages->getStickyDB( true );
 $autosave  = $pages->getAutosaveDB( true );
 
 // If the user is an Author filter the content he/she can edit.
-if ( checkRole( [ 'author' ], false ) ) {
+if ( check_role( [ 'author' ], false ) ) {
 	$published = _content_owner( $published );
 	$drafts    = _content_owner( $drafts );
 	$scheduled = _content_owner( $scheduled );

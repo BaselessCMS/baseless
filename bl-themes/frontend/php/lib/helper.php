@@ -262,7 +262,7 @@ class Helper
         if ($WHERE_AM_I == 'page') {
             $currentKey = $page->key();
             if (!$page->category()) return false;
-            $currentCategory = getCategory($page->categoryKey());
+            $currentCategory = get_category($page->categoryKey());
             if (count($currentCategory->pages()) >= $max + 1) {
                 $allCatPages = $currentCategory->pages();
 				//remove curent page

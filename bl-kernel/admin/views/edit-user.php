@@ -205,7 +205,7 @@ if ( user()->nickname() ) {
 			] );
 
 			$users_db = users()->db;
-			if ( checkRole( [ 'admin' ], false ) && count( $users_db ) > 1 ) : ?>
+			if ( check_role( [ 'admin' ], false ) && count( $users_db ) > 1 ) : ?>
 			<h2><?php lang()->p( 'Status' ); ?></h2>
 
 			<?php

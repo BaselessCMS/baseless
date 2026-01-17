@@ -28,7 +28,7 @@ use function CMS\Help\{
 	cats
 };
 
-checkRole( [ 'admin' ] );
+check_role( [ 'admin' ] );
 
 $pluginClassName = $layout['parameters'];
 if ( ! activate_plugin( $pluginClassName ) ) {

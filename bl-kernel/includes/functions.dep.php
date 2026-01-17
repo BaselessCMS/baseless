@@ -683,7 +683,7 @@ function delete_user( $args ) {
 }
 
 // Returns true if the user is allowed to proceed
-function checkRole( $allowRoles, $redirect = true ) {
+function check_role( $allowRoles, $redirect = true ) {
 
 	$userRole = login()->role();
 	if ( in_array( $userRole, $allowRoles ) ) {
@@ -705,7 +705,7 @@ function checkRole( $allowRoles, $redirect = true ) {
 }
 
 // Returns the object category if the category exists, FALSE otherwise.
-function getCategory( $key ) {
+function get_category( $key ) {
 
 	try {
 		$category = new Category( $key );
@@ -717,7 +717,7 @@ function getCategory( $key ) {
 
 // Returns an array with all the tags.
 // By default, the database of tags is alphanumeric sorted.
-function getTags() {
+function get_tags() {
 
 	$list = [];
 	foreach ( tags()->db as $key => $fields ) {
@@ -728,7 +728,7 @@ function getTags() {
 }
 
 // Returns the object tag if the tag exists, false otherwise.
-function getTag( $key ) {
+function get_tag( $key ) {
 
 	try {
 		$tag = new Tag( $key );

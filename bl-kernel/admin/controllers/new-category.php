@@ -28,7 +28,7 @@ use function CMS\Help\{
 	cats
 };
 
-checkRole( [ 'admin' ] );
+check_role( [ 'admin' ] );
 
 if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
 	if ( create_category( $_POST ) ) {

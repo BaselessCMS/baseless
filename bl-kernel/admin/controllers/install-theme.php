@@ -28,7 +28,7 @@ use function CMS\Help\{
 	cats
 };
 
-checkRole( [ 'admin' ] );
+check_role( [ 'admin' ] );
 
 $themeDirectory = $layout['parameters'];
 

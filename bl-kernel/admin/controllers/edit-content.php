@@ -30,7 +30,7 @@ use function CMS\Help\{
 };
 
 
-if ( checkRole( [ 'author' ], false ) ) {
+if ( check_role( [ 'author' ], false ) ) {
 	try {
 		$pageKey = isset( $_POST['key'] ) ? $_POST['key'] : $layout['parameters'];
 		$page    = new Page( $pageKey );

@@ -28,7 +28,7 @@ use function CMS\Help\{
 	cats
 };
 
-checkRole( [ 'admin', 'editor', 'author' ] );
+check_role( [ 'admin', 'editor', 'author' ] );
 
 if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
 	create_page( $_POST );

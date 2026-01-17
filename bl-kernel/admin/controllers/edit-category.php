@@ -28,7 +28,7 @@ use function CMS\Help\{
 	cats
 };
 
-checkRole( [ 'admin' ] );
+check_role( [ 'admin' ] );
 
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	if ( 'delete' == $_POST['action'] ) {

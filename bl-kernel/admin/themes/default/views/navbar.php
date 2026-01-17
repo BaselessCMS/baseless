@@ -22,13 +22,13 @@
 					<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'content' ?>">
 						<?php $L->p('Content') ?></a>
 				</li>
-				<?php if (!checkRole(array('admin'),false)): ?>
+				<?php if (!check_role(array('admin'),false)): ?>
 				    <li class="nav-item">
 					<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'edit-user/'.$login->username() ?>">
 					    <?php $L->p('Profile') ?></a>
 				    </li>
 				<?php endif; ?>
-				<?php if (checkRole(array('admin'),false)): ?>
+				<?php if (check_role(array('admin'),false)): ?>
 						<li class="nav-item">
 							<a class="nav-link" href="<?php echo HTML_PATH_ADMIN_ROOT.'categories' ?>">
 								<?php $L->p('Categories') ?></a>
@@ -54,7 +54,7 @@
 								<?php $L->p('About') ?></a>
 						</li>
 				<?php endif; ?>
-				<?php if (checkRole(array('admin'),false)): ?>
+				<?php if (check_role(array('admin'),false)): ?>
 				    <?php
 				    if (!empty($plugins['adminSidebar'])) {
 					foreach ($plugins['adminSidebar'] as $pluginSidebar) {

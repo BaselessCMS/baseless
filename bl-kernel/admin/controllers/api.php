@@ -26,7 +26,7 @@ use function CMS\Help\{
 	cats
 };
 
-checkRole( [ 'admin' ] );
+check_role( [ 'admin' ] );
 
 activate_plugin( 'pluginAPI' );
 

@@ -169,12 +169,12 @@ class pluginAPI extends Plugin {
 		}
 		// (GET) /api/tags
 		elseif ( ($method==='GET') && ($parameters[0]==='tags') && empty($parameters[1]) ) {
-			$data = $this->getTags();
+			$data = $this->get_tags();
 		}
 		// (GET) /api/tags/<key>
 		elseif ( ($method==='GET') && ($parameters[0]==='tags') && !empty($parameters[1]) ) {
 			$tagKey = $parameters[1];
-			$data = $this->getTag($tagKey);
+			$data = $this->get_tag($tagKey);
 		}
 		// (GET) /api/categories
 		elseif ( ($method==='GET') && ($parameters[0]==='categories') && empty($parameters[1]) ) {
@@ -183,7 +183,7 @@ class pluginAPI extends Plugin {
 		// (GET) /api/categories/<key>
 		elseif ( ($method==='GET') && ($parameters[0]==='categories') && !empty($parameters[1]) ) {
 			$categoryKey = $parameters[1];
-			$data = $this->getCategory($categoryKey);
+			$data = $this->get_category($categoryKey);
 		}
 		// (GET) /api/users
 		elseif ( ($method==='GET') && ($parameters[0]==='users') && empty($parameters[1]) ) {
@@ -300,7 +300,7 @@ class pluginAPI extends Plugin {
 		exit($json);
 	}
 
-	private function getTags()
+	private function get_tags()
 	{
 		global $tags;
 		$tmp = array(
@@ -317,7 +317,7 @@ class pluginAPI extends Plugin {
 
 	// Returns the tag information and the pages releated to the tag
 	// The array with the pages has the complete information of each page
-	private function getTag($key)
+	private function get_tag($key)
 	{
 		try {
 			$tag = new Tag($key);
@@ -601,7 +601,7 @@ class pluginAPI extends Plugin {
 	 |
 	 | @return	array
          */
-	private function getCategory($key)
+	private function get_category($key)
 	{
 		try {
 			$category = new Category($key);

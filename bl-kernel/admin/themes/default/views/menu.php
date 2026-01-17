@@ -17,19 +17,19 @@ use function CMS\Func\{
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'dashboard'; ?>"><?php svg_icon( 'tachometer' ); ?> <span class="admin-menu-text"><?php $L->p( 'Dashboard' ); ?></span></a>
 	</li>
 
-	<?php if ( ! checkRole( [ 'admin' ], false ) ) : ?>
+	<?php if ( ! check_role( [ 'admin' ], false ) ) : ?>
 	<li>
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'content'; ?>"><?php svg_icon( 'file' ); ?> <span class="admin-menu-text"><?php $L->p( 'Content' ); ?></span></a>
 	</li>
 	<?php endif; ?>
 
-	<?php if ( ! checkRole( [ 'admin' ], false ) ) : ?>
+	<?php if ( ! check_role( [ 'admin' ], false ) ) : ?>
 	<li>
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'edit-user/' . $login->username(); ?>"><?php svg_icon( 'user' ); ?> <span class="admin-menu-text"><?php $L->p( 'Profile' ); ?></span></a>
 	</li>
 	<?php endif; ?>
 
-	<?php if ( checkRole( [ 'admin' ], false ) ) : ?>
+	<?php if ( check_role( [ 'admin' ], false ) ) : ?>
 
 	<li>
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'content'; ?>"><?php svg_icon( 'file' ); ?> <span class="admin-menu-text"><?php $L->p( 'Content' ); ?></span></a>
@@ -40,7 +40,7 @@ use function CMS\Func\{
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'new-content'; ?>"><?php svg_icon( 'pencil' ); ?> <span class="admin-menu-text"><?php $L->p( 'Compose' ); ?></span></a>
 	</li>
 
-	<?php if ( checkRole( [ 'admin' ], false ) ) : ?>
+	<?php if ( check_role( [ 'admin' ], false ) ) : ?>
 	<li>
 		<a class="top-level-link" href="<?php echo HTML_PATH_ADMIN_ROOT . 'categories'; ?>"><?php svg_icon( 'folder' ); ?> <span class="admin-menu-text"><?php $L->p( 'Categories' ); ?></span></a>
 	</li>
@@ -63,7 +63,7 @@ use function CMS\Func\{
 
 	<?php endif; ?>
 
-	<?php if ( checkRole( [ 'admin', 'editor' ], false ) ) : ?>
+	<?php if ( check_role( [ 'admin', 'editor' ], false ) ) : ?>
 		<?php
 			if ( ! empty( $plugins['adminSidebar'] ) ) {
 				echo '<li><hr /></li>';
