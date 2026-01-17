@@ -377,7 +377,7 @@ EOF;
 		);
 		$html .= '</div>';
 
-		if ( ! empty( $args['name'] ) && ! empty( $args['value'] ) ) {
+		if ( ! empty( $args['name'] ) ) {
 			return $html;
 		}
 		return null;
