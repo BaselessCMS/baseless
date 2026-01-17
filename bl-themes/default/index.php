@@ -10,6 +10,12 @@
  * @since      1.0.0
  */
 
+// Site direction.
+$dir = 'ltr';
+if ( CMS\Func\is_rtl() ) {
+	$dir = 'rtl';
+}
+
 // Get UUID
 $uuid = '';
 if ( 'page' == $url->whereAmI() ) {
