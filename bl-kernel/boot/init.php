@@ -20,10 +20,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
  * @return mixed Returns an array of config
  *               parameters or false.
  */
-function config() {
+function _config() {
 
 	$config = false;
-	if ( file_exists( PATH_ROOT . 'config.json' ) ) {
+	if ( file_exists( PATH_BOOT . 'config.json' ) ) {
 		$config = file_get_contents( PATH_BOOT . 'config.json' );
 	}
 
@@ -42,7 +42,7 @@ function config() {
 	// Return the JSON config as a PHP array.
 	return json_decode( $decode, true );
 }
-$config = config();
+$config = _config();
 
 // Die if no config file.
 if ( ! $config ) {
