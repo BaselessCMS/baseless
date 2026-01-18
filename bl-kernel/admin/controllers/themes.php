@@ -17,15 +17,11 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
 	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	site
+};
+use function CMS\Func\{
+	check_role
 };
 
 check_role( [ 'admin' ] );
@@ -35,6 +31,6 @@ $themes = buildThemes();
 // Title of the page.
 $layout['title'] .= sprintf(
 	'%s | %s',
-	$L->g( 'Themes' ),
-	$site->title()
+	lang()->g( 'Themes' ),
+	site()->title()
 );

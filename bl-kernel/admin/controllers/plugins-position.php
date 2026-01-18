@@ -17,15 +17,12 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
 	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	site
+};
+use function CMS\Func\{
+	change_plugin_order,
+	check_role
 };
 
 check_role( [ 'admin' ] );
@@ -38,6 +35,6 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
 // Title of the page.
 $layout['title'] .= sprintf(
 	'%s | %s',
-	$L->g( 'Plugins Positions' ),
-	$site->title()
+	lang()->g( 'Plugins Order' ),
+	site()->title()
 );

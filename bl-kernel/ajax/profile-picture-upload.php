@@ -19,22 +19,22 @@ header( 'Content-Type: application/json' );
 $username = empty( $_POST['username'] ) ? false : $_POST['username'];
 
 if ( false === $username ) {
-	ajaxResponse( 1, 'Error in username.' );
+	ajax_response( 1, 'Error in username.' );
 }
 
 if ( ( $login->role() != 'admin' ) && ( $login->username() != $username ) ) {
-	ajaxResponse( 1, 'Error in username.' );
+	ajax_response( 1, 'Error in username.' );
 }
 
 if ( ! isset( $_FILES['profilePictureInputFile'] ) ) {
-	ajaxResponse( 1, 'Error trying to upload the profile picture.' );
+	ajax_response( 1, 'Error trying to upload the profile picture.' );
 }
 
 // Check path traversal.
 if ( \Text :: stringContains( $username, DS, false ) ) {
 	$message = 'Path traversal detected.';
 	\Log :: set( $message, LOG_TYPE_ERROR );
-	ajaxResponse( 1, $message );
+	ajax_response( 1, $message );
 }
 
 // Check file extension.
@@ -43,7 +43,7 @@ $fileExtension = \Text :: lowercase( $fileExtension );
 if ( ! in_array( $fileExtension, $GLOBALS['ALLOWED_IMG_EXTENSION'] ) ) {
 	$message = $L->g( 'File type is not supported. Allowed types:' ) . ' ' . implode( ', ',$GLOBALS['ALLOWED_IMG_EXTENSION'] );
 	\Log :: set( $message, LOG_TYPE_ERROR );
-	ajaxResponse( 1, $message );
+	ajax_response( 1, $message );
 }
 
 // Check file MIME type.
@@ -52,7 +52,7 @@ if ( $fileMimeType !== false ) {
 	if ( ! in_array( $fileMimeType, $GLOBALS['ALLOWED_IMG_MIMETYPES'] ) ) {
 		$message = $L->g( 'File mime type is not supported. Allowed types:' ) . ' ' . implode( ', ',$GLOBALS['ALLOWED_IMG_MIMETYPES'] );
 		\Log :: set( $message, LOG_TYPE_ERROR );
-		ajaxResponse( 1, $message );
+		ajax_response( 1, $message );
 	}
 }
 
@@ -76,7 +76,7 @@ $image->saveImage( PATH_UPLOADS_PROFILES . $filename, PROFILE_IMG_QUALITY, false
 // Permissions.
 chmod( PATH_UPLOADS_PROFILES.$filename, 0644 );
 
-ajaxResponse( 0, 'Image uploaded.', [
+ajax_response( 0, 'Image uploaded.', [
 	'filename'     => $filename,
 	'absoluteURL'  => DOMAIN_UPLOADS_PROFILES.$filename,
 	'absolutePath' => PATH_UPLOADS_PROFILES.$filename

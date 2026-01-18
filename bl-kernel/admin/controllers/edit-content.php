@@ -17,37 +17,35 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	syslog,
-	url,
 	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	login,
+	site,
+	syslog
 };
-
+use function CMS\Func\{
+	check_role,
+	delete_page,
+	edit_page
+};
 
 if ( check_role( [ 'author' ], false ) ) {
 	try {
-		$pageKey = isset( $_POST['key'] ) ? $_POST['key'] : $layout['parameters'];
-		$page    = new Page( $pageKey );
+		$key  = isset( $_POST['key'] ) ? $_POST['key'] : $layout['parameters'];
+		$page = new Page( $key );
 	} catch ( \Exception $e ) {
-		\Alert :: set( $L->g( 'You do not have sufficient permissions' ) );
+		\Alert :: set( lang()->g( 'You do not have sufficient permissions.' ) );
 		\Redirect :: page( 'dashboard' );
 	}
 
-	if ( $page->username() !== $login->username() ) {
+	if ( $page->username() !== login()->username() ) {
 
 		// Add to syslog.
 		syslog()->add( [
 			'dictionaryKey' => 'access-denied',
-			'notes'         => $login->username()
+			'notes'         => login()->username()
 		] );
 
-		\Alert :: set( $L->g( 'You do not have sufficient permissions' ) );
+		\Alert :: set( lang()->g( 'You do not have sufficient permissions.' ) );
 		\Redirect :: page( 'dashboard' );
 	}
 }
@@ -57,13 +55,13 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	if ( 'delete' === $_POST['type'] ) {
 
 		if ( delete_page( $_POST['key'] ) ) {
-			\Alert :: set( $L->g( 'The changes have been saved' ) );
+			\Alert :: set( lang()->g( 'The changes have been saved.' ) );
 		}
 	} else {
 		$key = edit_page( $_POST );
 
 		if ( false !== $key  ) {
-			\Alert :: set( $L->g( 'The changes have been saved' ) );
+			\Alert :: set( lang()->g( 'The changes have been saved.' ) );
 			\Redirect :: page( 'edit-content/' . $key );
 		}
 	}
@@ -71,10 +69,10 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 }
 
 try {
-	$pageKey = $layout['parameters'];
-	$page    = new \Page( $pageKey );
+	$key  = $layout['parameters'];
+	$page = new \Page( $key );
 } catch ( \Exception $e ) {
-	\Log :: set( __METHOD__ . LOG_SEP.'Error occurred when trying to get the page: ' . $pageKey, LOG_TYPE_ERROR );
+	\Log :: set( __METHOD__ . LOG_SEP.'Error occurred when trying to get the page ' . $key, LOG_TYPE_ERROR );
 	\Redirect :: page( 'content' );
 }
 
@@ -99,6 +97,6 @@ if ( IMAGE_RESTRICT ) {
 // Title of the page.
 $layout['title'] .= sprintf(
 	'%s | %s',
-	$L->g( 'Edit Content' ),
-	$site->title()
+	lang()->g( 'Edit Content' ),
+	site()->title()
 );

@@ -17,6 +17,16 @@ if ( ! defined( 'JSON_CMS' ) ) {
 use function CMS\Help\{
 	syslog
 };
+use function CMS\Func\{
+	build_pages_for_home,
+	build_static_pages,
+	build_the_page,
+	build_pages_by_category,
+	build_pages_by_tag,
+	build_error_page,
+	reindex_categories,
+	reindex_tags
+};
 
 /**
  * Array with pages, each page is a page object.
@@ -57,8 +67,8 @@ if ( $pages->scheduler() ) {
 	// Execute plugins with the hook afterPageCreate.
 	Theme :: plugins( 'afterPageCreate' );
 
+	reindex_categories();
 	reindex_tags();
-    reindex_categories();
 
 	// Add to syslog.
 	syslog()->add( [
@@ -81,13 +91,13 @@ if ( $site->homepage() && $url->whereAmI() === 'home' ) {
 if ( $url->whereAmI() === 'page' ) {
 	$content[0] = $page = build_the_page();
 
-// Build content by tag.
-} elseif ( $url->whereAmI() === 'tag' ) {
-	$content = build_pages_by_tag();
-
 // Build content by category.
 } elseif ( $url->whereAmI() === 'category' ) {
 	$content = build_pages_by_category();
+
+// Build content by tag.
+} elseif ( $url->whereAmI() === 'tag' ) {
+	$content = build_pages_by_tag();
 
 // Build content for the homepage.
 } elseif ( ( $url->whereAmI() === 'home' ) || ( $url->whereAmI() === 'blog' ) ) {

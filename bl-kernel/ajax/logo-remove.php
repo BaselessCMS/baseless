@@ -28,4 +28,4 @@ if ( $logoFilename ) {
 // Remove the logo from the database.
 $site->set( [ 'logo' => '' ] );
 
-ajaxResponse( 0, 'Logo Removed.' );
+ajax_response( 0, 'Logo Removed.' );

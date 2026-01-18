@@ -27,7 +27,7 @@ $query = isset( $_GET['query'] ) ? \Text :: lowercase( $_GET['query'] ) : false;
 $checkIsParent = empty( $_GET['checkIsParent'] ) ? false : true;
 
 if ( false === $query ) {
-	ajaxResponse( 1, 'Invalid query.' );
+	ajax_response( 1, 'Invalid query.' );
 }
 
 $result   = [];

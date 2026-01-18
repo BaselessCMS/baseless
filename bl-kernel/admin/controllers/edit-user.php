@@ -17,54 +17,52 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
 	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	login,
+	site
+};
+use function CMS\Func\{
+	delete_user,
+	disable_user,
+	edit_user
 };
 
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 	// Prevent non-administrators to change other users.
-	if ( 'admin' !== $login->role() ) {
-		$_POST['username'] = $login->username();
+	if ( 'admin' !== login()->role() ) {
+		$_POST['username'] = login()->username();
 		unset( $_POST['role'] );
 	}
 
-	if ( isset( $_POST['delete_userAndDeleteContent'] ) && ( 'admin' === $login->role() ) ) {
+	if ( isset( $_POST['delete_userAndDeleteContent'] ) && ( 'admin' === login()->role() ) ) {
 		$_POST['deleteContent'] = true;
 		delete_user( $_POST );
 
-	} elseif ( isset( $_POST['delete_userAndKeepContent'] ) && ( 'admin' === $login->role() ) ) {
+	} elseif ( isset( $_POST['delete_userAndKeepContent'] ) && ( 'admin' === login()->role() ) ) {
 		$_POST['deleteContent'] = false;
 		delete_user( $_POST );
 
-	} elseif ( isset( $_POST['disable_user'] ) && ( 'admin' === $login->role() )) {
+	} elseif ( isset( $_POST['disable_user'] ) && ( 'admin' === login()->role() )) {
 		disable_user( [ 'username' => $_POST['username'] ] );
 
 	} else {
 		edit_user( $_POST );
 	}
 
-	\Alert :: set( $L->g( 'The changes have been saved' ) );
+	\Alert :: set( lang()->g( 'The changes have been saved.' ) );
 
-	if ( 'admin' === $login->role() ) {
-		// @todo Make setting for redirect.
+	if ( 'admin' === login()->role() ) {
 		\Redirect :: page( 'users' );
 	}
-	\Redirect :: page( 'edit-user/' . $login->username() );
+	\Redirect :: page( 'edit-user/' . login()->username() );
 }
 
 $username = $layout['parameters'];
 
 // Prevent non-administrators to change other users.
-if ( 'admin' !== $login->role() ) {
-	$username = $login->username();
+if ( 'admin' !== login()->role() ) {
+	$username = login()->username();
 }
 
 try {
@@ -76,6 +74,6 @@ try {
 // Title of the page.
 $layout['title'] .= sprintf(
 	'%s | %s',
-	$L->g( 'Edit User' ),
-	$site->title()
+	lang()->g( 'Edit User' ),
+	site()->title()
 );

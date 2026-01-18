@@ -17,23 +17,20 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
 	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	login,
+	site
+};
+use function CMS\Func\{
+	change_user_password
 };
 
 if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
 
 	// Prevent non-administrators to change other users.
 	$username = $_POST['username'];
-	if ( 'admin' !== $login->role() ) {
-	    $username = $login->username();
+	if ( 'admin' !== login()->role() ) {
+	    $username = login()->username();
 	}
 
 	if ( change_user_password( [
@@ -42,16 +39,16 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
 		'confirmPassword' => $_POST['confirmPassword']
 	] )
 	) {
-		if ( 'admin' === $login->role() ) {
+		if ( 'admin' === login()->role() ) {
 			\Redirect :: page( 'users' );
 		}
-		\Redirect :: page( 'edit-user/' . $login->username() );
+		\Redirect :: page( 'edit-user/' . login()->username() );
 	}
 }
 
 // Prevent non-administrators to change other users.
-if ( 'admin' !== $login->role() ) {
-	$layout['parameters'] = $login->username();
+if ( 'admin' !== login()->role() ) {
+	$layout['parameters'] = login()->username();
 }
 
 try {
@@ -64,6 +61,6 @@ try {
 // Title of the page.
 $layout['title'] .= sprintf(
 	'%s | %s',
-	$L->g( 'Change Password' ),
-	$site->title()
+	lang()->g( 'Change Password' ),
+	site()->title()
 );

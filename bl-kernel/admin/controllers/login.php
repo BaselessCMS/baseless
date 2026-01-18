@@ -17,15 +17,10 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
 	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	login,
+	security,
+	site
 };
 
 /**
@@ -33,24 +28,19 @@ use function CMS\Help\{
  *
  * @since  1.0.0
  * @param  array $args
- * @global object $L The Language class.
- * @global object $login The Login class.
- * @global object $security The Security class.
  * @return boolean
  */
 function checkLogin( $args ) {
 
-	global $L, $login, $security;
-
-	if ( $security->isBlocked() ) {
-		\Alert :: set( $L->g( 'IP address has been blocked' ) . '<br>' . $L->g( 'Try again in a few minutes' ), ALERT_STATUS_FAIL );
+	if ( security()->isBlocked() ) {
+		\Alert :: set( lang()->g( 'IP address has been blocked' ) . '<br>' . lang()->g( 'Try again in a few minutes.' ), ALERT_STATUS_FAIL );
 		return false;
 	}
 
-	if ( $login->verifyUser( $_POST['username'], $_POST['password'] ) ) {
+	if ( login()->verifyUser( $_POST['username'], $_POST['password'] ) ) {
 
 		if ( isset( $_POST['remember'] ) ) {
-			$login->setRememberMe( $_POST['username'] );
+			login()->setRememberMe( $_POST['username'] );
 		}
 
 		/**
@@ -59,7 +49,7 @@ function checkLogin( $args ) {
 		 * This token will be the same inside
 		 * the session for multiple forms.
 		 */
-		$security->generateTokenCSRF();
+		security()->generateTokenCSRF();
 
 		if ( isset( $_GET['enableAPI'] ) ) {
 			\Redirect :: page( 'api' );
@@ -69,10 +59,10 @@ function checkLogin( $args ) {
 	}
 
 	// Brute force protection, add IP to the blacklist.
-	$security->addToBlacklist();
+	security()->addToBlacklist();
 
 	// Create alert.
-	\Alert :: set( $L->g( 'Username or password incorrect' ), ALERT_STATUS_FAIL );
+	\Alert :: set( lang()->g( 'Username or password is incorrect.' ), ALERT_STATUS_FAIL );
 	return false;
 }
 
@@ -80,20 +70,16 @@ function checkLogin( $args ) {
  * Remember Me checkbox
  *
  * @since  1.0.0
- * @global object $login The Login class.
- * @global object $security The Security class.
  * @return boolean
  */
 function checkRememberMe() {
 
-	global $login, $security;
-
-	if ( $security->isBlocked() ) {
+	if ( security()->isBlocked() ) {
 		return false;
 	}
 
-	if ( $login->verifyUserByRemember() ) {
-		$security->generateTokenCSRF();
+	if ( login()->verifyUserByRemember() ) {
+		security()->generateTokenCSRF();
 		\Redirect :: page( 'dashboard' );
 		return true;
 	}

@@ -31,6 +31,6 @@ $oldKey = isset( $_POST['currentKey'] ) ? $_POST['currentKey'] : '';
 // Slug.
 $slug = $pages->generateKey( $text, $parent, $returnSlug = true, $oldKey );
 
-ajaxResponse( 0, 'Slug generated.', [
+ajax_response( 0, 'Slug generated.', [
 	'slug' => $slug
 ] );

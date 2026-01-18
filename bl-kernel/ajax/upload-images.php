@@ -23,7 +23,7 @@ if ( $uuid ) {
 	if ( \Text::stringContains( $uuid, DS, false ) ) {
 		$message = 'Path traversal detected.';
 		\Log :: set( $message, LOG_TYPE_ERROR );
-		ajaxResponse(1, $message );
+		ajax_response(1, $message );
 	}
 }
 
@@ -46,7 +46,7 @@ foreach ( $_FILES['images']['name'] as $uuid => $filename ) {
 	if ( $_FILES['images']['error'][$uuid] != 0 ) {
 		$message = $L->g( 'Maximum load file size allowed:' ) . ' ' . ini_get( 'upload_max_filesize' );
 		\Log :: set( $message, LOG_TYPE_ERROR );
-		ajaxResponse( 1, $message );
+		ajax_response( 1, $message );
 	}
 
 	// Convert URL characters such as spaces or quotes to characters.
@@ -56,7 +56,7 @@ foreach ( $_FILES['images']['name'] as $uuid => $filename ) {
 	if ( \Text :: stringContains( $filename, DS, false ) ) {
 		$message = 'Path traversal detected.';
 		\Log :: set( $message, LOG_TYPE_ERROR );
-		ajaxResponse( 1, $message );
+		ajax_response( 1, $message );
 	}
 
 	// Check file extension.
@@ -65,7 +65,7 @@ foreach ( $_FILES['images']['name'] as $uuid => $filename ) {
 	if ( ! in_array( $fileExtension, $GLOBALS['ALLOWED_IMG_EXTENSION'] ) ) {
 		$message = $L->g( 'File type is not supported. Allowed types:' ) . ' ' . implode( ', ', $GLOBALS['ALLOWED_IMG_EXTENSION'] );
 		\Log :: set( $message, LOG_TYPE_ERROR );
-		ajaxResponse( 1, $message );
+		ajax_response( 1, $message );
 	}
 
 	// Check file MIME Type.
@@ -74,7 +74,7 @@ foreach ( $_FILES['images']['name'] as $uuid => $filename ) {
 		if ( ! in_array( $fileMimeType, $GLOBALS['ALLOWED_IMG_MIMETYPES'] ) ) {
 			$message = $L->g( 'File mime type is not supported. Allowed types:' ) . ' ' . implode( ', ',$GLOBALS['ALLOWED_IMG_MIMETYPES'] );
 			\Log :: set( $message, LOG_TYPE_ERROR );
-			ajaxResponse( 1, $message );
+			ajax_response( 1, $message );
 		}
 	}
 
@@ -82,19 +82,19 @@ foreach ( $_FILES['images']['name'] as $uuid => $filename ) {
 	\Filesystem :: mv( $_FILES['images']['tmp_name'][$uuid], PATH_TMP . $filename );
 
 	// Transform the image and generate the thumbnail.
-	$image = transformImage( PATH_TMP . $filename, $imageDirectory, $thumbnailDirectory );
+	$image = transform_image( PATH_TMP . $filename, $imageDirectory, $thumbnailDirectory );
 
 	if ( $image ) {
 		chmod( $image, 0644 );
 		$filename = \Filesystem :: filename( $image );
 		array_push( $images, $filename );
 	} else {
-		$message = 'Error after transformImage() function.';
+		$message = 'Error after transform_image() function.';
 		\Log :: set( $message, LOG_TYPE_ERROR );
-		ajaxResponse( 1, $message );
+		ajax_response( 1, $message );
 	}
 }
 
-ajaxResponse( 0, 'Images uploaded.', [
+ajax_response( 0, 'Images uploaded.', [
 	'images' => $images
 ] );

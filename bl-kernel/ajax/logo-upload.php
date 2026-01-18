@@ -24,14 +24,14 @@ header( 'Content-Type: application/json' );
  */
 
 if ( ! isset( $_FILES['inputFile'] ) ) {
-	ajaxResponse( 1, 'Error trying to upload the site logo.' );
+	ajax_response( 1, 'Error trying to upload the site logo.' );
 }
 
 // Check path traversal on $filename.
 if ( \Text :: stringContains( $_FILES['inputFile']['name'], DS, false ) ) {
 	$message = 'Path traversal detected.';
 	\Log :: set( $message, LOG_TYPE_ERROR );
-	ajaxResponse( 1, $message );
+	ajax_response( 1, $message );
 }
 
 // File extension.
@@ -40,7 +40,7 @@ $fileExtension = \Text :: lowercase( $fileExtension );
 if ( ! in_array( $fileExtension, $GLOBALS['ALLOWED_IMG_EXTENSION'] ) ) {
 	$message = $L->g( 'File type is not supported. Allowed types:' ) . ' ' . implode( ', ',$GLOBALS['ALLOWED_IMG_EXTENSION'] );
 	Log :: set( $message, LOG_TYPE_ERROR );
-	ajaxResponse( 1, $message );
+	ajax_response( 1, $message );
 }
 
 // File MIME Type
@@ -49,7 +49,7 @@ if ( $fileMimeType !== false ) {
 	if ( ! in_array( $fileMimeType, $GLOBALS['ALLOWED_IMG_MIMETYPES'] ) ) {
 		$message = $L->g( 'File mime type is not supported. Allowed types:' ) . ' ' . implode( ', ',$GLOBALS['ALLOWED_IMG_MIMETYPES'] );
 		\Log :: set( $message, LOG_TYPE_ERROR );
-		ajaxResponse( 1, $message );
+		ajax_response( 1, $message );
 	}
 }
 
@@ -74,7 +74,7 @@ chmod( PATH_UPLOADS.$filename, 0644 );
 // Store the filename in the database.
 $site->set( [ 'logo' => $filename ] );
 
-ajaxResponse( 0, 'Image Uploaded.', [
+ajax_response( 0, 'Image Uploaded.', [
 	'filename'     => $filename,
 	'absoluteURL'  => DOMAIN_UPLOADS . $filename,
 	'absolutePath' => PATH_UPLOADS . $filename

@@ -17,32 +17,28 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
-	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	lang
+};
+use function CMS\Func\{
+	activate_plugin,
+	check_role
 };
 
 check_role( [ 'admin' ] );
 
-$pluginClassName = $layout['parameters'];
-if ( ! activate_plugin( $pluginClassName ) ) {
-	\Log :: set( 'Fail when try to activate the plugin.', LOG_TYPE_ERROR );
+$class = $layout['parameters'];
+if ( ! activate_plugin( $class ) ) {
+	\Log :: set( lang()->g( 'Failed to activate the plugin.' ), LOG_TYPE_ERROR );
 }
 
-if ( isset( $plugins['all'][$pluginClassName] ) ) {
-	$plugin = $plugins['all'][$pluginClassName];
+if ( isset( $plugins['all'][$class] ) ) {
+	$plugin = $plugins['all'][$class];
 } else {
 	\Redirect :: page( 'plugins' );
 }
 
 if ( method_exists( $plugin, 'form' ) ) {
-	\Redirect :: page( 'configure-plugin/' . $pluginClassName );
+	\Redirect :: page( 'configure-plugin/' . $class );
 }
 
-\Redirect :: page( 'plugins#' . $pluginClassName );
+\Redirect :: page( 'plugins#' . $class );

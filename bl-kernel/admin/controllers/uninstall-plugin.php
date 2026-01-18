@@ -16,16 +16,9 @@ if ( ! defined( 'JSON_CMS' ) ) {
 }
 
 // Import namespaced functions.
-use function CMS\Help\{
-	site,
-	security,
-	url,
-	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+use function CMS\Func\{
+	check_role,
+	deactivate_plugin
 };
 
 check_role( [ 'admin' ] );

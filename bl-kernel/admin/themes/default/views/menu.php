@@ -7,7 +7,10 @@
  * @category   Themes
  * @since      1.0.0
  */
+
+// Import namespaced functions.
 use function CMS\Func\{
+	check_role,
 	svg_icon
 };
 

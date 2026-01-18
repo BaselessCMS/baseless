@@ -16,16 +16,9 @@ if ( ! defined( 'JSON_CMS' ) ) {
 }
 
 // Import namespaced functions.
-use function CMS\Help\{
-	site,
-	security,
-	url,
-	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+use function CMS\Func\{
+	activate_theme,
+	check_role
 };
 
 check_role( [ 'admin' ] );
@@ -33,7 +26,7 @@ check_role( [ 'admin' ] );
 $themeDirectory = $layout['parameters'];
 
 // Activate theme.
-activateTheme( $themeDirectory );
+activate_theme( $themeDirectory );
 
 // Redirect.
 \Redirect :: page( 'themes' );

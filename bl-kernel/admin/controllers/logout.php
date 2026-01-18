@@ -17,17 +17,9 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
-	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	login
 };
 
-if ( $login->logout() ) {
+if ( login()->logout() ) {
 	\Redirect :: admin();
 }

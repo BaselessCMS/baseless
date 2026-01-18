@@ -35,7 +35,7 @@ $draft     = empty( $_GET['draft'] ) ? false : true;
 $query     = isset( $_GET['query'] ) ? \Text :: lowercase( $_GET['query'] ) : false;
 
 if ( false === $query ) {
-	ajaxResponse( 1, 'Invalid query.' );
+	ajax_response( 1, 'Invalid query.' );
 }
 
 $pageNumber    = 1;

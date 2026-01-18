@@ -38,7 +38,7 @@ if ( 'thumbnails' == $path ) {
 		$path = PATH_UPLOADS_THUMBNAILS;
 	}
 } else {
-	ajaxResponse( 1, 'Invalid path.' );
+	ajax_response( 1, 'Invalid path.' );
 }
 
 // Get all files from the directory $path, also split the array by numberOfItems.
@@ -57,13 +57,13 @@ if ( isset( $listOfFilesByPage[$pageNumber] ) ) {
 
 	// Returns the number of chunks for the paginator.
 	// Returns the files inside the chunk.
-	ajaxResponse( 0, 'List of files and number of chunks.', [
+	ajax_response( 0, 'List of files and number of chunks.', [
 		'numberOfPages' => count( $listOfFilesByPage ),
 		'files'         => $files
 	] );
 }
 
-ajaxResponse( 0, 'List of files and number of chunks.', [
+ajax_response( 0, 'List of files and number of chunks.', [
 	'numberOfPages' => 0,
 	'files'         => []
 ] );

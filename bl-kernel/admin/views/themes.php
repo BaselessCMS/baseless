@@ -27,6 +27,9 @@ use function CMS\Help\{
 	pages,
 	cats
 };
+use function CMS\Func\{
+	get_plugin
+};
 
 $settings_url = '';
 foreach ( buildThemes() as $theme ) {

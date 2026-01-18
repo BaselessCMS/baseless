@@ -15,15 +15,12 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
-	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	login
+};
+use function CMS\Func\{
+	activate_plugin,
+	check_role,
+	get_plugin
 };
 
 check_role( [ 'admin' ] );
@@ -31,9 +28,9 @@ check_role( [ 'admin' ] );
 activate_plugin( 'pluginAPI' );
 
 $apiURL    = DOMAIN_BASE . 'api/';
-$pluginAPI = get_plugin ( 'pluginAPI' );
+$pluginAPI = get_plugin( 'pluginAPI' );
 $apiToken  = $pluginAPI->getToken();
-$username  = $login->username();
+$username  = login()->username();
 $admin     = new \User( $username );
 $authToken = $admin->tokenAuth();
 $output    = [

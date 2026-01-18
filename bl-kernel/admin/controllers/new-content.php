@@ -17,15 +17,13 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
 	lang,
-	users,
-	plugins,
-	page,
 	pages,
-	cats
+	site
+};
+use function CMS\Func\{
+	check_role,
+	create_page
 };
 
 check_role( [ 'admin', 'editor', 'author' ] );
@@ -36,7 +34,7 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
 }
 
 // UUID of the page is need it for autosave and media manager.
-$uuid = $pages->generateUUID();
+$uuid = pages()->generateUUID();
 
 // Images prefix directory.
 define( 'PAGE_IMAGES_KEY', $uuid );
@@ -60,6 +58,6 @@ if ( IMAGE_RESTRICT ) {
 // Title of the page.
 $layout['title'] .= sprintf(
 	'%s | %s',
-	$L->g( 'New Content' ),
-	$site->title()
+	lang()->g( 'New Content' ),
+	site()->title()
 );

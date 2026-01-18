@@ -161,7 +161,7 @@ class pluginAPI extends Plugin {
 		}
 		// (PUT) /api/settings
 		elseif ( ($method==='PUT') && ($parameters[0]==='settings') && empty($parameters[1]) && $writePermissions ) {
-			$data = $this->editSettings($inputs);
+			$data = $this->edit_settings($inputs);
 		}
 		// (POST) /api/images
 		elseif ( ($method==='POST') && ($parameters[0]==='images') && $writePermissions ) {
@@ -514,7 +514,7 @@ class pluginAPI extends Plugin {
 		Filesystem::mv($_FILES['image']['tmp_name'], PATH_TMP.$_FILES['image']['name']);
 
 		// Transform image and create thumbnails
-		$image = transformImage(PATH_TMP.$_FILES['image']['name'], $imageDirectory, $thumbnailDirectory);
+		$image = transform_image(PATH_TMP.$_FILES['image']['name'], $imageDirectory, $thumbnailDirectory);
 		if ($image) {
 			$filename = Filesystem::filename($image);
 			return array(
@@ -556,9 +556,9 @@ class pluginAPI extends Plugin {
 	 |
 	 | @return	array
          */
-	private function editSettings($args)
+	private function edit_settings($args)
 	{
-		if (editSettings($args)) {
+		if (edit_settings($args)) {
 			return array(
 				'status'=>'0',
 				'message'=>'Settings edited.'

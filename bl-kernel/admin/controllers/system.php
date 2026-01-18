@@ -17,15 +17,11 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
 	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	site
+};
+use function CMS\Func\{
+	check_role
 };
 
 check_role( [ 'admin' ] );
@@ -82,6 +78,6 @@ function table( $title, $array, $heading_el = 'h2' ) {
 // Title of the page.
 $layout['title'] .= sprintf(
 	'%s | %s',
-	$L->g( 'System' ),
-	$site->title()
+	lang()->g( 'System' ),
+	site()->title()
 );

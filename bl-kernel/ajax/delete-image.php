@@ -27,7 +27,7 @@ $filename = isset( $_POST['filename'] ) ? $_POST['filename'] : false;
 $uuid     = empty( $_POST['uuid'] ) ? false : $_POST['uuid'];
 
 if ( false === $filename ) {
-	ajaxResponse( 1, 'The filename is empty.' );
+	ajax_response( 1, 'The filename is empty.' );
 }
 
 if ( $uuid && IMAGE_RESTRICT ) {
@@ -48,4 +48,4 @@ if ( \Sanitize :: pathFile( $thumbnailPath . $filename ) ) {
 	\Filesystem :: rmfile( $thumbnailPath . $filename );
 }
 
-ajaxResponse( 0, 'Image deleted.' );
+ajax_response( 0, 'Image deleted.' );

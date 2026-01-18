@@ -17,15 +17,12 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
 	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	site
+};
+use function CMS\Func\{
+	check_role,
+	create_user
 };
 
 check_role( [ 'admin' ] );
@@ -39,6 +36,6 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
 // Title of the page.
 $layout['title'] .= sprintf(
 	'%s | %s',
-	$L->g( 'New User' ),
-	$site->title()
+	lang()->g( 'New User' ),
+	site()->title()
 );

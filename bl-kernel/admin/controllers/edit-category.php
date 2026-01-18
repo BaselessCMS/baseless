@@ -17,15 +17,14 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
+	cats,
 	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	site
+};
+use function CMS\Func\{
+	check_role,
+	delete_category,
+	edit_category
 };
 
 check_role( [ 'admin' ] );
@@ -40,18 +39,17 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	\Redirect :: page( 'categories' );
 }
 
-$categoryKey = $layout['parameters'];
-
-if ( ! $categories->exists( $categoryKey ) ) {
-	\Log :: set( __METHOD__ . LOG_SEP . 'Error occurred when trying to get the category: ' . $categoryKey );
+$key = $layout['parameters'];
+if ( ! $categories->exists( $key ) ) {
+	\Log :: set( __METHOD__ . LOG_SEP . 'Error occurred when trying to get the category ' . $key );
 	\Redirect :: page( 'categories' );
 }
 
-$cat_map = cats()->getMap( $categoryKey );
+$cat_map = cats()->getMap( $key );
 
 // Title of the page.
 $layout['title'] .= sprintf(
 	'%s | %s',
-	$L->g( 'Edit Category' ),
-	$site->title()
+	lang()->g( 'Edit Category' ),
+	site()->title()
 );

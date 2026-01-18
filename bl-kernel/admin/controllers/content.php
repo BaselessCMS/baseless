@@ -17,15 +17,14 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	url,
 	lang,
-	users,
-	plugins,
-	page,
+	login,
 	pages,
-	cats
+	site,
+	url
+};
+use function CMS\Func\{
+	check_role
 };
 
 check_role( [ 'admin', 'editor', 'author' ] );
@@ -42,24 +41,21 @@ check_role( [ 'admin', 'editor', 'author' ] );
  */
 function _content_owner( $list ) {
 
-	// Access global variables.
-	global $login, $pages;
-
 	$tmp = [];
 	foreach ( $list as $key ) {
-		if ( $login->username() == $pages->db[$key]['username'] ) {
+		if ( login()->username() == pages()->db[$key]['username'] ) {
 			array_push( $tmp, $key );
 		}
 	}
 	return $tmp;
 }
 
-$published = $pages->getList( $url->pageNumber(), ITEMS_PER_PAGE_ADMIN );
-$drafts    = $pages->getDraftDB( true );
-$scheduled = $pages->getScheduledDB( true );
-$static    = $pages->getStaticDB( true );
-$sticky    = $pages->getStickyDB( true );
-$autosave  = $pages->getAutosaveDB( true );
+$published = pages()->getList( url()->pageNumber(), ITEMS_PER_PAGE_ADMIN );
+$drafts    = pages()->getDraftDB( true );
+$scheduled = pages()->getScheduledDB( true );
+$static    = pages()->getStaticDB( true );
+$sticky    = pages()->getStickyDB( true );
+$autosave  = pages()->getAutosaveDB( true );
 
 // If the user is an Author filter the content he/she can edit.
 if ( check_role( [ 'author' ], false ) ) {
@@ -71,7 +67,7 @@ if ( check_role( [ 'author' ], false ) ) {
 }
 
 // Check if out of range the pageNumber.
-if ( empty( $published ) && $url->pageNumber() > 1 ) {
+if ( empty( $published ) && url()->pageNumber() > 1 ) {
 	\Redirect :: page( 'content' );
 }
 

@@ -17,26 +17,22 @@ if ( ! defined( 'JSON_CMS' ) ) {
 
 // Import namespaced functions.
 use function CMS\Help\{
-	site,
-	security,
-	syslog,
-	url,
 	lang,
-	users,
-	plugins,
-	page,
-	pages,
-	cats
+	site,
+	syslog
+};
+use function CMS\Func\{
+	check_role
 };
 
 check_role( [ 'admin' ] );
 
 $plugin = false;
-$plugin_class = $layout['parameters'];
+$class  = $layout['parameters'];
 
 // Check if the plugin exists.
-if ( isset( $plugins['all'][$plugin_class] ) ) {
-	$plugin = $plugins['all'][$plugin_class];
+if ( isset( $plugins['all'][$class] ) ) {
+	$plugin = $plugins['all'][$class];
 } else {
 	\Redirect :: page( 'plugins' );
 }
@@ -56,7 +52,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 	// Call the method post of the plugin.
 	$plugin->post();
-	\Alert :: set( $L->g( 'The changes have been saved' ) );
+	\Alert :: set( lang()->g( 'The changes have been saved' ) );
 	\Redirect :: page( 'configure-plugin/' . $plugin->className() );
 }
 

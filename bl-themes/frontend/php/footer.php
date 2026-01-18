@@ -1,3 +1,10 @@
+<?php
+
+// Import namespaced functions.
+use function CMS\Func\{
+	check_role
+};
+?>
 <div class="modal fade" id="drawer" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -24,12 +31,6 @@
 					</div>
 					<?php echo '<script>var domainPages="'.DOMAIN_PAGES.'" ;</script>'.PHP_EOL; ?>
 				</div>
-				 <?php if ($site->twitter()) : ?>
-				 <div class="widget">
-                    <h3 class="title"><?php echo $L->get('Latest Tweets') ?></h3>
-                    <div class="tweets" data-twitter="<?php echo basename($site->twitter()) ?>"></div>
-                </div>
-				<?php endif; ?>
 				<?php Theme::plugins('siteSidebar'); ?>
 				<span class="modal-inner-backdrop"></span>
 			</div>
@@ -41,19 +42,7 @@
 
 		<div class="footer-content">
 			<div class="row">
-				<div class="col-md-4">					
-					<?php if(!empty(Theme::socialNetworks())):?>
-					<h3 class="title"><?php echo $L->get('Find us on') ?></h3>
-					<ul class="social">
-						<?php foreach (Theme::socialNetworks() as $key=>$label): ?>
-						<li class="nav-item">
-							<a class="<?php echo $key?>" href="<?php echo $site->{$key}(); ?>" target="_blank" rel="nofollow noreferrer" data-toggle="tooltip" data-placement="top" data-original-title="<?php echo $label ?>">
-								<i class="icon-<?php echo $key?>" aria-hidden="true"></i>
-							</a>
-						</li>
-						<?php endforeach; ?>
-					</ul>
-					<?php endif; ?>
+				<div class="col-md-4">
 					<p class="site-description-footer">
 						<?php echo $site->description() ?>
 					</p>

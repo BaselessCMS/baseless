@@ -12,7 +12,7 @@
 							<?php echo $helper->description(); ?>
 						</p>
 						<?php endif ?>
-					</div>					
+					</div>
 				</div>
 			</section>
 

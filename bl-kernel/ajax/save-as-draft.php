@@ -29,7 +29,7 @@ $type    = isset( $_POST['type'] ) ? $_POST['type'] : 'draft';
 
 // Check UUID.
 if ( empty( $uuid ) ) {
-	ajaxResponse( 1, 'Draft save failed. UUID is not defined.' );
+	ajax_response( 1, 'Draft save failed. UUID is not defined.' );
 }
 
 $page = [
@@ -52,6 +52,6 @@ if ( empty( $pageKey ) ) {
 	edit_page( $page );
 }
 
-ajaxResponse( 0, 'Draft saved successfully.', [
+ajax_response( 0, 'Draft saved successfully.', [
 	'uuid' => $uuid
 ] );
