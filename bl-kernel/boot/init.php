@@ -277,11 +277,6 @@ include( PATH_CLASSES . 'class-parsedown.php' );
 include( PATH_CLASSES . 'class-security.php' );
 include( PATH_CLASSES . 'class-admin-bootstrap.php' );
 
-// Include functions.
-include( PATH_INCLUDES . 'helpers.php' );
-include( PATH_INCLUDES . 'functions.php' );
-include( PATH_INCLUDES . 'template-tags.php' );
-
 // Include helper classes.
 include( PATH_CLASSES . 'class-text.php' );
 include( PATH_CLASSES . 'class-log.php' );
@@ -300,15 +295,22 @@ include( PATH_CLASSES . 'class-tcp.php' );
 include( PATH_CLASSES . 'class-dom.php' );
 include( PATH_CLASSES . 'class-cookie.php' );
 
-// Instantiate classes.
-$pages 		= new Pages();
-$users 		= new Users();
-$tags 		= new Tags();
+// Include functions.
+foreach ( glob( PATH_INCLUDES . '*.php' ) as $filename ) {
+	require $filename;
+}
+
+// Variables for instantiated classes.
 $categories = new Categories();
-$site  		= new Site();
-$url		= new Url();
+$pages 		= new Pages();
 $security	= new Security();
 $syslog 	= new Syslog();
+$site  		= new Site();
+$tags 		= new Tags();
+$url		= new Url();
+$users 		= new Users();
+$language   = new Language( $site->language() );
+$L          = $language;
 
 /**
  * Base URL
@@ -358,8 +360,6 @@ define( 'HTML_PATH_UPLOADS_PROFILES', HTML_PATH_UPLOADS . 'profiles/' );
 define( 'HTML_PATH_UPLOADS_THUMBNAILS',	HTML_PATH_UPLOADS . 'thumbnails/' );
 define( 'HTML_PATH_PLUGINS', HTML_PATH_ROOT . 'bl-plugins/' );
 
-$language = new Language( $site->language() );
-$L = $language;
 $url->checkFilters( $site->uriFilters() );
 
 // Tag URI filter.
