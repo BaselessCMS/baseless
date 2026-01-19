@@ -36,7 +36,7 @@ if ( defined( 'DEBUG_MODE' ) && DEBUG_MODE ) {
 	echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n"; ?>
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="<?php echo HTML_PATH_CORE_IMG . 'favicon.png?version=' . BLUDIT_VERSION; ?>">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo HTML_PATH_CORE_IMG . 'favicon.png?version=' . CMS_VERSION; ?>">
 
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAIN_ADMIN_THEME; ?>assets/css/bootstrap.min.css?version=<?php echo CMS_VERSION; ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo DOMAIN_CORE_CSS; ?>line-awesome/css/line-awesome-font-awesome.min.css?version=<?php echo CMS_VERSION; ?>">

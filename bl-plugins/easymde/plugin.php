@@ -70,7 +70,7 @@ class plugineasyMDE extends Plugin {
 		$pageBreak = PAGE_BREAK;
 
 		// Javascript path and file
-		$jsEasyMDE = $this->domainPath().'js/easymde.min.js?version='.BLUDIT_VERSION;
+		$jsEasyMDE = $this->domainPath().'js/easymde.min.js?version='.CMS_VERSION;
 
 return <<<EOF
 <script charset="utf-8" src="$jsEasyMDE"></script>

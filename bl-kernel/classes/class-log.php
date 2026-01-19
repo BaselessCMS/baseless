@@ -41,7 +41,7 @@ class Log {
 			}
 			error_log( '------------------------', $messageType );
 		}
-		error_log( $type . ' [' . BLUDIT_VERSION . '] [' . $_SERVER['REQUEST_URI'] . '] ' . $text, $messageType );
+		error_log( $type . ' [' . CMS_VERSION . '] [' . $_SERVER['REQUEST_URI'] . '] ' . $text, $messageType );
 
 		if ( 'TRACE' == DEBUG_TYPE ) {
 			error_log( print_r( debug_backtrace(), true ) );

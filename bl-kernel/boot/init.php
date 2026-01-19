@@ -52,7 +52,6 @@ if ( ! $config ) {
 }
 
 // CMS version.
-define( 'BLUDIT_VERSION', '1.0.0' );
 define( 'CMS_VERSION', '1.0.0' );
 
 // Change to true for debugging.

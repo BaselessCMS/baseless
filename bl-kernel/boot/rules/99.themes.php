@@ -65,7 +65,7 @@ function buildThemes() {
 				$database['compatible'] = false;
 				if ( ! empty( $metadata['compatible'] ) ) {
 
-					$cms_root = explode( '.', BLUDIT_VERSION );
+					$cms_root = explode( '.', CMS_VERSION );
 					$compatible = explode( ',', $metadata['compatible'] );
 
 					foreach ( $compatible as $version ) {
