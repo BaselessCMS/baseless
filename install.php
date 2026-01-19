@@ -60,7 +60,7 @@ define( 'PATH_PLUGINS_DATABASES', PATH_CONTENT . 'databases' . DS . 'plugins' . 
 define( 'PATH_UPLOADS_PROFILES', PATH_UPLOADS . 'profiles' . DS );
 define( 'PATH_UPLOADS_THUMBNAILS', PATH_UPLOADS . 'thumbnails' . DS );
 define( 'PATH_UPLOADS_PAGES', PATH_UPLOADS . 'pages' . DS );
-define( 'PATH_HELPERS', PATH_KERNEL . 'helpers' . DS );
+define( 'PATH_CLASSES', PATH_KERNEL . 'classes' . DS );
 
 // Protecting against Symlink attacks.
 define( 'CHECK_SYMBOLIC_LINKS', true );
@@ -133,13 +133,13 @@ mb_http_output( CHARSET );
 define( 'DIR_PERMISSIONS', 0755 );
 
 // PHP classes.
-include( PATH_KERNEL . 'classes/class-dbjson.php' );
-include( PATH_HELPERS . 'sanitize.class.php' );
-include( PATH_HELPERS . 'valid.class.php' );
-include( PATH_HELPERS . 'text.class.php' );
-include( PATH_HELPERS . 'log.class.php' );
-include( PATH_HELPERS . 'date.class.php' );
-include( PATH_KERNEL . 'language.class.php' );
+include( PATH_CLASSES . 'class-dbjson.php' );
+include( PATH_CLASSES . 'class-sanitize.php' );
+include( PATH_CLASSES . 'class-valid.php' );
+include( PATH_CLASSES . 'class-text.php' );
+include( PATH_CLASSES . 'class-log.php' );
+include( PATH_CLASSES . 'class-date.php' );
+include( PATH_CLASSES . 'class-language.php' );
 
 // Try to detect the language from browser or headers.
 $languageFromHTTP = 'en';
