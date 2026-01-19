@@ -24,7 +24,6 @@ if ( ! file_exists( 'bl-content/databases/site.php' ) ) {
 $loadTime = microtime( true );
 
 // Security constants.
-define( 'BLUDIT', true );
 define( 'JSON_CMS', true );
 
 // Directory separator.

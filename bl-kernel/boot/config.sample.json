@@ -26,8 +26,8 @@
 	"login" : {
 		"pw_length"     : 6,
 		"salt_length"   : 8,
-		"cookie_user"   : "BLUDITREMEMBERUSERNAME",
-		"cookie_token"  : "BLUDITREMEMBERTOKEN",
+		"cookie_user"   : "JSON_CMS_REMEMBER_USERNAME",
+		"cookie_token"  : "JSON_CMS_REMEMBER_TOKEN",
 		"cookie_expire" : 30,
 		"email_token"   : "+15 minutes",
 		"session_life"  : 0,

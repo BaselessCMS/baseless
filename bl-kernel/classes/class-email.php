@@ -48,7 +48,7 @@ class Email {
 		$message = '<html>
 		<head>
 			<meta charset="UTF-8">
-			<title>BLUDIT</title>
+			<title>JSON_CMS</title>
 		</head>
 		<body>
 		<div>

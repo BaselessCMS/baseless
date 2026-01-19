@@ -40,7 +40,7 @@ if ( $modulesRequiredExit ) {
 }
 
 // Security constant.
-define( 'BLUDIT', true );
+define( 'JSON_CMS', true );
 define( 'JSON_CMS', true );
 
 // Directory separator.
@@ -334,7 +334,7 @@ function install( $adminPassword, $timezone ) {
 		error_log( '[ERROR] ' . $errorText, 0 );
 	}
 
-	$dataHead = "<?php defined( 'BLUDIT' ) or die( 'Bludit CMS.' ); ?>" . PHP_EOL;
+	$dataHead = "<?php defined( 'JSON_CMS' ) or die( 'Bludit CMS.' ); ?>" . PHP_EOL;
 
 	$data  = [];
 	$slugs = [];

@@ -56,7 +56,7 @@ class bluditAjax {
 			ajaxRequest.abort();
 		}
 
-		console.log("[INFO] [BLUDIT AJAX] [userLogged()] Checking if the user is logged.");
+		console.log("[INFO] [JSON_CMS AJAX] [userLogged()] Checking if the user is logged.");
 
 		ajaxRequest = $.ajax({
 			type: "GET",
@@ -64,12 +64,12 @@ class bluditAjax {
 		});
 
 		ajaxRequest.done(function (response, textStatus, jqXHR) {
-			console.log("[INFO] [BLUDIT AJAX] [userLogged()] The user is logged.");
+			console.log("[INFO] [JSON_CMS AJAX] [userLogged()] The user is logged.");
 		});
 
 		ajaxRequest.fail(function (jqXHR, textStatus, errorThrown) {
 			// The fail is produced by admin.php when the user is not logged the ajax request is not possible and returns 401
-			console.log("[INFO] [BLUDIT AJAX] [userLogged()] The user is NOT logged.");
+			console.log("[INFO] [JSON_CMS AJAX] [userLogged()] The user is NOT logged.");
 			if (jqXHR.status==401) {
 				callBack("You are not logged in anymore, so Bludit can't save your settings and content.");
 			}
