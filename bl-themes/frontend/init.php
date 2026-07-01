@@ -1,5 +1,8 @@
 <?php
-
+// Import namespaced functions.
+use function CMS\Func\{
+	build_page
+};
 
 if (!isset($login)) {
 	$login = new Login();
