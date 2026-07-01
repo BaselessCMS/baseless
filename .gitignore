@@ -1,7 +1,7 @@
 .vscode
-.htaccess
+**/.htaccess
 .DS_Store
 dbgenerator.php
 bl-content/*
 !bl-content/.keep
-config.json
+bl-kernel/boot/config.json
