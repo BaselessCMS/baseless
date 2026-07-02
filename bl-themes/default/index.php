@@ -1,10 +1,10 @@
 <?php
 /**
- * Default JSON CMS theme
+ * Default Baseless theme
  *
  * Begin markup for frontend display.
  *
- * @package    JSON CMS
+ * @package    Baseless
  * @subpackage Frontend
  * @category   Themes
  * @since      1.0.0

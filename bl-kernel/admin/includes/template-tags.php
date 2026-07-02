@@ -4,7 +4,7 @@
  *
  * Functions for use in admin page and partial templates.
  *
- * @package    JSON CMS
+ * @package    Baseless
  * @subpackage Admin
  * @category   Core
  * @since      1.0.0

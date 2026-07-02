@@ -2,14 +2,14 @@
 /**
  * Cookie helpers
  *
- * @package    JSON CMS
+ * @package    Baseless
  * @subpackage Classes
  * @category   UI
  * @since      1.0.0
  */
 
 // Stop if accessed directly.
-if ( ! defined( 'JSON_CMS' ) ) {
+if ( ! defined( 'Baseless' ) ) {
 	die( 'You are not allowed to access this file directly.' );
 }
 

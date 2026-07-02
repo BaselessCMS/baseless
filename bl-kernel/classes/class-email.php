@@ -2,14 +2,14 @@
 /**
  * Email helpers
  *
- * @package    JSON CMS
+ * @package    Baseless
  * @subpackage Classes
  * @category   Core
  * @since      1.0.0
  */
 
 // Stop if accessed directly.
-if ( ! defined( 'JSON_CMS' ) ) {
+if ( ! defined( 'Baseless' ) ) {
 	die( 'You are not allowed to access this file directly.' );
 }
 
@@ -48,7 +48,7 @@ class Email {
 		$message = '<html>
 		<head>
 			<meta charset="UTF-8">
-			<title>JSON_CMS</title>
+			<title>Baseless</title>
 		</head>
 		<body>
 		<div>

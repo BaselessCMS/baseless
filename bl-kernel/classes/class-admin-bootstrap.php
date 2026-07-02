@@ -5,7 +5,7 @@
  * Taken from the default Bludit admin theme
  * and improved.
  *
- * @package    JSON CMS
+ * @package    Baseless
  * @subpackage Classes
  * @category   Admin
  * @since      1.0.0

@@ -2,7 +2,7 @@
 /**
  * Template tags
  *
- * @package    JSON CMS
+ * @package    Baseless
  * @subpackage Core
  * @category   Functions
  * @since      1.0.0

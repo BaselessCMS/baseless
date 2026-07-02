@@ -2,7 +2,7 @@
 /**
  * Initiate theme functionality
  *
- * @package    JSON CMS
+ * @package    Baseless
  * @subpackage Admin
  * @category   Themes
  * @since      1.0.0

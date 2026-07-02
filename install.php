@@ -2,7 +2,7 @@
 /**
  * Install CMS
  *
- * @package  JSON CMS
+ * @package  Baseless
  * @category Core
  * @since    1.0.0
  */
@@ -40,8 +40,8 @@ if ( $modulesRequiredExit ) {
 }
 
 // Security constant.
-define( 'JSON_CMS', true );
-define( 'JSON_CMS', true );
+define( 'Baseless', true );
+define( 'Baseless', true );
 
 // Directory separator.
 define( 'DS', DIRECTORY_SEPARATOR );
@@ -334,7 +334,7 @@ function install( $adminPassword, $timezone ) {
 		error_log( '[ERROR] ' . $errorText, 0 );
 	}
 
-	$dataHead = "<?php defined( 'JSON_CMS' ) or die( 'Bludit CMS.' ); ?>" . PHP_EOL;
+	$dataHead = "<?php defined( 'Baseless' ) or die( 'Bludit CMS.' ); ?>" . PHP_EOL;
 
 	$data  = [];
 	$slugs = [];
@@ -388,7 +388,7 @@ function install( $adminPassword, $timezone ) {
 	}
 
 	$data = [
-		'title'        => 'JSON CMS',
+		'title'        => 'Baseless',
 		'slogan'       => '',
 		'description'  => '',
 		'footer'       => 'Copyright ©' . Date :: current( 'Y' ),

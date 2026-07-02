@@ -2,7 +2,7 @@
 /**
  * Page markup
  *
- * @package    JSON CMS
+ * @package    Baseless
  * @subpackage Frontend
  * @category   Themes
  * @since      1.0.0

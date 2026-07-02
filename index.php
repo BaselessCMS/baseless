@@ -2,10 +2,10 @@
 /**
  * CMS core file
  *
- * @package  JSON CMS
+ * @package  Baseless
  * @category Core
  * @since    1.0.0
- * @link     https://github.com/Bludiot/bludiot
+ * @link     https://github.com/BludiotBludiot/bludiot
  */
 
 // Check if the CHS is installed.
@@ -24,7 +24,7 @@ if ( ! file_exists( 'bl-content/databases/site.php' ) ) {
 $loadTime = microtime( true );
 
 // Security constants.
-define( 'JSON_CMS', true );
+define( 'Baseless', true );
 
 // Directory separator.
 define( 'DS', DIRECTORY_SEPARATOR );

@@ -2,14 +2,14 @@
 /**
  * Login system
  *
- * @package    JSON CMS
+ * @package    Baseless
  * @subpackage Classes
  * @category   Users
  * @since      1.0.0
  */
 
 // Stop if accessed directly.
-if ( ! defined( 'JSON_CMS' ) ) {
+if ( ! defined( 'Baseless' ) ) {
 	die( 'You are not allowed to access this file directly.' );
 }
 
@@ -272,7 +272,7 @@ class Login {
 
 		$agent = getenv( 'HTTP_USER_AGENT' );
 		if ( empty( $agent ) ) {
-			$agent = 'JSON_CMS)';
+			$agent = 'Baseless)';
 		}
 		return sha1( $agent );
 	}
