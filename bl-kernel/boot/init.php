@@ -352,7 +352,7 @@ define( 'HTML_PATH_ADMIN_THEME_JS',	HTML_PATH_ADMIN_THEME . 'js/' );
 define( 'HTML_PATH_ADMIN_THEME_CSS', HTML_PATH_ADMIN_THEME . 'css/' );
 define( 'HTML_PATH_CORE_ASSETS', HTML_PATH_ROOT . 'bl-kernel/assets/' );
 define( 'HTML_PATH_CORE_JS', HTML_PATH_ROOT . 'bl-kernel/assets/js/' );
-define( 'HTML_PATH_CORE_CSS', HTML_PATH_ROOT . 'bl-kernel/css/' );
+define( 'HTML_PATH_CORE_CSS', HTML_PATH_ROOT . 'bl-kernel/assets/css/' );
 define( 'HTML_PATH_CORE_IMG', HTML_PATH_ROOT . 'bl-kernel/assets/images/' );
 define( 'HTML_PATH_CONTENT', HTML_PATH_ROOT . 'bl-content/' );
 define( 'HTML_PATH_UPLOADS', HTML_PATH_ROOT . 'bl-content/uploads/' );

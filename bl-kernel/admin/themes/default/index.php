@@ -22,7 +22,7 @@ if ( defined( 'DEBUG_MODE' ) && DEBUG_MODE ) {
 
 ?>
 <!DOCTYPE html>
-<html dir="auto" class="no-js" lang="<?php echo $L->currentLanguageShortVersion(); ?>" xmlns:og="http://opengraphprotocol.org/schema/">
+<html dir="auto" class="no-js" lang="<?php echo $L->currentLanguageShortVersion(); ?>">
 <head>
 	<title><?php echo $layout['title']; ?></title>
 

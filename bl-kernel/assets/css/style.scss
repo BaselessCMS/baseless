@@ -1,0 +1,82 @@
+///
+/// Basic admin styles
+///
+
+@import 'modules/_root';
+@import 'modules/_reset';
+@import 'partials/_forms';
+@import 'partials/_select';
+@import 'partials/_buttons';
+
+.login-screen {
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	h1 {
+		a {
+			color: inherit;
+			text-decoration: none;
+		}
+	}
+
+	.admin-fieldset {
+		margin-top: 1rem;
+
+		select {
+			margin-top: 1rem;
+		}
+	}
+
+	#login-password {
+		label {
+			margin-top: 1rem !important;
+		}
+	}
+
+	#login-show-password,
+	#login-remember {
+		display: flex;
+		align-items: center;
+		gap: 0 0.5em;
+		margin-top: 1rem;
+
+		label,
+		input {
+			display: inline-block;
+			margin: 0;
+		}
+	}
+
+	.login-submit {
+		margin-top: 1rem;
+	}
+
+	#user-login {
+		max-width: 640px;
+
+		.login-heading {
+			a {
+				&:hover,
+				&:focus {
+					text-decoration: none;
+				}
+			}
+		}
+
+		#login-remember {
+			cursor: pointer;
+
+			label,
+			input {
+				cursor: pointer;
+			}
+		}
+
+		.login-submit {
+			margin: 1rem 0 0 0;
+		}
+	}
+}

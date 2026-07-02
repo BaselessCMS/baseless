@@ -1,0 +1,172 @@
+///
+/// Button styles
+///
+
+.btn-group {
+	position: relative;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	vertical-align: middle;
+}
+
+.btn,
+.button {
+	display: var( --cfe-button--display, inline-block );
+	width: var( --cfe-button--width, auto );
+	margin: var( --cfe-button--margin );
+	padding: var( --cfe-button--padding, 0.5rem );
+	line-height: var( --cfe-button--line-height, 1 );
+	font-family: var( --cfe-button--font-family, var( --cfe-display--font-family ) );
+	font-size: var( --cfe-button--font-size );
+	font-weight: var( --cfe-button--font-weight, var( --cfe-display--font-weight ) );
+	font-style: var( --cfe-button--font-style, normal );
+	font-variant: var( --cfe-button--font-variant, normal );
+	letter-spacing: var( --cfe-button--letter-spacing, normal );
+	word-spacing: var( --cfe-button--word-spacing, normal );
+	text-decoration: var( --cfe-button--text-decoration, none );
+	background-color: var( --cfe-button--bg-color, var( --cfe-body--bg-color, inherit ) );
+	border: solid 1px var( --cfe-button--border-color, #555555 );
+	color: var( --cfe-button--text-color, var( --cfe-text-color, #333333 ) );
+	transition: var( --cfe-button--transition, all 0.15s ease-in-out );
+	cursor: var( --cfe-button--cursor, pointer );;
+
+	@media ( prefers-reduced-motion: reduce ) {
+		transition: none;
+	}
+
+	&:hover,
+	&:focus {
+		background-color: var( --cfe-button--action--bg-color, #333333 );
+		border-color: var( --cfe-button--action--border-color, #555555 );
+		color: var( --cfe-button--action--text-color, #ffffff );
+	}
+
+	&.disabled,
+	&:disabled,
+	&.btn-link:disabled,
+	&.btn-link.disabled {
+		cursor: var( --cfe-button--disabled--cursor, not-allowed );
+		background-color: var( --cfe-button--disabled--bg-color, #eeeeee );
+		border-color: var( --cfe-button--disabled--border-color, #cccccc );
+		color: var( --cfe-button--disabled--text-color, #cccccc );
+	}
+
+	&.btn-primary,
+	&.button-primary {
+		background-color: var( --cfe-button--primary--bg-color, var( --cfe-link--text-color ) );
+		color: var( --cfe-button--primary--text-color, #ffffff );
+
+		&:hover,
+		&:focus {
+			background-color: var( --cfe-button--primary--action--bg-color, var( --cfe-link--action--text-color ) );
+			color: var( --cfe-button--primary--action--text-color, #ffffff );
+		}
+	}
+
+	&.button-small {
+		padding: var( --cfe-button--small--padding, 0.5rem );
+		font-size: var( --cfe-button--small--font-size, 0.8125rem );
+		font-weight: var( --cfe-button--small--font-weight, var( --cfe-button--font-weight, 600 ) );
+	}
+
+	&.btn-lg {
+		padding: 0.75rem 1rem;
+		font-size: 1.25rem;
+	}
+
+	&.btn-danger {
+		background-color: #dd0000;
+		color: #ffffff;
+
+		&:hover {
+			background-color: #ff0000;
+		}
+	}
+}
+
+a.btn.disabled,
+fieldset:disabled a.btn {
+	pointer-events: none;
+}
+
+.btn-block {
+	display: block;
+	width: 100%;
+
+	& + .btn-block {
+		margin-top: 0.5rem;
+	}
+}
+
+.btn-group-lg > .btn {
+	padding: 0.75rem 1rem;
+	font-size: 1.25rem;
+}
+
+// For small devices.
+@media ( max-width: $break-max-sm ) {
+
+	#jsmediaManagerButton,
+	#jscategoryButton,
+	#jsdescriptionButton {
+		width: 100%;
+		text-align: left;
+	}
+}
+
+// Optional "back to top" button.
+#to-top {
+	opacity: var( --cfe-to-top--opacity, 0 );
+	pointer-events: var( --cfe-to-top--pointer-events, none );
+	position: var( --cfe-to-top--position, fixed );
+	top: var( --cfe-to-top--top );
+	left: var( --cfe-to-top--left );
+	right: var( --cfe-to-top--right, 2rem );
+	bottom: var( --cfe-to-top--bottom, 2rem );
+	width: var( --cfe-to-top--width, 3rem );
+	height: var( --cfe-to-top--height, 3rem );
+	display: var( --cfe-to-top--display, flex );
+	align-items: var( --cfe-to-top--align-items, center );
+	justify-content: var( --cfe-to-top--justify-content, center );
+	background-color: var( --cfe-button--bg-color );
+	border: var( --cfe-form-element--border );
+	border-color: var( --cfe-button--border-color, var( --cfe-form--border-color ) );
+	color: var( --cfe-to-top--text-color, var( --cfe-button--text-color ) );
+	border-radius: var( --cfe-to-top--border-radius, 50% );
+	transform: var( --cfe-to-top--transform, translateY(0) );
+	transition: var( --cfe-to-top--transition, opacity .5s, background-color .25s, transform .25s );
+
+	@media ( prefers-color-scheme: dark ) {
+		background-color: var( --cfe-button--bg-color--dark );
+		border-color: var( --cfe-button--border-color--dark, var( --cfe-form--border-color--dark ) );
+		color: var( --cfe-to-top--text-color--dark, var( --cfe-button--text-color--dark ) );
+	}
+
+	@media screen and ( max-width: 640px ) {
+		display: none;
+	}
+
+	&.scrolled {
+		opacity: var( --cfe-to-top--scrolled--opacity, 1 );
+		pointer-events: var( --cfe-to-top--scrolled--pointer-events, all );
+	}
+
+	&:hover {
+		background-color: var( --cfe-to-top--action--bg-color, var( --cfe-button--action--bg-color, var( --cfe-button--bg-color ) ) );
+		border-color: var( --cfe-to-top--action--border-color, var( --cfe-button--action--border-color, var( --cfe-button--border-color ) ) );
+		color: var( --cfe-to-top--action--text-color, var( --cfe-button--action--text-color ) );
+		transform: var( --cfe-to-top--action--transform, translateY( -0.25rem ) );
+
+		@media ( prefers-color-scheme: dark ) {
+			background-color: var( --cfe-to-top--action--bg-color--dark, var( --cfe-button--action--bg-color--dark, var( --cfe-button--bg-color--dark ) ) );
+			border-color: var( --cfe-to-top--action--border-color--dark, var( --cfe-button--action--border-color--dark, var( --cfe-button--border-color--dark ) ) );
+			color: var( --cfe-to-top--action--text-color--dark, var( --cfe-button--action--text-color--dark ) );
+		}
+	}
+
+	svg {
+		width: var( --cfe-to-top--svg--width, 1.5rem );
+		height: var( --cfe-to-top--svg--height, 1.5rem );
+		fill: var( --cfe-to-top--svg--fill, currentColor );
+	}
+}

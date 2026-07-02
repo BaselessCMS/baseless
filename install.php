@@ -41,7 +41,6 @@ if ( $modulesRequiredExit ) {
 
 // Security constant.
 define( 'Baseless', true );
-define( 'Baseless', true );
 
 // Directory separator.
 define( 'DS', DIRECTORY_SEPARATOR );
@@ -602,27 +601,20 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 	<meta charset="<?php echo CHARSET; ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
-	<meta name="robots" content="noindex,nofollow" />
-
-	<?php // Preconnect and preload files. ?>
-	<link rel="preconnect" href="//fonts.adobe.com" />
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
+	<meta name="robots" content="noindex, nofollow" />
 	<?php
 
 	// Change `<html>` 'no-js' class to 'js' if JavaScript is enabled.
 	echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n"; ?>
 
-	<link rel="stylesheet" type="text/css" href="bl-kernel/css/bootstrap.min.css?version=<?php echo time(); ?>" />
+	<link rel="stylesheet" type="text/css" href="bl-kernel/assets/css/style.min.css?version=<?php echo time(); ?>" />
 
-	<script charset="utf-8" src="bl-kernel/js/jquery.min.js?version=<?php echo time(); ?>"></script>
-	<script charset="utf-8" src="bl-kernel/js/bootstrap.bundle.min.js?version=<?php echo time(); ?>"></script>
-	<script charset="utf-8" src="bl-kernel/js/jstz.min.js?version=<?php echo time(); ?>"></script>
+	<script charset="utf-8" src="bl-kernel/assets/js/jquery.min.js?version=<?php echo time(); ?>"></script>
+	<script charset="utf-8" src="bl-kernel/assets/js/jstz.min.js?version=<?php echo time(); ?>"></script>
 </head>
 
-<body class="login">
-	<div class="container">
+<body class="login-screen">
+	<div class="admin-content">
 
 		<h1><?php $L->p( 'CMS Installer' ); ?></h1>
 
@@ -643,32 +635,32 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 		} elseif ( isset( $_GET['language'] ) ) {
 
 		?>
-			<p><?php $L->p( 'choose-a-password-for-the-user-admin' ); ?></p>
-
 			<?php if ( ! empty( $errorText ) ) : ?>
 				<div class="alert alert-danger"><?php echo $errorText; ?></div>
 			<?php endif ?>
 
 			<form id="jsformInstaller" method="post" action="" autocomplete="off">
+				<fieldset class="admin-fieldset">
 
-				<input type="hidden" name="timezone" id="jstimezone" value="UTC" />
+					<input type="hidden" name="timezone" id="jstimezone" value="UTC" />
 
-				<div class="form-group">
-					<input type="text" value="admin" class="form-control form-control-lg" id="jsusername" name="username" placeholder="<?php $L->p( 'Username' ); ?>" disabled />
-				</div>
+					<div id="login-password">
+						<label><?php $L->p( 'Username' ); ?></label>
+						<input type="text" value="admin" id="jsusername" name="username" placeholder="<?php $L->p( 'Username' ); ?>" disabled />
 
-				<div class="form-group">
-					<input type="password" class="form-control form-control-lg" id="jspassword" name="password" placeholder="<?php $L->p( 'Password' ); ?>" />
-				</div>
+						<label><?php $L->p( 'Password' ); ?></label>
+						<input type="password" id="jspassword" name="password" placeholder="<?php $L->p( 'Passwordhoose something unique' ); ?>" />
+					</div>
 
-				<div class="form-check">
-					<input role="button" class="form-check-input" type="checkbox" value="" id="jsshowPassword" />
-					<label class="form-check-label" for="jsshowPassword"><?php $L->p( 'Show password' ); ?></label>
-				</div>
+					<div id="login-show-password">
+						<input type="checkbox" value="" id="jsshowPassword" />
+						<label for="jsshowPassword"><?php $L->p( 'Show password' ); ?></label>
+					</div>
 
-				<div class="form-group">
-					<button type="submit" class="button button-primary" name="install"><?php $L->p( 'Install' ); ?></button>
-				</div>
+					<div class="login-submit">
+						<button type="submit" class="button button-primary" name="install"><?php $L->p( 'Install' ); ?></button>
+					</div>
+				</fieldset>
 			</form>
 		<?php
 
@@ -676,25 +668,26 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 		?>
 			<form id="jsformLanguage" method="get" action="" autocomplete="off">
+				<fieldset class="admin-fieldset">
+					<label for="jslanguage"><?php echo $L->get( 'System Language' ); ?></label>
+					<select id="jslanguage" name="language" class="form-control">
+						<?php
+						$htmlOptions = getLanguageList();
+						foreach ( $htmlOptions as $fname => $native ) {
 
-				<label for="jslanguage"><?php echo $L->get( 'System Language' ); ?></label>
-				<select id="jslanguage" name="language" class="form-control">
-					<?php
-					$htmlOptions = getLanguageList();
-					foreach ( $htmlOptions as $fname => $native ) {
+							printf(
+								'<option value="%s" %s>%s</option>',
+								$fname,
+								( ( $finalLanguage === $fname ) ? ' selected="selected"' : '' ),
+								$native
+							);
+						} ?>
+					</select>
 
-						printf(
-							'<option value="%s" %s>%s</option>',
-							$fname,
-							( ( $finalLanguage === $fname ) ? ' selected="selected"' : '' ),
-							$native
-						);
-					} ?>
-				</select>
-
-				<div class="form-group">
-					<button id="system-install-next" type="submit" class="button"><?php $L->p( 'Next' ); ?></button>
-				</div>
+					<div class="form-group">
+						<button id="system-install-next" type="submit" class="button"><?php $L->p( 'Next' ); ?></button>
+					</div>
+				</fieldset>
 			</form>
 		<?php } ?>
 	</div>
